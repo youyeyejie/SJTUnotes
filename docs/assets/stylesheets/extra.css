@@ -1,0 +1,13 @@
+.md-typeset mjx-container {
+  max-width: 100%;
+}
+
+.md-typeset mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25rem;
+}
+
+.md-typeset mjx-container[display="false"] {
+  max-width: 100%;
+}
