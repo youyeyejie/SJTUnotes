@@ -150,9 +150,9 @@ extra:
     # email
     - icon: material/email
       link: mailto:youyeyejie@outlook.com
-  # analytics:
-  #   provider: google
-  #   property: G-XXXXXXXXXX  # 替换为您的Google Analytics ID
+  analytics:
+    provider: custom
+    property: 0369421f-4354-4d7b-99c7-ae077c591b4f
 
 extra_javascript:
   - assets/javascripts/mathjax.js
