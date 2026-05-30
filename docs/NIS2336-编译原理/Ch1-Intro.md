@@ -1,5 +1,7 @@
 # Ch1 Intro
 
+- [Back to Course Home](index.md)
+
 ## 编译流程
 ![](assets/image-1.webp)
 
@@ -12,15 +14,15 @@
 ![](assets/image.webp)
 
 - Ch1 Intro
-	- 编译流程
-		- 编译器
-	- 词法分析：Lexical Analysis
-	- 语法分析：Syntax Analysis
-	- 词法分析 vs. 语法分析
-	- 语义分析：Semantic Analysis
-	- 中间代码生成：Intermediate Code Generation
-	- 优化：Optimization
-	- 目标代码生成：Target Code Generation
+    - 编译流程
+        - 编译器
+    - 词法分析：Lexical Analysis
+    - 语法分析：Syntax Analysis
+    - 词法分析 vs. 语法分析
+    - 语义分析：Semantic Analysis
+    - 中间代码生成：Intermediate Code Generation
+    - 优化：Optimization
+    - 目标代码生成：Target Code Generation
 
 ## 词法分析：Lexical Analysis
 

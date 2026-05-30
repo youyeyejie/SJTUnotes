@@ -60,11 +60,11 @@
 	- corresponding to **Top-down** Construction of a Parse Tree （对应于自顶向下构造解析树）
 	- helpful for Bottom-up Parsing
 - **How**:
-	- $\Rightarrow $ : derive in one step
-	- $\overset{*}{\Rightarrow} $ : derive in zero or more steps
+	- $\Rightarrow$ : derive in one step
+	- $\overset{*}{\Rightarrow}$ : derive in zero or more steps
 		- $\alpha \overset{*}{\Rightarrow} \alpha$
 		- if $\alpha \overset{*}{\Rightarrow} \beta$ and $\beta \overset{*}{\Rightarrow} \gamma$, then $\alpha \overset{*}{\Rightarrow} \gamma$
-	- $\overset{+}{\Rightarrow} $ : derive in one or more steps
+	- $\overset{+}{\Rightarrow}$ : derive in one or more steps
 
 - $\mathbf{S} \overset{*}{\Rightarrow} \alpha$ 
 	- $\alpha$ is a **Sentential Form** of S. （$\alpha$ 是 S 的一个句子形式）
