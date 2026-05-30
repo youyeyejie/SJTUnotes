@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import re
 import sys
 from pathlib import Path
@@ -184,6 +185,17 @@ def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None
     return output / file_path.name
 
 
+def format_symbol_summary(records: list[ReplacementRecord]) -> str:
+    counts: Counter[tuple[str, str]] = Counter((record.original, record.replaced) for record in records)
+    parts = [f"{original}->{replaced} x{count}" for (original, replaced), count in counts.items()]
+    return ", ".join(parts)
+
+
+def format_line_summary(records: list[ReplacementRecord]) -> str:
+    lines = sorted({record.line for record in records})
+    return ", ".join(str(line) for line in lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Replace Chinese punctuation with ASCII punctuation inside math formulas."
@@ -224,7 +236,10 @@ def main() -> int:
             continue
 
         changed_files += 1
-        print(f"{file_path} ({len(records)})")
+        print(file_path)
+        print(f"  replacements: {len(records)}")
+        print(f"  symbols: {format_symbol_summary(records)}")
+        print(f"  lines: {format_line_summary(records)}")
         if args.write:
             output_path = resolve_output_path(file_path, inputs, args.output)
             output_path.parent.mkdir(parents=True, exist_ok=True)

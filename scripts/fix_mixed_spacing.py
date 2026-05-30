@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import re
 import sys
 from pathlib import Path
@@ -13,6 +14,12 @@ SINGLE_LINE_BLOCK_MATH_RE = re.compile(r"^[ \t]*\$\$.*\$\$[ \t]*$")
 ZH_CHAR = r"\u4e00-\u9fff"
 LATIN_NUM = r"A-Za-z0-9"
 TEXT_CHAR_RE = re.compile(rf"[{ZH_CHAR}{LATIN_NUM}]")
+CHANGE_LABELS = {
+    "zh_latin_num": "中后接英文/数字",
+    "latin_num_zh": "英文/数字后接中文",
+    "text_before_math": "文字前接公式",
+    "math_before_text": "公式后接文字",
+}
 
 
 def split_by_code_fences(text: str) -> list[tuple[bool, str]]:
@@ -51,10 +58,10 @@ def split_by_code_fences(text: str) -> list[tuple[bool, str]]:
     return segments
 
 
-def normalize_inline_math_spacing(line: str) -> tuple[str, int]:
+def normalize_inline_math_spacing(line: str) -> tuple[str, Counter[str]]:
     parts: list[str] = []
     cursor = 0
-    modifications = 0
+    changes: Counter[str] = Counter()
 
     for match in INLINE_MATH_RE.finditer(line):
         start, end = match.span()
@@ -62,7 +69,7 @@ def normalize_inline_math_spacing(line: str) -> tuple[str, int]:
         if start > 0 and TEXT_CHAR_RE.fullmatch(line[start - 1]):
             if prefix and not prefix.endswith(" "):
                 prefix = prefix + " "
-                modifications += 1
+                changes["text_before_math"] += 1
         parts.append(prefix)
 
         parts.append(match.group(0))
@@ -70,64 +77,90 @@ def normalize_inline_math_spacing(line: str) -> tuple[str, int]:
 
         if end < len(line) and TEXT_CHAR_RE.fullmatch(line[end]):
             parts.append(" ")
-            modifications += 1
+            changes["math_before_text"] += 1
             continue
 
         if end < len(line):
             continue
 
     parts.append(line[cursor:])
-    return "".join(parts), modifications
+    return "".join(parts), changes
 
 
-def normalize_mixed_text_spacing(line: str) -> tuple[str, int]:
+def normalize_mixed_text_spacing(line: str) -> tuple[str, Counter[str]]:
     updated, count_1 = re.subn(rf"([{ZH_CHAR}])([{LATIN_NUM}])", r"\1 \2", line)
     updated, count_2 = re.subn(rf"([{LATIN_NUM}])([{ZH_CHAR}])", r"\1 \2", updated)
-    return updated, count_1 + count_2
+    changes = Counter[str]()
+    if count_1:
+        changes["zh_latin_num"] += count_1
+    if count_2:
+        changes["latin_num_zh"] += count_2
+    return updated, changes
 
 
-def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, int]:
+def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, Counter[str]]:
     stripped = line.strip()
 
     if stripped == "$$" or stripped == r"\]":
-        return line, False, 0
+        return line, False, Counter()
     if SINGLE_LINE_BLOCK_MATH_RE.match(line):
-        return line, False, 0
+        return line, False, Counter()
     if stripped.startswith("$$") or stripped == r"\[":
-        return line, True, 0
+        return line, True, Counter()
     if in_block_math or BLOCK_MATH_LINE_RE.match(line):
-        return line, in_block_math, 0
+        return line, in_block_math, Counter()
 
-    updated, modifications_1 = normalize_inline_math_spacing(line)
-    updated, modifications_2 = normalize_mixed_text_spacing(updated)
-    return updated, False, modifications_1 + modifications_2
+    updated, changes_1 = normalize_inline_math_spacing(line)
+    updated, changes_2 = normalize_mixed_text_spacing(updated)
+    changes_1.update(changes_2)
+    return updated, False, changes_1
 
 
-def normalize_segment(text: str) -> tuple[str, int]:
+def normalize_segment(text: str) -> tuple[str, Counter[str], list[int]]:
     lines = text.splitlines(keepends=True)
     out: list[str] = []
     in_block_math = False
-    modifications = 0
+    changes: Counter[str] = Counter()
+    changed_lines: list[int] = []
 
-    for line in lines:
-        updated, in_block_math, line_modifications = normalize_line(line, in_block_math)
+    for line_number, line in enumerate(lines, start=1):
+        updated, in_block_math, line_changes = normalize_line(line, in_block_math)
         out.append(updated)
-        modifications += line_modifications
+        if line_changes:
+            changes.update(line_changes)
+            changed_lines.append(line_number)
 
-    return "".join(out), modifications
+    return "".join(out), changes, changed_lines
 
 
-def normalize_mixed_spacing(text: str) -> tuple[str, int]:
+def normalize_mixed_spacing(text: str) -> tuple[str, Counter[str], list[int]]:
     parts: list[str] = []
-    modifications = 0
+    changes: Counter[str] = Counter()
+    changed_lines: list[int] = []
+    line_offset = 0
+
     for is_code, segment in split_by_code_fences(text):
         if is_code:
             parts.append(segment)
+            line_offset += segment.count("\n")
             continue
-        updated, segment_modifications = normalize_segment(segment)
+
+        updated, segment_changes, segment_lines = normalize_segment(segment)
         parts.append(updated)
-        modifications += segment_modifications
-    return "".join(parts), modifications
+        changes.update(segment_changes)
+        changed_lines.extend(line_offset + line_number for line_number in segment_lines)
+        line_offset += segment.count("\n")
+
+    return "".join(parts), changes, changed_lines
+
+
+def format_change_summary(changes: Counter[str]) -> str:
+    parts: list[str] = []
+    for key in ("zh_latin_num", "latin_num_zh", "text_before_math", "math_before_text"):
+        count = changes.get(key, 0)
+        if count:
+            parts.append(f"{CHANGE_LABELS[key]} x{count}")
+    return ", ".join(parts)
 
 
 def iter_markdown_files(paths: list[Path]) -> list[Path]:
@@ -196,12 +229,15 @@ def main() -> int:
     changed_files = 0
     for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
-        updated, modifications = normalize_mixed_spacing(original)
+        updated, changes, changed_lines = normalize_mixed_spacing(original)
         if updated == original:
             continue
 
         changed_files += 1
-        print(f"{file_path} ({modifications})")
+        print(file_path)
+        print(f"  replacements: {sum(changes.values())}")
+        print(f"  symbols: {format_change_summary(changes)}")
+        print(f"  lines: {', '.join(str(line) for line in changed_lines)}")
         if args.write:
             output_path = resolve_output_path(file_path, inputs, args.output)
             output_path.parent.mkdir(parents=True, exist_ok=True)
