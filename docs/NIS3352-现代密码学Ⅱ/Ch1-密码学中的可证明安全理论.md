@@ -484,7 +484,7 @@
 	![](assets/image-8.webp)
 
 - Fiat-Shamir 变换的安全性：**身份证明协议是 UI-PA 安全的** + **$\mathrm{H}$ 为 RO** $\implies$ **通过 Fiat-Shamir 变换得到的签名算法是 EUF-CMA 安全的**
-	- 证明：参考后续 [Schnorr 签名算法的安全性证明](#schnorr-签名算法的-euf-cma-安全性)
+	- 证明：参考后续 [Schnorr 签名算法的安全性证明](#schnorr-euf-cma)
 
 ### Random Oracle 模型（随机预言机）
 
