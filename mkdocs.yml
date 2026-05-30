@@ -1,7 +1,8 @@
-site_name: SJTU Course Notes
+site_name: YYYJ's SJTU Course Notes
 site_description: Course notes from Shanghai Jiao Tong University
 site_author: youyeyejie
 repo_url: https://github.com/youyeyejie/SJTUnotes
+site_url: https://youyeyejie.github.io/SJTUnotes/
 edit_uri: edit/main/docs/
 theme:
   name: material
