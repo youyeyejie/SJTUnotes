@@ -144,6 +144,9 @@ extra:
     # github
     - icon: fontawesome/brands/github
       link: https://github.com/youyeyejie
+    # analytics
+    - icon: fontawesome/solid/chart-line
+      link: https://cloud.umami.is/share/1fs3cnD9TAP8JzML
     # blog
     - icon: fontawesome/solid/blog
       link: https://youyeyejie.github.io/
@@ -306,11 +309,11 @@ nav:
       - Ch13-精简指令集计算机RISC: NIS2331-计算机组成与系统结构/Ch13-精简指令集计算机RISC.md
       - Ch14-指令级并行性和超标量处理器: NIS2331-计算机组成与系统结构/Ch14-指令级并行性和超标量处理器.md
       - Ch17-并行处理: NIS2331-计算机组成与系统结构/Ch17-并行处理.md
-  - NIS2333-抽象代数:
-      - NIS2333-抽象代数/index.md
-      - 解题范式: NIS2333-抽象代数/解题范式.md
-      - 第一章-群: NIS2333-抽象代数/第一章-群.md
-      - 第二章-环: NIS2333-抽象代数/第二章-环.md
+  - NIS2333-信息安全数学基础:
+      - NIS2333-信息安全数学基础/index.md
+      - 解题范式: NIS2333-信息安全数学基础/解题范式.md
+      - 第一章-群: NIS2333-信息安全数学基础/第一章-群.md
+      - 第二章-环: NIS2333-信息安全数学基础/第二章-环.md
   - NIS2334-操作系统原理:
       - NIS2334-操作系统原理/index.md
       - 操作系统概述: NIS2334-操作系统原理/1.操作系统概述.md
@@ -351,14 +354,14 @@ nav:
       - 数据库安全: NIS3301-系统安全/9.数据库安全.md
       - 密码学基础: NIS3301-系统安全/10.密码学基础.md
       - 硬件安全: NIS3301-系统安全/11.硬件安全.md
-  - NIS3329-初等数论与抽象代数:
-      - NIS3329-初等数论与抽象代数/index.md
-      - Ch1-Divisibility: NIS3329-初等数论与抽象代数/Chapter-1-Divisibility.md
-      - Ch2-Congruences: NIS3329-初等数论与抽象代数/Chapter-2-Congruences.md
-      - Ch3-Primitive-roots-and-discrete-logarithm: NIS3329-初等数论与抽象代数/Chapter-3-Primitive-roots-and-discrete-logarithm.md
-      - Ch4-Quadratic-Residues: NIS3329-初等数论与抽象代数/Chapter-4-Quadratic-Residues.md
-      - Ch5-Polynomials: NIS3329-初等数论与抽象代数/Chapter-5-Polynomials.md
-      - Ch6-Finite-fields: NIS3329-初等数论与抽象代数/Chapter-6-Finite-fields.md
+  - NIS3329-信息安全数学基础Ⅱ:
+      - NIS3329-信息安全数学基础Ⅱ/index.md
+      - Ch1-Divisibility: NIS3329-信息安全数学基础Ⅱ/Chapter-1-Divisibility.md
+      - Ch2-Congruences: NIS3329-信息安全数学基础Ⅱ/Chapter-2-Congruences.md
+      - Ch3-Primitive-roots-and-discrete-logarithm: NIS3329-信息安全数学基础Ⅱ/Chapter-3-Primitive-roots-and-discrete-logarithm.md
+      - Ch4-Quadratic-Residues: NIS3329-信息安全数学基础Ⅱ/Chapter-4-Quadratic-Residues.md
+      - Ch5-Polynomials: NIS3329-信息安全数学基础Ⅱ/Chapter-5-Polynomials.md
+      - Ch6-Finite-fields: NIS3329-信息安全数学基础Ⅱ/Chapter-6-Finite-fields.md
   - NIS3351-数据库原理及安全:
       - NIS3351-数据库原理及安全/index.md
       - 第一章-数据库系统概论: NIS3351-数据库原理及安全/第一章-数据库系统概论.md

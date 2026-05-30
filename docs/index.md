@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # SJTU Course Notes
 
 Course notes from Shanghai Jiao Tong University.
@@ -18,12 +22,12 @@ Course notes from Shanghai Jiao Tong University.
 - [MIL1201-军事理论](MIL1201-军事理论/index.md)
 - [NIS2301-网络空间安全导论](NIS2301-网络空间安全导论/index.md)
 - [NIS2331-计算机组成与系统结构](NIS2331-计算机组成与系统结构/index.md)
-- [NIS2333-抽象代数](NIS2333-抽象代数/index.md)
+- [NIS2333-信息安全数学基础](NIS2333-信息安全数学基础/index.md)
 - [NIS2334-操作系统原理](NIS2334-操作系统原理/index.md)
 - [NIS2336-编译原理](NIS2336-编译原理/index.md)
 - [NIS2337-信息论基础](NIS2337-信息论基础/index.md)
 - [NIS3301-系统安全](NIS3301-系统安全/index.md)
-- [NIS3329-初等数论与抽象代数](NIS3329-初等数论与抽象代数/index.md)
+- [NIS3329-信息安全数学基础Ⅱ](NIS3329-信息安全数学基础Ⅱ/index.md)
 - [NIS3351-数据库原理及安全](NIS3351-数据库原理及安全/index.md)
 - [NIS3352-现代密码学Ⅱ](NIS3352-现代密码学Ⅱ/index.md)
 - [NIS3355-算法计算复杂度分析](NIS3355-算法计算复杂度分析/index.md)
