@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from pathlib import Path
 
 
@@ -48,11 +49,11 @@ def append_block(
     append_blank_line(out)
 
 
-def append_inline_block_sequence(out: list[str], line: str) -> None:
+def append_inline_block_sequence(out: list[str], line: str) -> int:
     matches = list(INLINE_BLOCK_MATH.finditer(line))
     if not matches:
         out.append(line)
-        return
+        return 0
 
     indent = block_indent_for_line(line)
     leading = line[: matches[0].start()].rstrip()
@@ -75,10 +76,13 @@ def append_inline_block_sequence(out: list[str], line: str) -> None:
         if between:
             out.append(f"{indent}{between}")
 
+    return len(matches)
 
-def normalize_block_math(text: str) -> str:
+
+def normalize_block_math(text: str) -> tuple[str, int]:
     lines = text.splitlines()
     out: list[str] = []
+    modifications = 0
 
     for line in lines:
         if not line.strip():
@@ -86,7 +90,7 @@ def normalize_block_math(text: str) -> str:
             continue
 
         if INLINE_BLOCK_MATH.search(line):
-            append_inline_block_sequence(out, line)
+            modifications += append_inline_block_sequence(out, line)
             continue
 
         out.append(line)
@@ -94,7 +98,7 @@ def normalize_block_math(text: str) -> str:
     normalized = "\n".join(out)
     if text.endswith("\n"):
         normalized += "\n"
-    return normalized
+    return normalized, modifications
 
 
 def iter_markdown_files(paths: list[Path]) -> list[Path]:
@@ -108,37 +112,74 @@ def iter_markdown_files(paths: list[Path]) -> list[Path]:
     return files
 
 
+def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None) -> Path:
+    if output is None:
+        return file_path
+
+    if len(inputs) == 1 and inputs[0].is_file():
+        if output.suffix.lower() == ".md":
+            return output
+        return output / file_path.name
+
+    for root in inputs:
+        if root.is_dir():
+            try:
+                relative = file_path.relative_to(root)
+                return output / relative
+            except ValueError:
+                continue
+
+    return output / file_path.name
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Rewrite single-line $$ block formulas to multiline blocks."
     )
     parser.add_argument(
-        "paths",
+        "-i",
+        "--input",
         nargs="*",
         type=Path,
-        default=[Path("docs")],
-        help="Markdown files or directories to process. Defaults to docs/.",
+        default=None,
+        help="Markdown files or directories to process. Defaults to docs/ when omitted or left empty.",
     )
     parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        help="Optional output file or directory. Defaults to overwriting the source when used with --write.",
+    )
+    parser.add_argument(
+        "-w",
         "--write",
         action="store_true",
-        help="Write changes in place. Without this flag, only print changed files.",
+        help="Write changes to disk. Without this flag, only print the files that would change.",
     )
+
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return 0
+
     args = parser.parse_args()
+    inputs = args.input or [Path("docs")]
 
     changed_files = 0
-    for file_path in iter_markdown_files(args.paths):
+    for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
-        updated = normalize_block_math(original)
+        updated, modifications = normalize_block_math(original)
         if updated == original:
             continue
 
         changed_files += 1
-        print(file_path)
+        print(f"{file_path} ({modifications})")
         if args.write:
-            file_path.write_text(updated, encoding="utf-8")
+            output_path = resolve_output_path(file_path, inputs, args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(updated, encoding="utf-8")
 
-    print(f"Changed files: {changed_files}")
+    summary = "Changed" if args.write else "Will change"
+    print(f"{summary} {changed_files} files")
     return 0
 
 

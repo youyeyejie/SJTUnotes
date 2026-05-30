@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from pathlib import Path
 from dataclasses import dataclass
 
@@ -163,19 +164,24 @@ def iter_markdown_files(paths: list[Path]) -> list[Path]:
     return files
 
 
-def summarize_records(records: list[ReplacementRecord]) -> tuple[str, str]:
-    symbol_counts: dict[str, int] = {}
-    line_numbers: list[int] = []
+def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None) -> Path:
+    if output is None:
+        return file_path
 
-    for record in records:
-        key = f"{record.original}->{record.replaced}"
-        symbol_counts[key] = symbol_counts.get(key, 0) + 1
-        if record.line not in line_numbers:
-            line_numbers.append(record.line)
+    if len(inputs) == 1 and inputs[0].is_file():
+        if output.suffix.lower() == ".md":
+            return output
+        return output / file_path.name
 
-    symbols = ", ".join(f"{key} x{count}" for key, count in sorted(symbol_counts.items()))
-    lines = ", ".join(str(line) for line in line_numbers)
-    return symbols, lines
+    for root in inputs:
+        if root.is_dir():
+            try:
+                relative = file_path.relative_to(root)
+                return output / relative
+            except ValueError:
+                continue
+
+    return output / file_path.name
 
 
 def main() -> int:
@@ -183,36 +189,49 @@ def main() -> int:
         description="Replace Chinese punctuation with ASCII punctuation inside math formulas."
     )
     parser.add_argument(
-        "paths",
+        "-i",
+        "--input",
         nargs="*",
         type=Path,
-        default=[Path("docs")],
-        help="Markdown files or directories to process. Defaults to docs/.",
+        default=None,
+        help="Markdown files or directories to process. Defaults to docs/ when omitted or left empty.",
     )
     parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        help="Optional output file or directory. Defaults to overwriting the source when used with --write.",
+    )
+    parser.add_argument(
+        "-w",
         "--write",
         action="store_true",
-        help="Write changes in place. Without this flag, only print changed files.",
+        help="Write changes to disk. Without this flag, only print the files that would change.",
     )
+
+    if len(sys.argv) == 1:
+        parser.print_help()
+        return 0
+
     args = parser.parse_args()
+    inputs = args.input or [Path("docs")]
 
     changed_files = 0
-    for file_path in iter_markdown_files(args.paths):
+    for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
         updated, records = normalize_math_punctuation(original)
         if updated == original:
             continue
 
         changed_files += 1
-        symbols, lines = summarize_records(records)
-        print(file_path)
-        print(f"  replacements: {len(records)}")
-        print(f"  symbols: {symbols}")
-        print(f"  lines: {lines}")
+        print(f"{file_path} ({len(records)})")
         if args.write:
-            file_path.write_text(updated, encoding="utf-8")
+            output_path = resolve_output_path(file_path, inputs, args.output)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(updated, encoding="utf-8")
 
-    print(f"Changed files: {changed_files}")
+    summary = "Changed" if args.write else "Will change"
+    print(f"{summary} {changed_files} files")
     return 0
 
 

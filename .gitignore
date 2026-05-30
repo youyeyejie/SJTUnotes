@@ -1,3 +1,4 @@
 site/
 test.*
 *.log
+scripts/__pycache__/
