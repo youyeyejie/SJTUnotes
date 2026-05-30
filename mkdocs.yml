@@ -1,29 +1,67 @@
 site_name: YYYJ's SJTU Course Notes
 site_description: Course notes from Shanghai Jiao Tong University
 site_author: youyeyejie
+
 repo_url: https://github.com/youyeyejie/SJTUnotes
+repo_name: youyeyejie/SJTUnotes
 site_url: https://youyeyejie.github.io/SJTUnotes/
 edit_uri: edit/main/docs/
+
 theme:
   name: material
+  custom_dir: overrides
   language: zh
   features:
-    - content.action.edit
-    - content.code.copy
-    - navigation.indexes
-    - navigation.instant
-    - navigation.tracking
-    - navigation.top
-    - navigation.footer   # 开启底部上一篇/下一篇导航
-    - search.highlight
-    - search.suggest
-    - toc.follow
+    # 导航功能
+    # - navigation.tabs           # 顶部标签页
+    # - navigation.tabs.sticky    # 固定标签页
+    # - navigation.sections       # 导航分组
+    # - navigation.expand         # 展开所有导航
+    - navigation.top            # 回到顶部按钮
+    - navigation.footer         # 底部翻页导航
+    - navigation.instant        # 即时加载页面
+    - navigation.instant.prefetch # 即时加载页面预取
+    - navigation.instant.progress # 即时加载页面进度条
+    - navigation.paths          # 导航路径
+    - navigation.tracking       # 地址栏追踪锚点
+    - navigation.indexes        # 分组主页
+
+    # 搜索功能
+    - search.highlight          # 搜索高亮
+    - search.share              # 搜索分享
+    - search.suggest            # 搜索建议
+
+    # 内容功能
+    # - content.tabs.link         # 内容标签页链接
+    - content.code.copy         # 代码复制按钮
+    - content.code.annotate     # 代码注释
+    - content.action.edit       # 编辑此页
+    - content.action.view       # 查看源码
+    - content.table             # 表格排序
+    - content.tooltips          # 内容工具提示
+
+    # 头部功能
+    - header.autohide           # 滚动时自动隐藏头部
+    
+    # 目录功能
+    - toc.follow                # 目录跟随滚动
+
+    # 其他功能
+    # - announce.dismiss          # 呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+      
+
   palette:
+    # 自动切换模式
+    - media: "(prefers-color-scheme)"
+      scheme: default
+      toggle:
+        icon: material/brightness-auto
+        name: 跟随系统
     # 浅色模式
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: indigo           # 主色调
+      accent: indigo            # 强调色
       toggle:
         icon: material/brightness-7
         name: 切换至深色模式
@@ -38,45 +76,87 @@ theme:
   font:
     text: Noto Sans SC
     code: Fira Code
+  logo: assets/images/avatar2.webp
+  favicon: assets/images/avatar2.webp
   icon:
+    # https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/#search
     repo: fontawesome/brands/github
+    top: fontawesome/solid/angle-up
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+    # edit: material/pencil 
+    # view: material/eye
+    # logo: material/library
+    # menu: material/menu
+    # alternate: material/alert-circle-outline
+    # search: material/magnify
+    # share: material/share-variant
+    # close: material/close
+    # admonition: material/alert-circle-outline
+    # tag: material/tag
 
 plugins:
+  - meta
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
 
 markdown_extensions:
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.smartsymbols
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - toc:
+  - abbr                    # 缩写
+  - admonition              # 警告框
+  - attr_list               # 属性列表
+  - def_list                # 定义列表
+  - footnotes               # 脚注
+  - md_in_html              # HTML中的Markdown
+  - tables                  # 表格
+  - toc:                    # 目录
       permalink: true
+  - pymdownx.arithmatex:    # 数学公式
+      generic: true
+  - pymdownx.betterem:      # 改进的强调
+      smart_enable: all
+  - pymdownx.blocks.caption # 图片标题
+  - pymdownx.caret          # 插入符号
+  - pymdownx.details        # 详情折叠
+  - pymdownx.emoji:         # 表情符号
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight      # 代码高亮
+  - pymdownx.inlinehilite   # 行内高亮
+  - pymdownx.keys           # 键盘按键
+  - pymdownx.mark           # 标记
+  - pymdownx.smartsymbols   # 智能符号
+  - pymdownx.superfences    # 高亮
+  - pymdownx.tilde          # 删除线
+  - pymdownx.tabbed:        # 标签页
+      alternate_style: true
+  - pymdownx.tasklist:      # 任务列表
+      custom_checkbox: true
+
+# copyright: Copyright &copy; 2025 - 2026 youyeyejie.
 
 # 额外配置
 extra:
-  generator: true  # 隐藏"Made with Material for MkDocs"
+  # homepage: https://youyeyejie.github.io/
+  generator: true  # 展示 "Made with Material for MkDocs"
   social:
+    # github
     - icon: fontawesome/brands/github
       link: https://github.com/youyeyejie
-  analytics:
-    provider: google
-    property: G-XXXXXXXXXX  # 替换为您的Google Analytics ID
+    # blog
+    - icon: fontawesome/solid/blog
+      link: https://youyeyejie.github.io/
+    # email
+    - icon: material/email
+      link: mailto:youyeyejie@outlook.com
+  # analytics:
+  #   provider: google
+  #   property: G-XXXXXXXXXX  # 替换为您的Google Analytics ID
 
 extra_javascript:
   - assets/javascripts/mathjax.js
+  - assets/javascripts/giscus.js
   - https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js
 #   - assets/javascripts/katex.js
 #   - https://unpkg.com/katex@0.16.8/dist/katex.min.js
