@@ -42,6 +42,7 @@ theme:
 
     # 头部功能
     - header.autohide           # 滚动时自动隐藏头部
+    - header.source             # 开启仓库信息+星标/分叉展示
     
     # 目录功能
     - toc.follow                # 目录跟随滚动
