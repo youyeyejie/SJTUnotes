@@ -31,7 +31,7 @@
 ```
 
 ### 写到文件中
-将下列式样保存为`common.css` （注意写到文件里的式样不需要`<style>`标签）
+将下列式样保存为 `common.css` （注意写到文件里的式样不需要 `<style>` 标签）
 ```css
 .c1{
 	color: blue;
@@ -41,7 +41,7 @@
 	color:red;
 }
 ```
-在 HTML 文件中用`<link />` 标签引入，注意在`<head> </head>` 里面引用 css 文件
+在 HTML 文件中用 `<link />` 标签引入，注意在 `<head> </head>` 里面引用 css 文件
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@
 ### ID 选择器
 
 - 唯一性选择器
-- 示例：选择 ID 为`c1`的元素
+- 示例：选择 ID 为 `c1` 的元素
 
 ```css
 #c1{
@@ -107,7 +107,7 @@
 ### 类选择器
 
 - 最常用的选择器
-- 示例：选择`class`为`c1`的元素
+- 示例：选择 `class` 为 `c1` 的元素
 
 ```css
 .c1{
@@ -121,7 +121,7 @@
 
 ### 标签选择器
 
-- 示例：选择标签为`div`的元素
+- 示例：选择标签为 `div` 的元素
 
 ```css
 div{
@@ -217,7 +217,7 @@ input[type='text']{
 - 注意事项：
 	- 宽度支持百分比。
 	- 行内标签：默认无效
-		- 比如：为`<span>`标签设置高度和宽度无效
+		- 比如：为 `<span>` 标签设置高度和宽度无效
 	- 块级标签：默认有效
 
 ```css
@@ -339,7 +339,7 @@ input[type='text']{
 </html>
 ```
 
-- 注意：如果你让标签浮动起来之后，就会脱离文档流。需要在`html`元素末尾加上一句`<div style="clear: both;"></div>`, 以避免元素互相重叠和遮盖
+- 注意：如果你让标签浮动起来之后，就会脱离文档流。需要在 `html` 元素末尾加上一句 `<div style="clear: both;"></div>`, 以避免元素互相重叠和遮盖
 
 ```html
 <!DOCTYPE html>
@@ -432,7 +432,7 @@ input[type='text']{
 
 ### 伪类 (:hover)
 
-- CSS 的`:hover`伪类选择器用于在用户将鼠标悬停在元素上时应用样式，这是创建交互式网页的重要工具。
+- CSS 的 `:hover` 伪类选择器用于在用户将鼠标悬停在元素上时应用样式，这是创建交互式网页的重要工具。
 
 ```html
 <!DOCTYPE html>
@@ -490,7 +490,7 @@ input[type='text']{
 
 ### 伪元素 (:after)
 
-- CSS 的`:after`伪元素用于在选定元素的最后一个子元素之后插入内容。它常与 content 属性一起使用，用于添加装饰性元素而不影响 HTML 结构。
+- CSS 的 `:after` 伪元素用于在选定元素的最后一个子元素之后插入内容。它常与 content 属性一起使用，用于添加装饰性元素而不影响 HTML 结构。
 
 ```html
 <!DOCTYPE html>
@@ -512,7 +512,7 @@ input[type='text']{
 ```
 
 - 很重要的应用：**清除浮动** 
-	- 用`clearfix` 替代  `<div style="clear: both;"> </div>`
+	- 用 `clearfix` 替代  `<div style="clear: both;"> </div>`
 
 ```html
 <!DOCTYPE html>
@@ -544,7 +544,7 @@ input[type='text']{
 
 ### 伪类 (:active)
 
-- CSS 的`:active`伪类选择器用于在用户点击并按住元素时应用样式。这种状态通常持续到用户释放鼠标按钮或触摸屏幕为止。`:active`伪类常用于按钮、链接和其他可交互元素，以提供视觉反馈，增强用户体验。
+- CSS 的 `:active` 伪类选择器用于在用户点击并按住元素时应用样式。这种状态通常持续到用户释放鼠标按钮或触摸屏幕为止。`:active` 伪类常用于按钮、链接和其他可交互元素，以提供视觉反馈，增强用户体验。
 
 ```html
 <!DOCTYPE html>
@@ -639,7 +639,7 @@ input[type='text']{
 Bootstrap 是一个流行的前端框架，用于简化网页设计和开发。它提供了一套预定义的 CSS 和 JavaScript 组件，使开发者能够快速创建响应式和美观的网页。
 
 ### 引入 Bootstrap
-在 HTML 文件的`<head>`部分引入 Bootstrap 的 CSS 和 JavaScript 文件：
+在 HTML 文件的 `<head>` 部分引入 Bootstrap 的 CSS 和 JavaScript 文件：
 
 ```html
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -772,7 +772,7 @@ Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。B
 Font Awesome 是一个流行的图标库和工具包，提供了大量的矢量图标，可以轻松地集成到网页和应用程序中。它支持多种格式，包括字体图标、SVG 图标等，允许开发者通过简单的类名来使用各种图标，从而提升用户界面的视觉效果和交互体验。
 
 ### 引入 Font Awesome
-在 HTML 文件的`<head>`部分引入 Font Awesome 的 CSS 文件： 
+在 HTML 文件的 `<head>` 部分引入 Font Awesome 的 CSS 文件： 
 
 - 引入 7.0 版本的 Font Awesome
 ```html

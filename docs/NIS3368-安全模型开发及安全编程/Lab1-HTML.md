@@ -11,7 +11,7 @@
 
 2. 创建应用文件
 
-	创建一个名为 `app.py` 的文件，存放在`flaskProject` 目录下，并输入以下代码：（文件名和目录名称可以任意取）
+	创建一个名为 `app.py` 的文件，存放在 `flaskProject` 目录下，并输入以下代码：（文件名和目录名称可以任意取）
 	```python
 	from flask import Flask
 
@@ -143,14 +143,14 @@
 ```
 
 - 注意：跳转到自己网站的其他地址(/get/news)，需要
-	1. 在`web.py` 中定义地址/get/news 的路径:
+	1. 在 `web.py` 中定义地址/get/news 的路径:
 	```python
 	@app.route("/get/news")
 	def get_news():
 		return render_template("get_news.html")
 	```
 
-	2. 在`templates` 目录下创建`get_news.html`文件
+	2. 在 `templates` 目录下创建 `get_news.html` 文件
 
 - 在新的 Tab 页面打开链接：
 	```html
@@ -290,8 +290,8 @@
 		"POST /explore http1.1\r\nhost:...\r\nuser-agent\r\n..\r\n\r\n数据库"
 		```
 
-4. 浏览器向后端发送请求:页面上的数据，通过`form`标签提交到后台： 
-	- `form`标签包裹要提交的数据的标签。
+4. 浏览器向后端发送请求:页面上的数据，通过 `form` 标签提交到后台： 
+	- `form` 标签包裹要提交的数据的标签。
 		- 提交方式：`method="get"`
 		- 提交的页面：`action="/xxx/xxx/xx"`
 		- 在 form 标签里面必须有一个 submit 标签。

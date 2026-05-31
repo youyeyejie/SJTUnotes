@@ -24,7 +24,7 @@
 #### 非交互式零知识证明（NIZK）
 
 - **消除交互**：理想情况下，Prover 应该直接生成一个一次性的证明字符串 $\pi$。Verifier 收到后异步验证 $\pi$ 即可。这样的 $\pi$ 也可以被复用，并被潜在的多个验证者检验。
-- **可信设置**的类型：
+- **可信设置** 的类型：
 	1. 结构化参考字符串（Structured Reference String, SRS）：需要一个可信的第三方生成并分发 SRS，且该 SRS 可能包含一些秘密信息。
 	2. 将哈希函数建模为随机预言机 (Random Oracle, RO)：不需要可信设置，但需要对哈希函数的安全性进行强假设。
 	3. 或两者兼有。
@@ -113,8 +113,8 @@ $$
 
 ### 交互式预言机证明（IOP & PIOP）
 
-- **IOP（Interactive Oracle Proof）**：在协议交互中，Prover 发送的多维字符串过大，无法全部传给 Verifier。因此，Prover 发送字符串的“预言机”，Verifier 随后只通过抛币产生短随机挑战，并**仅查询预言机的少量对应单元格**来决定接受与否。
-	- 要求：完备性、可靠性，并满足**简洁性**（即 $\mathrm{V}$ 查询极少，验证时间亚线性）。
+- **IOP（Interactive Oracle Proof）**：在协议交互中，Prover 发送的多维字符串过大，无法全部传给 Verifier。因此，Prover 发送字符串的“预言机”，Verifier 随后只通过抛币产生短随机挑战，并 **仅查询预言机的少量对应单元格** 来决定接受与否。
+	- 要求：完备性、可靠性，并满足 **简洁性**（即 $\mathrm{V}$ 查询极少，验证时间亚线性）。
 - **PIOP（Polynomial IOP）**：一种特殊 IOP。在每一轮中，Prover 响应该有限域上多项式 $f_i$ 的预言机；Verifier 可以在其选择的特定点上查询 $f_i$ 的少量求值。
 
 ### 多项式承诺方案（Polynomial Commitment Scheme, PCS）

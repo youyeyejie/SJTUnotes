@@ -103,6 +103,7 @@ def main() -> int:
     inputs = args.input or [Path("docs")]
 
     changed_files = 0
+    total_places = 0
     for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
         updated, modifications = normalize_list_spacing(original)
@@ -110,6 +111,7 @@ def main() -> int:
             continue
 
         changed_files += 1
+        total_places += modifications
         print(f"{file_path} ({modifications})")
         if args.write:
             output_path = resolve_output_path(file_path, inputs, args.output)
@@ -117,7 +119,7 @@ def main() -> int:
             output_path.write_text(updated, encoding="utf-8")
 
     summary = "Changed" if args.write else "Will change"
-    print(f"{summary} {changed_files} files")
+    print(f"{summary} {changed_files} files, total {total_places} places")
     return 0
 
 

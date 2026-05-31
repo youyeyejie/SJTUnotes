@@ -7,14 +7,14 @@
 ### 预备知识
 #### 射影平面与仿射平面
 
-- 域 $K$ 上的**射影平面** $\mathbb{P}^2(K)$：
+- 域 $K$ 上的 **射影平面** $\mathbb{P}^2(K)$：
 
 	$$
 	\mathbb{P}^2(K)=\{(X:Y:Z):X,Y,Z\in K\}\backslash\{(0:0:0)\}
 	$$
 
 	- 定义等价关系：$(X:Y:Z)=(kX:kY:kZ),k\in K^*$
-- 域 $K$ 上 $\mathbb{P}^2(K)$ 的**仿射平面** $\mathbb{A}^2(K)$：
+- 域 $K$ 上 $\mathbb{P}^2(K)$ 的 **仿射平面** $\mathbb{A}^2(K)$：
 
 	$$
 	\mathbb{P}^2(K) \leftrightarrow \mathbb{A}^2(K) = \{(x,y):x,y\in K\}
@@ -30,7 +30,7 @@
 
 #### 代数曲线
 
-- **代数曲线**：令 $C$ 为由**齐次多项式方程** $f(X,Y,Z)=0$ 为定义的曲线。若 $f(X,Y,Z)$ 的系数属于域 $K$，称 $C$ 为定义在 $K$ 上的代数曲线。集合
+- **代数曲线**：令 $C$ 为由 **齐次多项式方程** $f(X,Y,Z)=0$ 为定义的曲线。若 $f(X,Y,Z)$ 的系数属于域 $K$，称 $C$ 为定义在 $K$ 上的代数曲线。集合
 
 	$$
 	C(K)=\left\{(x:y:z)\in \mathbb{P}^2(K):f(x,y,z)=0\right\}
@@ -71,7 +71,7 @@
 	- 平行线公理：任意两条平行直线不相交
 	- $\ell_1:ax+by=c_1$；$\ell_2:ax+by=c_2$；则 $\ell_1\cap\ell_2=\emptyset$
 - **射影平面**：$\mathbb{P}^2(K)=\{(X:Y:Z):X,Y,Z\in K\}\backslash\{(0:0:0)\} \leftarrow$ 射影平面坐标系
-	- **无**平行线公理：射影平面中两条平行线相交，交点为**无穷远点**
+	- **无** 平行线公理：射影平面中两条平行线相交，交点为 **无穷远点**
 	- $L_1:aX+bY=c_1Z$；$L_2:aX+bY=c_2Z$；则
 
 		$$
@@ -185,7 +185,7 @@
 ### 椭圆曲线上的双线性对
 #### 双线性对
 
-- **双线性对**（Bilinear map）：设 $E_1$、$E_2$ 为有限域 $F_q$ 的两条椭圆曲线，且 $G_1 \leq E_1(F_q),G_2 \leq E_2(F_q),G_T \leq F_q^*$，则**双线性映射**
+- **双线性对**（Bilinear map）：设 $E_1$、$E_2$ 为有限域 $F_q$ 的两条椭圆曲线，且 $G_1 \leq E_1(F_q),G_2 \leq E_2(F_q),G_T \leq F_q^*$，则 **双线性映射**
 
 	$$
 	\begin{aligned} e: &G_1 \times G_2 \rightarrow G_T \\ &(P, Q) \mapsto e(P, Q) \end{aligned}
@@ -299,16 +299,16 @@
 ### Boneh-Franklin 基于身份的加密算法
 #### 具有双线性配对运算的椭圆曲线群
 
-- **双线性配对群**（bilinear pairing group）：一个具有**双线性配对运算**的椭圆曲线群，简称为双线性配对群或配对群，是由多元组 $PG=(G_1,G_2,G_T,P_1,P_2,g_T,e)$ 所刻画，其中
+- **双线性配对群**（bilinear pairing group）：一个具有 **双线性配对运算** 的椭圆曲线群，简称为双线性配对群或配对群，是由多元组 $PG=(G_1,G_2,G_T,P_1,P_2,g_T,e)$ 所刻画，其中
 	- $G_1=\langle P_1\rangle$，$G_2=\langle P_2\rangle$，$G_T=\langle g_T\rangle$ 均是循环群，阶均为素数 $N$.
-	- $e:G_1\times G_2\to G_T$ 为一个 PPT 的**双线性配对运算**，满足
+	- $e:G_1\times G_2\to G_T$ 为一个 PPT 的 **双线性配对运算**，满足
 		1. 双线性性：$\forall a,b\in\mathbb{Z}_N$，$e(aP_1,bP_2)=e(P_1,P_2)^{ab}$。
 		2. 非退化性：$e(P_1,P_2)=g_T$ 为 $G_T$ 的生成元。
 - **对称配对群**：当 $G_1=G_2$ 时，称为对称配对群，可简记为 $PG=(G,G_T,N,P,g_T,e)$。
 
 #### 椭圆曲线对称配对群上的 Bilinear DDH (BDDH) 问题
 
-- **定理**：对于椭圆曲线**对称配对群** $G$，$G$ 上的 DDH 问题不困难。
+- **定理**：对于椭圆曲线 **对称配对群** $G$，$G$ 上的 DDH 问题不困难。
 - **BDDH 问题**：假设 $PG=(G,G_T,N,P,g_T,e)$ 为对称配对群，则
 	1. 均匀选取 $x,y,z\leftarrow\mathbb{Z}_N$，计算 $T_0:=(g_T)^{xyz}$
 	2. 均匀选取 $T_1\leftarrow G_T$，均匀选取 $\beta\leftarrow\{0,1\}$
@@ -355,9 +355,9 @@
 				- $\mathcal{B}$ 的输入：$PG = (G, G_T, N, P, g_T, e), xP, yP, zP, T_\beta$，其中 $x,y,z \leftarrow \mathbb{Z}_N$，$T_0 = (g_T)^{xyz}$，$T_1 \leftarrow G_T$，$\beta \leftarrow \{0,1\}$
 				- $\mathcal{B}$ 的策略：
 					- $\mathcal{B}$ 将 $PK = (PG, Q = xP)$ 发送给 $\mathcal{A}$，并模拟 $\mathcal{A}$ 的环境；设 $\mathcal{A}$ 进行的哈希查询次数为 $Q_H(\lambda)$，加密查询次数为 $Q_E(\lambda)$，则 $\mathcal{B}$ 随机选择 $j \in [1, Q_H(\lambda)]$ 赌 $\mathcal{A}$ 最终输出的消息 $M^{*} = M_j$。
-					- 当 $\mathcal{A}$ 使用 $id_i$ 进行第 $i$ 次**派生私钥查询**时：$\mathcal{B}$ 假设自己的私钥为 $SK = xP$，计算 $SK_{id_i} = x\mathrm{H}(id_i) = xPh_{id_i} = h_{id_i}Q$ 返回给 $\mathcal{A}$，并自身记录 $\mathrm{H}(id_i) = h_{id_i}P$。
+					- 当 $\mathcal{A}$ 使用 $id_i$ 进行第 $i$ 次 **派生私钥查询** 时：$\mathcal{B}$ 假设自己的私钥为 $SK = xP$，计算 $SK_{id_i} = x\mathrm{H}(id_i) = xPh_{id_i} = h_{id_i}Q$ 返回给 $\mathcal{A}$，并自身记录 $\mathrm{H}(id_i) = h_{id_i}P$。
 						- 此时若 $\mathcal{A}$ 要对派生私钥查询进行验证，计算时需要 $\mathrm{H}(id_i)$，只能向 $\mathcal{B}$ 查询哈希结果，必然能通过检验
-					- 当 $\mathcal{A}$ 使用 $id_i$ 进行第 $k$ 次**哈希查询**时：
+					- 当 $\mathcal{A}$ 使用 $id_i$ 进行第 $k$ 次 **哈希查询** 时：
 						- 若 $k = j$ 且 $id_j \notin \{id_i\}$，即 $\mathcal{A}$ 的第 $j$ 次哈希查询的身份 $id_j$ 没有在之前的派生私钥查询中出现过，则 $\mathcal{B}$ 将 $\mathrm{H}(id_j) = zP$ 作为自己的哈希输出，并记录 $\mathrm{H}(id_j) = zP$。
 						- 若 $k = j$ 且 $id_j \in \{id_i\}$，则重新选择 $j\in [1, Q_H(\lambda)]$，直到满足 $id_j \notin \{id_i\}$。
 						- 若 $k \neq j$，则 $\mathcal{B}$ 查询是否有 $\mathrm{H}(id_k)$ 的记录：

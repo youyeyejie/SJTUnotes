@@ -110,7 +110,7 @@
 		- labeled by a Symbol or a set of Symbols for matching （标记为符号或符号集以进行匹配）
 	- **Deterministic**: at most ONE edge out of a given state with a given label. （确定性：在给定状态下，最多有一条边）
 - **Example**: ![](assets/image-51.webp)
-	- ***(Retract)**: A Token has been accepted while another char has been read which must be unread. （回退：一个 Token 已经被接受，而另一个不应读取字符已经被读取，必须回退）
+	- **\*(Retract)**: A Token has been accepted while another char has been read which must be unread. （回退：一个 Token 已经被接受，而另一个不应读取字符已经被读取，必须回退）
 
 ### Reserved Words （保留字）
 
@@ -210,7 +210,7 @@
 
 	- **最后得到的 Dtran 是一个 DFA 的转换表**，Dstates 是 DFA 的状态集合。
 - **Algorithm 𝜖-closure(T) Computation**:
-	- 上一步中`U = 𝝐-closure(move(S, a))`的实现逻辑：
+	- 上一步中 `U = 𝝐-closure(move(S, a))` 的实现逻辑：
 	- Input: the State Set T
 	- Output: 𝜖-closure(T)
 	``` java

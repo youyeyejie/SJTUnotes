@@ -9,6 +9,7 @@ from pathlib import Path
 
 CODE_FENCE_START_RE = re.compile(r"^(?P<indent>[ \t]*)(?P<fence>`{3,}|~{3,})")
 INLINE_MATH_RE = re.compile(r"(?<!\\)(?<!\$)\$(?!\$).*?(?<!\\)\$(?!\$)|\\\(.*?\\\)")
+INLINE_MARKUP_RE = re.compile(r"\*\*[^*\n]+?\*\*|\*[^*\n]+?\*|~~[^~\n]+?~~|`[^`\n]+?`")
 BLOCK_MATH_LINE_RE = re.compile(r"^[ \t]*(\$\$|\\\[|\\\])")
 SINGLE_LINE_BLOCK_MATH_RE = re.compile(r"^[ \t]*\$\$.*\$\$[ \t]*$")
 ZH_CHAR = r"\u4e00-\u9fff"
@@ -19,7 +20,25 @@ CHANGE_LABELS = {
     "latin_num_zh": "英文/数字后接中文",
     "text_before_math": "文字前接公式",
     "math_before_text": "公式后接文字",
+    "text_before_markup": "文字前接强调/代码标记",
+    "markup_before_text": "强调/代码标记后接文字",
+    "markup_before_math": "强调/代码标记前接公式",
+    "math_before_markup": "公式前接强调/代码标记",
 }
+TOKEN_PATTERN = re.compile(
+    r"(?<!\\)(?<!\$)\$(?!\$).*?(?<!\\)\$(?!\$)"
+    r"|\\\(.*?\\\)"
+    r"|\*\*[^*\n]+?\*\*"
+    r"|\*[^*\n]+?\*"
+    r"|~~[^~\n]+?~~"
+    r"|`[^`\n]+?`"
+)
+
+
+def token_kind(token: str) -> str:
+    if INLINE_MATH_RE.fullmatch(token):
+        return "math"
+    return "markup"
 
 
 def split_by_code_fences(text: str) -> list[tuple[bool, str]]:
@@ -87,15 +106,72 @@ def normalize_inline_math_spacing(line: str) -> tuple[str, Counter[str]]:
     return "".join(parts), changes
 
 
+def normalize_token_spacing(line: str) -> tuple[str, Counter[str]]:
+    parts: list[str] = []
+    cursor = 0
+    changes: Counter[str] = Counter()
+
+    for match in TOKEN_PATTERN.finditer(line):
+        start, end = match.span()
+        token = match.group(0)
+        kind = token_kind(token)
+
+        prefix = line[cursor:start]
+        previous_char = line[start - 1] if start > 0 else ""
+        if previous_char and TEXT_CHAR_RE.fullmatch(previous_char):
+            if prefix and not prefix.endswith(" "):
+                prefix += " "
+                changes[f"text_before_{kind}"] += 1
+
+        parts.append(prefix)
+        parts.append(token)
+        cursor = end
+
+        next_char = line[end] if end < len(line) else ""
+        if next_char and TEXT_CHAR_RE.fullmatch(next_char):
+            parts.append(" ")
+            changes[f"{kind}_before_text"] += 1
+        else:
+            next_match = TOKEN_PATTERN.match(line, end)
+            if next_match:
+                parts.append(" ")
+                next_kind = token_kind(next_match.group(0))
+                if kind == "math" and next_kind == "markup":
+                    changes["math_before_markup"] += 1
+                elif kind == "markup" and next_kind == "math":
+                    changes["markup_before_math"] += 1
+
+    parts.append(line[cursor:])
+    return "".join(parts), changes
+
+
 def normalize_mixed_text_spacing(line: str) -> tuple[str, Counter[str]]:
-    updated, count_1 = re.subn(rf"([{ZH_CHAR}])([{LATIN_NUM}])", r"\1 \2", line)
+    parts: list[str] = []
+    changes: Counter[str] = Counter()
+    cursor = 0
+
+    for match in TOKEN_PATTERN.finditer(line):
+        start, end = match.span()
+        prefix = line[cursor:start]
+        updated, count_1 = re.subn(rf"([{ZH_CHAR}])([{LATIN_NUM}])", r"\1 \2", prefix)
+        updated, count_2 = re.subn(rf"([{LATIN_NUM}])([{ZH_CHAR}])", r"\1 \2", updated)
+        if count_1:
+            changes["zh_latin_num"] += count_1
+        if count_2:
+            changes["latin_num_zh"] += count_2
+        parts.append(updated)
+        parts.append(match.group(0))
+        cursor = end
+
+    suffix = line[cursor:]
+    updated, count_1 = re.subn(rf"([{ZH_CHAR}])([{LATIN_NUM}])", r"\1 \2", suffix)
     updated, count_2 = re.subn(rf"([{LATIN_NUM}])([{ZH_CHAR}])", r"\1 \2", updated)
-    changes = Counter[str]()
     if count_1:
         changes["zh_latin_num"] += count_1
     if count_2:
         changes["latin_num_zh"] += count_2
-    return updated, changes
+    parts.append(updated)
+    return "".join(parts), changes
 
 
 def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, Counter[str]]:
@@ -110,9 +186,9 @@ def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, Counter[s
     if in_block_math or BLOCK_MATH_LINE_RE.match(line):
         return line, in_block_math, Counter()
 
-    updated, changes_1 = normalize_inline_math_spacing(line)
-    updated, changes_2 = normalize_mixed_text_spacing(updated)
-    changes_1.update(changes_2)
+    updated, changes_1 = normalize_token_spacing(line)
+    updated, changes_3 = normalize_mixed_text_spacing(updated)
+    changes_1.update(changes_3)
     return updated, False, changes_1
 
 
@@ -156,10 +232,20 @@ def normalize_mixed_spacing(text: str) -> tuple[str, Counter[str], list[int]]:
 
 def format_change_summary(changes: Counter[str]) -> str:
     parts: list[str] = []
-    for key in ("zh_latin_num", "latin_num_zh", "text_before_math", "math_before_text"):
+    for key in (
+        "zh_latin_num",
+        "latin_num_zh",
+        "text_before_math",
+        "math_before_text",
+        "text_before_markup",
+        "markup_before_text",
+        "markup_before_math",
+        "math_before_markup",
+    ):
         count = changes.get(key, 0)
         if count:
-            parts.append(f"{CHANGE_LABELS[key]} x{count}")
+            label = CHANGE_LABELS.get(key, key)
+            parts.append(f"{label} x{count}")
     return ", ".join(parts)
 
 
@@ -227,6 +313,7 @@ def main() -> int:
     inputs = args.input or [Path("docs")]
 
     changed_files = 0
+    total_places = 0
     for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
         updated, changes, changed_lines = normalize_mixed_spacing(original)
@@ -234,6 +321,7 @@ def main() -> int:
             continue
 
         changed_files += 1
+        total_places += sum(changes.values())
         print(file_path)
         print(f"  replacements: {sum(changes.values())}")
         print(f"  symbols: {format_change_summary(changes)}")
@@ -244,7 +332,7 @@ def main() -> int:
             output_path.write_text(updated, encoding="utf-8")
 
     summary = "Changed" if args.write else "Will change"
-    print(f"{summary} {changed_files} files")
+    print(f"{summary} {changed_files} files, total {total_places} places")
     return 0
 
 

@@ -127,7 +127,7 @@
 	\Pr(\mathrm{output} = SK/M/M[1]) = \mathrm{negl}(\lambda)
 	$$
 
-	- 说明：SKH/PH/PFbH-PA 安全性定义**不能**保证加密算法的安全性。
+	- 说明：SKH/PH/PFbH-PA 安全性定义 **不能** 保证加密算法的安全性。
 
 #### 公钥加密算法的 IND-CPA 安全性
 
@@ -139,7 +139,7 @@
 	- 运行时间：概率多项式时间 PPT
 	- 攻击方式：选择明文攻击 CPA ── 敌手可以提供/决定/影响加密使用的明文
 - **IND 安全目标**：**不可区分性**（Indistinguishability）── 敌手无法区分密文 $C^{*}$ 加密的是 $M_{0}$ 还是 $M_{1}$（即如果 $\mathrm{output} = b$，则攻破该目标）
-- **公钥加密算法的 IND-CPA 安全性定义**：任意概率多项式时间敌手在 CPA 安全模型中攻破 IND 安全目标的**优势**（advantage）是可忽略的，也即
+- **公钥加密算法的 IND-CPA 安全性定义**：任意概率多项式时间敌手在 CPA 安全模型中攻破 IND 安全目标的 **优势**（advantage）是可忽略的，也即
 
 	$$
 	\mathrm{Adv} = \left| \Pr(\mathrm{output} = b) - \frac{1}{2} \right| = \mathrm{negl}(\lambda)
@@ -185,7 +185,7 @@
 	![mCPA-security](assets/image-2.webp)
 
 - **mCPA 敌手攻击能力**
-	- 输入：公开信道中的 $PK$ 及**多项式**个挑战密文 $C^{*(1)}, \dots, C^{*(Q)}$
+	- 输入：公开信道中的 $PK$ 及 **多项式** 个挑战密文 $C^{*(1)}, \dots, C^{*(Q)}$
 	- 运行时间：概率多项式时间 PPT
 	- 攻击方式：多挑战-选择明文攻击 mCPA ── 敌手可以提供/决定/影响加密使用的多个明文
 - **IND 安全目标**：敌手无法区分密文 $C^{*(j)}$ 加密的是 $M_{0}^{(j)}$ 还是 $M_{1}^{(j)}$（即如果 $\mathrm{output} = b$，则攻破该目标）
@@ -216,7 +216,7 @@
 				\mathrm{Hybrid}_{i} : C^{*(j)} \leftarrow \begin{cases} \mathrm{Enc}(PK, M_{1}^{(j)}) & j \leq i \\ \mathrm{Enc}(PK, M_{0}^{(j)}) & j > i \end{cases}
 				$$
 
-			3. **分析混合游戏**：易知 Game 0 等价于 $\mathrm{Hybrid}_{0}$，Game 1 等价于 $\mathrm{Hybrid}_{Q}$，由**引理**：若算法满足 IND-CPA 安全，则对 $\forall i \in \{1, \dots, Q\}$，有
+			3. **分析混合游戏**：易知 Game 0 等价于 $\mathrm{Hybrid}_{0}$，Game 1 等价于 $\mathrm{Hybrid}_{Q}$，由 **引理**：若算法满足 IND-CPA 安全，则对 $\forall i \in \{1, \dots, Q\}$，有
 
 				$$
 				\left| \Pr(\mathrm{output} = 1 \mid \mathrm{Hybrid}_{i-1}) - \Pr(\mathrm{output} = 1 \mid \mathrm{Hybrid}_{i}) \right| = \mathrm{negl}(\lambda)
@@ -273,7 +273,7 @@
 ### ElGamal 加密算法
 #### 群的基本知识
 
-- 设 $(G,\cdot,1)$ 为**有限交换群**，其中 $1$ 为 $G$ 中关于运算 $\cdot$ 的单位元，则群 $G$ 满足以下性质：
+- 设 $(G,\cdot,1)$ 为 **有限交换群**，其中 $1$ 为 $G$ 中关于运算 $\cdot$ 的单位元，则群 $G$ 满足以下性质：
 	- 有限性：$|G| < \infty$
 	- 封闭性：$\forall a, b \in G$，$a \cdot b \in G$
 	- 交换性：$\forall a, b \in G$，$a \cdot b = b \cdot a$
@@ -423,8 +423,8 @@
 	- 输入：公开信道中的 $PK, M, \sigma$
 	- 运行时间：概率多项式时间 PPT
 	- 攻击方式：选择消息攻击 CMA ── 敌手可以提供/决定/影响签名使用的消息
-- **EUF 安全目标**：**存在不可伪造性**（Existential Unforgeability, EUF）── 敌手无法为一个**未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $M^* \notin \{M_i\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
-- **数字签名算法的 EUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 EUF 安全目标的**优势**是可忽略的，即
+- **EUF 安全目标**：**存在不可伪造性**（Existential Unforgeability, EUF）── 敌手无法为一个 **未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $M^* \notin \{M_i\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
+- **数字签名算法的 EUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 EUF 安全目标的 **优势** 是可忽略的，即
 
 	$$
 	\mathrm{Adv}_{\mathrm{EUF-CMA}} = \Pr\left[ \mathrm{output} = (M^*, \sigma^*) \left| \begin{array}{l} (1)\ M^* \notin \{ M_i \} \\ (2)\ \mathrm{Verify}(\mathrm{PK}, M^*, \sigma^*) = 1 \end{array} \right.\right] = \mathrm{negl}(\lambda)
@@ -432,8 +432,8 @@
 
 #### 数字签名算法的 sEUF-CMA 安全性
 
-- **sEUF 安全目标**：**强存在不可伪造性**（Strong Existential Unforgeability, sEUF）── 敌手不仅无法为一个**未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$，也无法为一个已签名消息 $M_i$ 伪造**新的有效签名** $\sigma^* \neq \sigma_i$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $(M^*, \sigma^*) \notin \{(M_i, \sigma_i)\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
-- **数字签名算法的 sEUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 sEUF 安全目标的**优势**是可忽略的，即
+- **sEUF 安全目标**：**强存在不可伪造性**（Strong Existential Unforgeability, sEUF）── 敌手不仅无法为一个 **未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$，也无法为一个已签名消息 $M_i$ 伪造 **新的有效签名** $\sigma^* \neq \sigma_i$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $(M^*, \sigma^*) \notin \{(M_i, \sigma_i)\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
+- **数字签名算法的 sEUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 sEUF 安全目标的 **优势** 是可忽略的，即
 
 	$$
 	\mathrm{Adv}_{\mathrm{sEUF-CMA}} = \Pr\left[ \mathrm{output} = (M^*, \sigma^*) \left| \begin{array}{l} (1)\ (M^*, \sigma^*) \notin \{ (M_i, \sigma_i) \} \\ (2)\ \mathrm{Verify}(\mathrm{PK}, M^*, \sigma^*) = 1 \end{array} \right.\right] = \mathrm{negl}(\lambda)
@@ -471,7 +471,7 @@
 	- 输入：公开信道中的 $PK$ 及多次运行协议生成的 $(R_i, e_i, z_i)$
 	- 运行时间：概率多项式时间 PPT
 - **UI 安全目标**：**不可假冒性**（Unimpersonation, UI）── 敌手无法冒充 Prover 通过协议的验证算法（即如果 $\mathrm{output} = (R^*, e^*, z^*)$ 满足 $V(PK, e^*, R^*) = z^*$，则攻破该目标）
-- **身份证明协议的 UI-PA 安全性定义**：任意概率多项式时间敌手在 P A 安全模型中攻破 UI 安全目标的**优势**是可忽略的，即
+- **身份证明协议的 UI-PA 安全性定义**：任意概率多项式时间敌手在 P A 安全模型中攻破 UI 安全目标的 **优势** 是可忽略的，即
 
 	$$
 	\mathrm{Adv}_{\mathrm{UI-PA}} = \Pr\left( \mathrm{output} = z^* \left| V(PK, e^*, R^*) = z^* \right.\right) = \mathrm{negl}(\lambda)
@@ -498,7 +498,7 @@
 	2. Oracle 假设 + Programmable 假设：环境/挑战者知道敌手向预言机 $\mathrm{H}(\cdot)$ 查询过哪些输入 $X$。
 	3. Random 假设 + Programmable 假设：环境/挑战者针对敌手的每一次预言机 $\mathrm{H}(\cdot)$ 查询 $X$，返回值域 $\{0,1\}^m$ 上均匀分布的值作为 $\mathrm{H}(X)$ 的值。
 - **说明**:
-	- RO 模型刻画了敌手只能**黑盒**的调用 Hash Function，敌手无法仅阅读 Hash Function 的代码而不调用 Hash Function 推断出 $\mathrm{H}(X)$ 的值。
+	- RO 模型刻画了敌手只能 **黑盒** 的调用 Hash Function，敌手无法仅阅读 Hash Function 的代码而不调用 Hash Function 推断出 $\mathrm{H}(X)$ 的值。
 
 ### Schnorr 身份证明协议与签名算法
 #### Schnorr 身份证明协议
@@ -557,9 +557,9 @@
 			- **证明前提错误**：构造一个 PPT 敌手 $\mathcal{B}$，在 UI-PA 安全模型下攻破 Schnorr 身份证明协议。
 				- **$\mathcal{B}$ 的策略**：
 					- $\mathcal{B}$ 将公钥 $PK$ 作为输入提供给 $\mathcal{A}$；设 $\mathcal{A}$ 进行的哈希查询次数为 $Q(\lambda)$，则 $\mathcal{B}$ 随机选择 $j \in [1, Q(\lambda)]$ 赌 $\mathcal{A}$ 最终输出的消息 $M^{*}=M_j$
-					- 当 $\mathcal{A}$ 使用 $M_i$ 进行第 $i$ 次**签名查询**时：$\mathcal{B}$ 由于本身不具备私钥 $SK$，无法生成合法的签名，因此向挑战者 $E_{id}$ 发起查询，拿到一组合法记录 $(R_i, e_i, z_i)$，并将 $\sigma_i=(R_i, z_i)$ 返回给 $\mathcal{A}$，并自身记录 $\mathrm{H}(R_i, M_i) = e_i$
+					- 当 $\mathcal{A}$ 使用 $M_i$ 进行第 $i$ 次 **签名查询** 时：$\mathcal{B}$ 由于本身不具备私钥 $SK$，无法生成合法的签名，因此向挑战者 $E_{id}$ 发起查询，拿到一组合法记录 $(R_i, e_i, z_i)$，并将 $\sigma_i=(R_i, z_i)$ 返回给 $\mathcal{A}$，并自身记录 $\mathrm{H}(R_i, M_i) = e_i$
 						- 此时若 $\mathcal{A}$ 要对签名查询进行验证，计算时需要 $\mathrm{H}(R_i, M_i)$，只能向 $\mathcal{B}$ 查询哈希结果，必然能通过检验
-					- 当 $\mathcal{A}$ 使用 $(R_k, M_k)$ 进行第 $k$ 次**哈希查询**时：
+					- 当 $\mathcal{A}$ 使用 $(R_k, M_k)$ 进行第 $k$ 次 **哈希查询** 时：
 						- 若 $k=j$ 且 $M_j \notin \{M_i\}$，即 $\mathcal{A}$ 的第 $j$ 次哈希查询的消息 $M_j$ 没有在之前的签名查询中出现过，则 $\mathcal{B}$ 向 $E_{id}$ 输入 $R_j$ 并把返回的 $e_j$ 当作自己的哈希输出，并记录 $\mathrm{H}(R_j, M_j) = e_j$
 						- 若 $k=j$ 且 $M_j \in \{M_i\}$，则重新选择 $j \in [1, Q(\lambda)]$，直到满足 $M_j \notin \{M_i\}$
 						- 若 $k \in [1, Q(\lambda)] \setminus \{j\}$，$\mathcal{B}$ 查询是否有 $\mathrm{H}(R_k, M_k)$ 的记录：
@@ -594,7 +594,7 @@
 					- $\mathcal{B}$ 将 DL 问题的输入 $PK=(G, p, g, h)$ 作为 Schnorr 身份证明协议的公钥提供给 $\mathcal{A}$
 					- 对于 $\mathcal{A}$ 的每一次协议运行查询，$\mathcal{B}$ 随机选取 $e_i, z_i \leftarrow \mathbb{Z}_p$，计算 $R_i = g^{z_i}/h^{e_i}$，为 $\mathcal{A}$ 提供完美模拟的合法三元组 $(R_i, e_i, z_i)$
 					- **第一次调用**：$\mathcal{B}$ 调用 $\mathcal{A}$ 直到 $\mathcal{A}$ 输出 $R^*$ 时，$\mathcal{B}$ 均匀随机选择 $e_1^* \leftarrow \mathbb{Z}_p$ 作为挑战发送给 $\mathcal{A}$，并收到 $\mathcal{A}$ 的应答输出 $z_1^*$
-					- **第二次调用**：$\mathcal{B}$ 再次调用 $\mathcal{A}$，所有使用的随机数（包括 $\mathcal{A}$ 内部的随机数和 $\mathcal{B}$ 模拟查询的随机数）均与第一次调用**完全相同**。因此 $\mathcal{A}$ 会再次输出同样的 $R^*$。此时 $\mathcal{B}$ 使用**不同**的随机数均匀选择一个新的挑战 $e_2^* \leftarrow \mathbb{Z}_p$ 发送给 $\mathcal{A}$，并收到 $\mathcal{A}$ 的新应答输出 $z_2^*$
+					- **第二次调用**：$\mathcal{B}$ 再次调用 $\mathcal{A}$，所有使用的随机数（包括 $\mathcal{A}$ 内部的随机数和 $\mathcal{B}$ 模拟查询的随机数）均与第一次调用 **完全相同**。因此 $\mathcal{A}$ 会再次输出同样的 $R^*$。此时 $\mathcal{B}$ 使用 **不同** 的随机数均匀选择一个新的挑战 $e_2^* \leftarrow \mathbb{Z}_p$ 发送给 $\mathcal{A}$，并收到 $\mathcal{A}$ 的新应答输出 $z_2^*$
 					- **解 DL**：如果两次调用 $\mathcal{A}$ 都成功伪造，则有：
 
 						$$

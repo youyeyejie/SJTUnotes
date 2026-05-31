@@ -158,7 +158,7 @@ void A() {
 		- **k**: using **k input symbols** of lookahead at each step to make decision
 - **Why**: a unique production to apply, or none to use (error)
 - **Example: LL(1)**
-	- stmt → **i**f (expr) stmt else stmt | **w**hile (expr) stmt | **{** stmt_list}
+	- stmt → **i** f (expr) stmt else stmt | **w** hile (expr) stmt | **{** stmt_list}
 - **How**: FIRST and FOLLOW
 	- assist in choosing which production to apply, based on the next input symbol （根据下一个输入符号选择应用哪个产生式）
 
@@ -259,7 +259,7 @@ void A() {
 		- The body of a production is replaced by the non-terminal at its header. （用产生式的头部替换产生式的主体）
 	- $S \overset{rm}{\Rightarrow} \gamma_0 \overset{rm}{\Rightarrow} \gamma_1 \overset{rm}{\Rightarrow} \dots \overset{rm}{\Rightarrow} \gamma_n \overset{rm}{\Rightarrow} \omega$
 		- find the rightmost derivation in the reverse order: “leftmost reduction” （找到右侧派生的反向顺序：最左侧归约）
-	- “**L**eft-to-Right, **R**ightmost Derivation in Reverse”: **LR Parsing**
+	- “**L** eft-to-Right, **R** ightmost Derivation in Reverse”: **LR Parsing**
 - **Example**：
 	![](assets/image-27.webp)
 
@@ -614,7 +614,7 @@ $$
 
 ### LALR(1) Parsing
 
-- **What**: **L**ook **A**head **LR(1)**
+- **What**: **L** ook **A** head **LR(1)**
 - **Why**: smaller parsing table than **LR(1)** for practice（比 LR(1)小的解析表）
 	- equal to **SLR(1)** in state number （与 SLR(1)状态数相等）
 		- e.g. In C, serveral hundred for SLR(1), serverals of thousands for LR(1)
