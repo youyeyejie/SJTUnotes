@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # MARX1204-马克思主义基本原理

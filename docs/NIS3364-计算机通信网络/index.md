@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # NIS3364-计算机通信网络

@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # NIS3301-系统安全

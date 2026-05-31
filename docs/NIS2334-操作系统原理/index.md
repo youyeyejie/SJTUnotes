@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # NIS2334-操作系统原理

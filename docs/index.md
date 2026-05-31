@@ -1,10 +1,12 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # SJTU Course Notes
 
-Course notes from Shanghai Jiao Tong University.
+Youyeyejie's Course notes in Shanghai Jiao Tong University.
 
 ---
 

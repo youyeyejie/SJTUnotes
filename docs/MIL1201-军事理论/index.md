@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # MIL1201-军事理论

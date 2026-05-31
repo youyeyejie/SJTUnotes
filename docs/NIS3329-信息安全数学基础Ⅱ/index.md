@@ -1,5 +1,7 @@
 ---
 comments: false
+hide:
+    - toc
 ---
 
 # NIS3329-信息安全数学基础Ⅱ

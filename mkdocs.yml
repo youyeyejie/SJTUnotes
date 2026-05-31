@@ -18,7 +18,7 @@ theme:
     # - navigation.sections       # 导航分组
     # - navigation.expand         # 展开所有导航
     - navigation.top            # 回到顶部按钮
-    - navigation.footer         # 底部翻页导航
+    # - navigation.footer         # 底部翻页导航
     - navigation.instant        # 即时加载页面
     - navigation.instant.prefetch # 即时加载页面预取
     - navigation.instant.progress # 即时加载页面进度条
@@ -41,7 +41,7 @@ theme:
     - content.tooltips          # 内容工具提示
 
     # 头部功能
-    - header.autohide           # 滚动时自动隐藏头部
+    # - header.autohide           # 滚动时自动隐藏头部
     
     # 目录功能
     - toc.follow                # 目录跟随滚动
@@ -137,7 +137,7 @@ markdown_extensions:
   - pymdownx.tasklist:      # 任务列表
       custom_checkbox: true
 
-# copyright: Copyright &copy; 2025 - 2026 youyeyejie.
+copyright: Copyright &copy; 2025 - 2026 youyeyejie.
 
 # 额外配置
 extra:
