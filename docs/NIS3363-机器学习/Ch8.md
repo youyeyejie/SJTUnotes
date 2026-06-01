@@ -13,7 +13,9 @@
     2. **任务不相似**（Dissimilarity between tasks）：如果强制让毫无关联的任务共享参数，会互相干扰。
     3. **负迁移**（Negative transfer of knowledge）：这是 MTL 最致命的问题。各类任务之间可能存在冲突，导致联合训练后的效果反而不如各个任务单独训练。
 
-## 学习方法
+## 学习方法[^1]
+
+[^1]: [Sebastian Ruder 经典综述](https://www.ruder.io/multi-task/)
 
 在深度学习中，根据参数共享的严格程度，MTL 主要分为两种基本架构：
 
@@ -50,7 +52,9 @@
 
 - **反向传播**：总 Loss 的梯度会同时向后传导。共享层的参数更新方向，是所有任务梯度方向的 **向量和**。
 
-## 经典案例分析：HyperFace
+## 经典案例分析：HyperFace[^2]
+
+[^2]: [HyperFace 论文](https://arxiv.org/abs/1603.01249)
 
 **HyperFace** 是计算机视觉领域一个非常经典的多任务学习框架，它采用 **Hard Parameter Sharing** 的结构，利用一张人脸图像同时完成五个不同的任务：
 

@@ -24,7 +24,7 @@
 
 ## 卷积网络设计[^1]
 
-[^1]: [CNN Explainer](https://poloclub.github.io/cnn-explainer/)
+[^1]: [CNN 动态可视化演示：CNN Explainer](https://poloclub.github.io/cnn-explainer/)
 
 ### 卷积计算 (Convolution)
 
