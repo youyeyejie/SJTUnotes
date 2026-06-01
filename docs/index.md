@@ -33,6 +33,7 @@ Youyeyejie's Course notes in Shanghai Jiao Tong University.
 - [NIS3351-数据库原理及安全](NIS3351-数据库原理及安全/index.md)
 - [NIS3352-现代密码学Ⅱ](NIS3352-现代密码学Ⅱ/index.md)
 - [NIS3355-算法计算复杂度分析](NIS3355-算法计算复杂度分析/index.md)
+- [NIS3363-机器学习](NIS3363-机器学习/index.md)
 - [NIS3364-计算机通信网络](NIS3364-计算机通信网络/index.md)
 - [NIS3365-现代密码学](NIS3365-现代密码学/index.md)
 - [NIS3368-安全模型开发及安全编程](NIS3368-安全模型开发及安全编程/index.md)
