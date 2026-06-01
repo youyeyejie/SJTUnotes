@@ -11,3 +11,11 @@
 .md-typeset mjx-container[display="false"] {
   max-width: 100%;
 }
+
+.md-content .md-typeset img {
+  max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+}
