@@ -19,9 +19,9 @@ theme:
     # - navigation.expand         # 展开所有导航
     - navigation.top            # 回到顶部按钮
     # - navigation.footer         # 底部翻页导航
-    - navigation.instant        # 即时加载页面
-    - navigation.instant.prefetch # 即时加载页面预取
-    - navigation.instant.progress # 即时加载页面进度条
+    # - navigation.instant        # 即时加载页面
+    # - navigation.instant.prefetch # 即时加载页面预取
+    # - navigation.instant.progress # 即时加载页面进度条
     - navigation.paths          # 导航路径
     - navigation.tracking       # 地址栏追踪锚点
     - navigation.indexes        # 分组主页
