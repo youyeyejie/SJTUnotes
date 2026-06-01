@@ -19,9 +19,21 @@ def normalize_list_spacing(text: str) -> tuple[str, int]:
     lines = text.split("\n")
     new_lines: list[str] = []
     modifications = 0
+    in_front_matter = False
 
-    for line in lines:
+    for index, line in enumerate(lines):
         stripped = line.strip()
+
+        if index == 0 and stripped == "---":
+            in_front_matter = True
+            new_lines.append(line)
+            continue
+
+        if in_front_matter:
+            new_lines.append(line)
+            if stripped == "---":
+                in_front_matter = False
+            continue
 
         if is_list_item(stripped):
             if new_lines and new_lines[-1].strip():

@@ -377,3 +377,4 @@
 					$$
 					\begin{aligned} \mathrm{Adv}_{\mathcal{B}} &\geq \Pr\left[ \begin{array}{l} (1)\ \mathcal{A} \text{ 成功攻破 IND-ID-CPA 安全目标} \\ (2)\ \mathcal{A} \text{ 查询过 } id_j \text{ 的 Hash 值} \\ (3)\ \mathcal{B} \text{ 赌对了 } j \text{(即 } id^* = id_j \text{)} \end{array} \right] \\ &\geq \text{non-negl}(\lambda) \cdot \text{non-negl}(\lambda) \cdot \frac{1}{Q(\lambda)} \\ &= \text{non-negl}(\lambda) \end{aligned}
 					$$
+

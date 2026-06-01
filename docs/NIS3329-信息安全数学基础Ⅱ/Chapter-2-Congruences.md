@@ -168,3 +168,4 @@
 			$$
 			\begin{aligned} \sum_{d\mid n} \varphi(d) &=\sum_{0\leq k_i\leq e_i} \varphi(p_1^{k_1}\cdots p_t^{k_t}) \\ &=\sum_{0\leq k_i\leq e_i} \varphi(p_1^{k_1})\cdots \varphi(p_t^{k_t}) \\ &=\prod_{i=1}^k \sum_{0\leq k_i\leq e_i} \varphi(p_i^{k_i}) \\ &=\prod_{i=1}^k\left(\varphi(p_i^0)+\sum_{1\leq k_i\leq e_i} \varphi(p_i^{k_i})\right) \\ &=\prod_{i=1}^k\left(1+\sum_{1\leq k_i\leq e_i} p_i^{k_i}-p_i^{k_i-1}\right) \\ &=\prod_{i=1}^k p_i^{e_i} \\ &=n \end{aligned}
 			$$
+

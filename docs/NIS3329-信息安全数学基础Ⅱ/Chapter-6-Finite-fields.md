@@ -227,3 +227,4 @@
 		$$
 		\mu(d) = \begin{cases} 1 & d = 1 \\ (-1)^k & d = \prod_{i=1}^k p_i \text{ for distinct primes } p_i \\ 0 & \exists p \text{ s.t. } p^2 \mid d \end{cases}
 		$$
+

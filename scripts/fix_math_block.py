@@ -9,6 +9,9 @@ from pathlib import Path
 INLINE_BLOCK_MATH = re.compile(r"\$\$\s*(?P<formula>.+?)\s*\$\$")
 LIST_MARKER = re.compile(r"^(?P<base>[ \t]*)(?P<marker>(?:[-+*]|\d+\.)[ \t]+)")
 LIST_MARKER_ONLY = re.compile(r"^[ \t]*(?:[-+*]|\d+\.)$")
+BLOCK_START_LINE = re.compile(r"^[ \t]*\$\$[ \t]*$")
+LIST_BLOCK_START_LINE = re.compile(r"^[ \t]*(?:[-+*]|\d+\.)[ \t]+\$\$[ \t]*$")
+BLOCK_INLINE_START_LINE = re.compile(r"^(?P<indent>[ \t]*)\$\$(?P<formula>.*\S.*)$")
 
 
 def block_indent_for_line(line: str) -> str:
@@ -29,6 +32,17 @@ def append_blank_line(out: list[str]) -> None:
         out.append("")
 
 
+def ensure_single_blank_line(out: list[str]) -> int:
+    modifications = 0
+    while len(out) >= 2 and out[-1] == "" and out[-2] == "":
+        out.pop()
+        modifications += 1
+    if out and out[-1].strip():
+        out.append("")
+        modifications += 1
+    return modifications
+
+
 def append_block(
     out: list[str],
     indent: str,
@@ -36,8 +50,8 @@ def append_block(
     leading_blank: bool = True,
     opener: str | None = None,
 ) -> None:
-    if leading_blank and out and out[-1].strip():
-        out.append("")
+    if leading_blank:
+        ensure_single_blank_line(out)
 
     out.extend(
         [
@@ -83,10 +97,36 @@ def normalize_block_math(text: str) -> tuple[str, int]:
     lines = text.splitlines()
     out: list[str] = []
     modifications = 0
+    in_block_math = False
 
     for line in lines:
         if not line.strip():
             append_blank_line(out)
+            continue
+
+        inline_start_match = BLOCK_INLINE_START_LINE.match(line)
+        if inline_start_match and not line.strip().endswith("$$"):
+            modifications += ensure_single_blank_line(out)
+            out.append(f"{inline_start_match.group('indent')}$$")
+            out.append(f"{inline_start_match.group('indent')}{inline_start_match.group('formula').strip()}")
+            in_block_math = True
+            modifications += 1
+            continue
+
+        if LIST_BLOCK_START_LINE.match(line):
+            in_block_math = True
+            out.append(line)
+            continue
+
+        if BLOCK_START_LINE.match(line):
+            if not in_block_math:
+                modifications += ensure_single_blank_line(out)
+                in_block_math = True
+                out.append(line)
+            else:
+                in_block_math = False
+                out.append(line)
+                append_blank_line(out)
             continue
 
         if INLINE_BLOCK_MATH.search(line):
