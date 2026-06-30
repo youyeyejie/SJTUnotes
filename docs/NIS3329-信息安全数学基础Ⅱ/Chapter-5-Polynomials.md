@@ -5,10 +5,15 @@
 ???+ abstract "Recap of Ring and Field"
 
 	- A **ring** is a set $R$ equipped with $+$ and $\cdot$ operations such that $(R, +)$ is an abelian group, $(R, \cdot)$ is a semigroup, and $\cdot$ distributes over $+$.
+
 	- A **field** is a commutative ring with identity in which every non-zero element is a unit, i.e. every non-zero element has a multiplicative inverse. In particular, a field is an integral domain.
+
 		- $\mathbb{Q}$: the field of rational numbers.
+
 		- $\mathbb{R}$: the field of real numbers.
+
 		- $\mathbb{C}$: the field of complex numbers.
+
 		- $\mathbb{Z}_p$: the field of integers modulo a prime $p$.
 
 ## Polynomials
@@ -20,6 +25,7 @@
 	$$
 
 	- If $a_n \neq 0$, then $n$ is called the **degree** of $f(x)$ and is denoted $\deg(f)$, and $a_n$ is called the **leading coefficient** of $f(x)$. If $a_n=1$, then $f$ is called **monic**. (首一的)
+
 	- An element $a \in F$ is called a **constant polynomial**. The degree of the zero polynomial is defined to be $-\infty$, others degree is defined to be $0$, i.e.
 
 		$$
@@ -27,6 +33,7 @@
 		$$
 
 - **Def 5.2 Addition and Multiplication**: Let $f(x)=a_0 + a_1 x + \cdots + a_n x^n$ and $g(x)=b_0 + b_1 x + \cdots + b_m x^m$ be two polynomials.
+
 	- The **sum** of $f(x)$ and $g(x)$ is defined as
 
 		$$
@@ -40,9 +47,13 @@
 		$$
 
 - **Thm 5.3 Properties of Degree**: Let $f(x), g(x)$ be two polynomials. Then
+
 	1. $\deg(f + g) \leq \max(\deg(f), \deg(g))$.
+
 	2. $\deg(f \cdot g) = \deg(f) + \deg(g)$.
+
 	3. $\deg(a \cdot f) = \deg(f)$ if $a \in F \setminus \{0\}$.
+
 - **Def 5.4 Polynomial Ring**: The polynomial ring over field $F$ is defined as
 
 	$$
@@ -52,11 +63,13 @@
 	Indeed $(F[x], +, \cdot)$ forms a commutative ring with additive identity $0$ and multiplicative identity $1$. Furthermore, $F[x]$ is an integral domain.
 
 - **Thm 5.5**: The unit group of $F[x]$ is $F^* = F \setminus \{0\}$.
+
 	- **Notation**: The unit group of a ring $R$ is the set of all invertible elements in $R$, denoted by $R^*$.
 
 	???+ info "Proof"
 
 		- Let $f\in F[x]$ be a unit. Then $\exists g \in F[x]$ s.t. $f \cdot g = 1$. By Thm 5.3, $\deg(f) + \deg(g) = \deg(f\cdot g) = \deg(1) = 0$. Thus $\deg(f) = \deg(g) = 0$, which means $f, g \in F^*$.
+
 		- Conversely, if $f \in F^*$, then $f^{-1} \in F^*$ and $f \cdot f^{-1} = 1$.
 
 ## Divisibility
@@ -71,14 +84,23 @@
 	Then we say $g$ divides $f$, denoted $g \mid f$.
 
 - **Thm 5.7 Property of Divisibility**: Let $f, g, h, u, v \in F[x]$.
+
 	1. $g\mid f \implies \forall h\in F[x]\setminus\{0\},  gh \mid fh$
+
 	2. $g\mid f, f\mid h \implies g\mid h$
+
 	3. $g\mid f, f\mid g \implies f = a g$ for some $a \in F^*$
+
 	4. $f\mid u, f\mid v \implies \forall a, b \in F[x], f\mid (au + bv)$
+
 - **Axiom 5.8**: Let $S\subseteq\mathbb{Z}^+ \cup \{0, -\infty\}$
+
 	1. If $S\neq \emptyset$, $S$ contains the smallest number (including $-\infty$).
+
 	2. If $S$ contains a non-negative integer, then $S$ contains the smallest non-negative integer.
+
 	3. If $S$ contains a positive integer, then $S$ contains the smallest positive integer.
+
 - **Thm 5.9**: Let $f, g \in F[x]$ with $g \neq 0$. Then there exist unique pair of polynomials $q, r \in F[x]$ satisfying
 
 	$$
@@ -96,6 +118,7 @@
 			Then $\deg(q_1 - q_2) < 0 \implies \deg(q_1 - q_2) = -\infty \implies q_1 = q_2 \implies r_1 = r_2$. Thus the two pairs are the same.
 
 		- **Existence**: Consider the set $S = \{\deg(f - h \cdot g) : h \in F[x]\}$, thus $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest number $t$ (including $-\infty$), thus $\exists q \in F[x]$ s.t. $\deg(f - q \cdot g) = t$. Let $r = f - q \cdot g$, thus $\deg(r) = t$. Claim that $\deg(r) < \deg(g)$:
+
 			- Suppose $\deg(r) \geq \deg(g)$, then write
 
 				$$
@@ -107,14 +130,19 @@
 ### Greatest Common Divisor
 
 - **Def 5.10 GCD**: Let $f, g \in F[x]$ and $(f,g)\neq (0,0)$, then a greatest common divisor (GCD) of $f$ and $g$ is defined to be the monic polynomial $d$ satisfying
+
 	1. $d \mid f, d \mid g$.
+
 	2. $d_1 \mid f, d_1 \mid g \implies d_1 \mid d$.
+
 - **Thm 5.11**: The GCD of $f, g$ exists and is unique, denoted by $\gcd(f,g)$.
 
 	???+ info "Proof"
 
 		- **Uniqueness**: Assume that $d_1, d_2$ are two GCDs of $f, g$. Then $d_1 \mid d_2$ and $d_2 \mid d_1$, thus $\exists a,b \in F[x]$ s.t. $d_1 = a d_2$ and $d_2 = b d_1$, thus $d_1 = a b d_1 \implies d_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $d_1 = d_2$.
+
 		- **Existence**: Consider the set $S = \{\deg(uf + vg) : u, v \in F[x], (u,v) \neq (0,0)\}$, thus $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists a, b \in F[x]$ s.t. $\deg(af + bg) = t$. Let $d = af + bg$, thus $\deg(d) = t$. WLOG, we assume that $d$ is monic, otherwise we can divide it by its leading coefficient. Claim that $d=\gcd(f,g)$:
+
 			- Let $f=q\cdot d + r$ with $\deg(r) < \deg(d)$, then
 
 				$$
@@ -126,12 +154,19 @@
 			- If $d_1 \mid f, d_1 \mid g$, then $d_1 \mid (af + bg)$, i.e. $d_1 \mid d$.
 
 - **Def 5.12 Coprime**: Two polynomials $f, g \in F[x]$ are said to be coprime if $\gcd(f,g) = 1$.
+
 - **Cor 5.13 Bézout's Identity**: Let $f, g \in F[x]$ with $(f,g) \neq (0,0)$, then $\exists u, v \in F[x]$ s.t. $uf + vg = \gcd(f,g)$.
+
 - **Thm 5.14 Properties of GCD**: Let $f, g, h, f_i \in F[x]$, then
+
 	1. $a(x)$ is monic $\implies \gcd(af, ag) = a \cdot \gcd(f,g)$
+
 	2. $\gcd\left(\frac{f}{\gcd(f,g)}, \frac{g}{\gcd(f,g)}\right) = 1$
+
 	3. $\gcd(f_i,g)=1, i=1,2,\cdots,t \implies \gcd\left(\prod_{i=1}^t f_i, g\right)=1$
+
 	4. $h\mid fg,~\gcd(h,g)=1 \implies h\mid f$
+
 	5. $\forall r\in F[x], \gcd(f,g)=\gcd(f, g+rf)$
 
 ### Euclidean Algorithm
@@ -143,7 +178,9 @@
 	$$
 
 - **Thm 5.16**: By the Euclidean Algorithm given above, $\gcd(r_i, r_{i+1}) = \gcd(r_{i+1}, r_{i+2})$ for $i=0,1,\cdots,n-2$.
+
 	- In particular, $\gcd(f,g) = u^{-1} r_n$, where $u$ is the leading coefficient of $r_n$.
+
 - **Thm 5.17 Extended Euclidean Algorithm**: Given $f, g \in F[x]$ with $g \neq 0$, let $r_0=f, r_1=g, s_0=1, s_1=0, t_0=0, t_1=1$, we can compute $r_2, r_3, \cdots$ by long division, and compute $s_i,t_i$ by
 
 	$$
@@ -151,24 +188,33 @@
 	$$
 
 - **Thm 5.17**: By the Extended Euclidean Algorithm given above, $r_i=f s_i+g t_i$ for $i=0,1,\cdots,n$.
+
 	- In particular, $\gcd(f,g) = u^{-1} r_n= u^{-1} (f s_n + g t_n)$, where $u$ is the leading coefficient of $r_n$.
 
 ### Least Common Multiple
 
 - **Def 5.18 LCM**: Let $f, g \in F[x]$ with $(f,g) \neq (0,0)$, then a least common multiple (LCM) of $f$ and $g$ is defined to be the monic polynomial $D$ satisfying
+
 	1. $f \mid D, g \mid D$.
+
 	2. $\forall D' \in F[x], f \mid D', g \mid D' \implies D \mid D'$.
+
 - **Thm 5.19**: The LCM of $f, g$ exists and is unique, denoted by $\mathrm{lcm}(f,g)$.
 
 	???+ info "Proof"
 
 		- **Uniqueness**: Assume that $D_1, D_2$ are two LCMs of $f, g$. Then $D_1 \mid D_2$ and $D_2 \mid D_1$, thus $\exists a,b \in F[x]$ s.t. $D_1 = a D_2$ and $D_2 = b D_1$, thus $D_1 = a b D_1 \implies D_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $D_1 = D_2$.
+
 		- **Existence**: Consider the set $S = \{\deg(u): f \mid u, g \mid u\}$, thus $fg \in S$, so $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists D \in F[x]$ s.t. $\deg(D) = t$ and $f \mid D, g \mid D$. WLOG, we assume that $D$ is monic, otherwise we can divide it by its leading coefficient. Claim that $D=\mathrm{lcm}(f,g)$:
+
 			- If $D' \in F[x]$ satisfies $f \mid D', g \mid D'$, then $\deg(D') \in S$, thus $\deg(D') \geq t = \deg(D)$, let $D' = q \cdot D + r$ with $\deg(r) < \deg(D)$, then $r = D' - q \cdot D$, thus $f \mid r, g \mid r$, thus $\deg(r) \in S$, thus $\deg(r) = -\infty$, thus $r=0$, thus $D \mid D'$.
 
 - **Thm 5.20 Properties of LCM**: Let $f, g, h, f_i \in F[x]$, then
+
 	1. $a(x)$ is monic $\implies \mathrm{lcm}(af, ag) = a \cdot \mathrm{lcm}(f,g)$
+
 	2. $\gcd(f,g)=1$ and $f,g$ are monic $\implies \mathrm{lcm}(f,g) = f \cdot g$
+
 	3. $f,g$ are monic $\implies \gcd(f,g) \cdot \mathrm{lcm}(f,g) = f \cdot g$
 
 		???+ info "Proof of 3"
@@ -184,13 +230,17 @@
 ### Irreducible Polynomials
 
 - **Def 5.21 Irreducible Polynomial**: A non-constant polynomial $f$ is called **irreducible** if $f$ is only divisible by $a$ or $af$ for some $a \in F^*$.
+
 - **Thm 5.22**: $f$ is irreducible $\iff (f\mid ab \implies f\mid a \text{ or } f\mid b)$.
 
 	???+ info "Proof"
 
 		- $\implies$:
+
 			- If $f\mid a$, done.
+
 			- If $f\nmid a$, then $\gcd(f,a) = 1$, thus $f\mid b$, done.
+
 		- $\impliedby$: Suppose $f$ were not irreducible, then $f=g\cdot h$ with $1\leq \deg(g), \deg(h) < \deg(f)$, thus $f\mid g\cdot h \implies f\mid g \text{ or } f\mid h$, thus $\deg(f) \leq \deg(g)$ or $\deg(f) \leq \deg(h)$, contradiction.
 
 - **Lemma 5.23**: $\forall f \in F[x]$ with $\deg(f) \geq 1, \exists p \in F[x]$ s.t. $p\mid f$ and $p$ is irreducible.
@@ -198,10 +248,13 @@
 	???+ info "Proof"
 
 		- Consider the set $S = \{\deg(u): u\mid f, \deg(u) \geq 1\}$, thus $f \in S$, so $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest positive integer $t$, thus $\exists p \in F[x]$ s.t. $\deg(p) = t$ and $p \mid f$. Claim that $p$ is irreducible: Assume that $q\mid p$, then $\deg(q) \leq \deg(p)$
+
 			- If $q\in F^*$, then $p$ is irreducible.
+
 			- If $q\notin F^*$, then $\deg(q) \geq 1$, thus $q\mid p, p\mid f \implies q\mid f$, thus $\deg(q) \in S$, thus $\deg(q) \geq t \implies \deg(q) = \deg(p)$. Let $p = q \cdot r$, then $\deg(r) = \deg(p) - \deg(q) = 0$, thus $r \in F^*$ and $q=r^{-1} p$, thus $p$ is irreducible.
 
 - **Thm 5.24**: There are infinitely many monic irreducible polynomials in $F[x]$.
+
 - **Thm 5.25**: Every non-zero polynomial $f$ can be uniquely factorized into a product of $a\in F^*$ and monic irreducible polynomials $p_i$, i.e.
 
 	$$
@@ -209,7 +262,9 @@
 	$$
 
 	- **Notation**: Let $p$ be an irreducible polynomial, if $p^k \mid f$ and $p^{k+1} \nmid f$, then we denote $v_p(f) = k$ and call it the **exponent** of $p$ in $f$.
+
 - **Thm 5.26**: Let $f, g \in F[x]$ be two non-zero polynomials, $p$ be monic irreducible polynomial, then
+
 	1. $$
 	    f = a \cdot \prod_{p} p^{v_p(f)}
 	    $$
@@ -234,11 +289,17 @@
 	Denoted by $a(x)\equiv b(x) \pmod{m(x)}$.
 
 - **Thm 5.28 Properties of Congruence**:
+
 	1. $a\equiv b \pmod m$ and $c\equiv d \pmod m \implies$
+
 		- $a+c\equiv b+d \pmod m$
+
 		- $a-c\equiv b-d \pmod m$
+
 		- $ac\equiv bd \pmod m$
+
 	2. $m>\gcd(m,c), ac\equiv bc \pmod m \implies a\equiv b \pmod{\frac{m}{\gcd(m,c)}}$
+
 - **Def 5.29 Residue Class**: Let $r,m\in F[x]$, the residue class of $r$ modulo $m$ is defined to be
 
 	$$
@@ -248,13 +309,17 @@
 	If there is no confusion, we denote $[r]_m$ by $\bar{r}$ for simplicity.
 
 - **Lemma 5.30**:
+
 	1. $\forall r_1,r_2\in F[x]$, we have $[r_1]_m=[r_2]_m$ or $[r_1]_m\cap [r_2]_m=\emptyset$.
+
 	2. $F[x] = \bigcup_{r\in F[x]} [r]_m = \overset{\centerdot}{\bigcup}_{\deg(r)<\deg(m)} [r]_m$.
+
 		- **Notation**: $\overset{\centerdot}{\bigcup}$ means the union of disjoint sets.
 
 		???+ info "Proof of 2"
 
 			- For any $f \in F[x]$, let $f = q \cdot m + r$ with $\deg(r) < \deg(m)$, then $f \equiv r \pmod m$, thus $f \in [r]_m$, thus $F[x] \subseteq \bigcup_{\deg(r)<\deg(m)} [r]_m$. Since $\forall r, [r]_m \subseteq F[x]$, we have $\bigcup_{\deg(r)<\deg(m)} [r]_m \subseteq F[x]$. Thus $F[x] = \bigcup_{\deg(r)<\deg(m)} [r]_m$.
+
 			- Let $r_1 \neq r_2$ with $\deg(r_1), \deg(r_2) < \deg(m)$. Thus $r_1 - r_2 \neq 0$ and $\deg(r_1 - r_2) < \deg(m)$, thus $m \nmid (r_1 - r_2)$, i.e. $r_1 \not\equiv r_2 \pmod m$. By Lemma 5.30(1), we have $[r_1]_m \cap [r_2]_m = \emptyset$, thus the union is disjoint.
 
 - **Def 5.31 Complete Residue System**: $F[x]/(mF[x])$ is the set of all residue classes modulo $m$, i.e.
@@ -286,6 +351,7 @@
 	$$
 
 - **Thm 5.33**: Under the above addition and multiplication, $F[x]/(m)$ forms a **commutative ring** with the additive identity $\bar{0}$ and the multiplicative identity $\bar{1}$.
+
 - **Def 5.34 Invertible Element**: A polynomial $a\in F[x]$ is called invertible modulo $m$ if $\exists b\in F[x]$ s.t.
 
 	$$
@@ -299,6 +365,7 @@
 	???+ info "Proof"
 
 		- $\implies$: If $a$ is invertible modulo $m$, then $\exists b\in F[x]$ s.t. $a\cdot b \equiv 1 \pmod m$, thus $\exists u\in F[x]$ s.t. $a\cdot b - 1 = u \cdot m$, thus $a\cdot b - u \cdot m = 1$, thus $\gcd(a,m) = 1$.
+
 		- $\impliedby$: By Bézout's Identity, $\exists u,v\in F[x]$ s.t. $a\cdot u + m \cdot v = 1$, thus $a\cdot u \equiv 1 \pmod m$, thus $a$ is invertible modulo $m$ and $u$ is the inverse of $a$ modulo $m$.
 
 - **Def 5.36 Unit Group**: The unit group of the ring $F[x]/(m)$ is denoted by
@@ -356,6 +423,7 @@
 	has a unique solution $x\in F[x]/(M)$ with $M=\prod_{i=1}^t m_i$.
 
 - **Thm 5.39 Properties of Euler Function**: Let $m,n,d\in \mathbb{Z}_p[x]$
+
 	1. If $\gcd(m,n) = 1$, then
 
 		$$
@@ -369,6 +437,7 @@
 		$$
 
 		- In particular, $q$ irreducible $\implies \Phi_p(q) = p^{\deg(q)} - 1$.
+
 	3. For any polynomial $m$, we have
 
 		$$
@@ -380,7 +449,9 @@
 	???+ info "Proof"
 
 		1. If $m\in \mathbb{Z}_p^*$, then $\Phi_p(mn) = \Phi_p(n) = \Phi_p(m) \cdot \Phi_p(n)$ since $\Phi_p(m) = 1$. So we just need to consider the case when $\deg(m) \geq 1$ and $\deg(n) \geq 1$:
+
 			- Since $\begin{cases}\Phi_p(mn) = |(\mathbb{Z}_p[x]/(mn))^*| \\ \Phi_p(m)\Phi_p(n) = |(\mathbb{Z}_p[x]/(m))^* \times (\mathbb{Z}_p[x]/(n))^*| \end{cases}$, it is sufficient to show that there is a bijection between $(\mathbb{Z}_p[x]/(mn))^*$ and $(\mathbb{Z}_p[x]/(m))^* \times (\mathbb{Z}_p[x]/(n))^*$. 
+
 			- Consider the map:
 
 				$$
@@ -438,9 +509,13 @@
 	Denoted by $\mathrm{ord}_m(a)$.
 
 - **Thm 5.43 Properties of Order**:
+
 	1. $a^l \equiv 1 \pmod m \implies \mathrm{ord}_m(a) \mid l$
+
 	2. $\mathrm{ord}_m(a^t) = \frac{\mathrm{ord}_m(a)}{\gcd(\mathrm{ord}_m(a), t)}$
+
 	3. $\gcd(\mathrm{ord}_m(a), \mathrm{ord}_m(b)) = 1 \implies \mathrm{ord}_m(ab) = \mathrm{ord}_m(a) \cdot \mathrm{ord}_m(b)$
+
 - **Def 5.44 Primitive Element**: An element $g \in F[x]$ with $\gcd(g,m) = 1$ is called a primitive element modulo $m$ if
 
 	$$
@@ -458,6 +533,7 @@
 	???+ info "Proof"
 
 		- $\impliedby$: Let $u\in \mathbb{Z}_p[x]/q$ with $u \neq 0$. and $\deg(u) < \deg(q)$, since $q$ is irreducible, we have $\gcd(u,q) = 1$, then by the Bézout's Identity, $\exists a,b\in \mathbb{Z}_p[x]$ s.t. $a\cdot u + b \cdot q = 1$, thus $a\cdot u \equiv 1 \pmod q$, thus $u$ is a unit in $\mathbb{Z}_p[x]/(q)$, thus $\mathbb{Z}_p[x]/(q)$ is a field.
+
 		- $\implies$: Suppose not, thus $q$ is reducible, then $\exists u,v \in \mathbb{Z}_p[x]$ with $1 \leq \deg(u), \deg(v) < \deg(q)$ s.t. $u\cdot v = q$, thus $\bar{u} \cdot \bar{v} = \bar{0}$, thus $\bar{u}$ is a zero divisor in $\mathbb{Z}_p[x]/(q)$, thus $\mathbb{Z}_p[x]/(q)$ is not a field, contradiction.
 
 - **Thm 5.47**: If $q\in \mathbb{Z}_p[x]$ is irreducible, then there exists a primitive element modulo $q$.
@@ -465,16 +541,21 @@
 	???+ info "Proof structure"
 
 		1. Factorize $\Phi_p(q) = p^{\deg(q)} - 1 = \prod_{i=1}^t p_i^{e_i}$
+
 		2. Find $g_i$ s.t. $\mathrm{ord}_q(g_i) = p_i^{e_i}$ for each $i$.
+
 		3. Let $g = \prod_{i=1}^t g_i$, then it is a primitive element modulo $q$.
 
 - **Thm 5.48**: If $q\in \mathbb{Z}_p[x]$ is irreducible and $k \geq 2$, then there exists a primitive element modulo $q^k \iff$
+
 	- $p\neq 2$, $k=2$ and $\deg(q) = 1$, or
+
 	- $p=2$, $2\leq k \leq 3$ and $\deg(q) = 1$.
 
 	???+ info "Proof"
 
 		- $\impliedby$:
+
 			1. $k=2$: Let $g\in \mathbb{Z}_p[x]$ be a primitive element modulo $q$, then $\mathrm{ord}_q(g) = \Phi_p(q) = p^{\deg(q)} - 1 = p - 1$. Then we have:
 
 				$$
@@ -482,6 +563,7 @@
 				$$
 
 				- Thus if $\mathrm{ord}_{q^2}(g) = p(p - 1)$, then $g$ is a primitive element modulo $q^2$.
+
 				- Else if $\mathrm{ord}_{q^2}(g) = p - 1$, then consider the element $g + q$, we have $\mathrm{ord}_{q^2}(g + q) = p-1$ or $p(p-1)$. Suppose $\mathrm{ord}_{q^2}(g + q) = p - 1$, then we have:
 
 					$$
@@ -511,15 +593,23 @@
 			$$
 
 			- If $p\neq 2$, then $(k-1)d \leq t = \lceil \log_p(k) \rceil \leq \lceil \ln(k) \rceil \leq \lceil k-1 \rceil = k-1$, thus $d = 1$, thus $\lceil \log_p(k) \rceil = k-1$, thus $k=2$.
+
 			- If $p=2$:
+
 				- If $d\geq 2$, then $2k-2 \leq (k-1) \leq \lceil \log_2(k) \rceil$. Since linearly $2k-2$ grows faster than $\lceil \log_2(k) \rceil$ and $k=2$ not satisfies the inequality, contradiction, thus $d=1$.
+
 				- If $d=1$, then $k-1 \leq \lceil \log_2(k) \rceil$. Since linearly $k-1$ grows faster than $\lceil \log_2(k) \rceil$ and $k=4$ not satisfies the inequality, contradiction, thus $k \leq 3$.
+
 			- Thus we have:
+
 				1. $p\neq 2$, $k=2$ and $\deg(q) = 1$, or
+
 				2. $p=2$, $2\leq k \leq 3$ and $\deg(q) = 1$.
 
 - **Thm 5.49**: Let $m(x) \in \mathbb{Z}_p[x]$ have the standard factorization $m(x) = \alpha \prod_{i=1}^n q_i^{e_i}(x)$. There exists a primitive element modulo $m(x) \iff$
+
 	1. $\prod_{i=1}^n \Phi_p(q_i^{e_i}) = \mathrm{lcm}\{\Phi_p(q_1^{e_1}), \dots, \Phi_p(q_n^{e_n})\}$. I.e. $\forall 1 \leq i \leq j \leq n$, $\gcd(\Phi_p(q_i^{e_i}), \Phi_p(q_j^{e_j})) = 1$.
+
 	2. $\forall 1 \leq i \leq n$, there exists a primitive element modulo $q_i^{e_i}$. I.e. satisfies the condition in Thm 5.48.
 
 	???+ info "Proof"
@@ -533,30 +623,49 @@
 			Let $G = (\mathbb{Z}_p[x]/(m(x)))^*$ and $G_i = (\mathbb{Z}_p[x]/(q_i^{e_i}(x)))^*$.
 
 		- Then we have:
+
 			- $\qquad$ A primitive element modulo $m(x)$ exists
+
 			- $\iff G$ is a cyclic group
+
 			- $\iff G_1 \times \dots \times G_n$ is cyclic
+
 			- $\iff \forall 1 \leq i \leq n, G_i$ is cyclic and their orders $|G_i| = \Phi_p(q_i^{e_i})$ are pairwise coprime
+
 			- $\iff \forall 1 \leq i \leq n$, there exists a primitive element modulo $q_i^{e_i}$ and $\forall 1 \leq i \leq j \leq n$, $\gcd(\Phi_p(q_i^{e_i}), \Phi_p(q_j^{e_j})) = 1$.
 
 - **Thm 5.50**: There exists a primitive element modulo $m(x) \iff$
+
 	- $p \neq 2$:
+
 		- $m(x)$ is irreducible;
+
 		- $m(x) = \alpha(x-\beta)^2$ for some $\alpha\in \mathbb{Z}_p^*$, $\beta \in \mathbb{Z}_p$;
+
 	- $p = 2$: $m(x) = \alpha(x-\beta)^e \prod q_i(x)$ for some $\alpha \in \mathbb{Z}_2^*$, $\beta \in \mathbb{Z}_2$, satisfying:
+
 		- $0 \leq e \leq 3$;
+
 		- $\forall 1 \leq i < j \leq n$, $\gcd(\deg(q_i), \deg(q_j)) = 1$;
+
 		- $x-\beta, q_i$ are distinct monic irreducible polynomials.
 
 	???+ info "Proof"
 
 		- $p\neq 2$: 
+
 			- $m(x)$ is irreducible: Proof by Thm 5.46 and Thm 5.47.
+
 			- $m(x) = \alpha(x-\beta)^2$: Proof by Thm 5.48.
+
 		- $p=2$: 
+
 			- $m(x) = \alpha$: $\alpha = 1 \in \mathbb{Z}_2^*$, thus $\Phi_2(m) = 1$, thus $1$ is a primitive element modulo $m$.
+
 			- $m(x) = \alpha(x-\beta)$: Proof by Thm 5.46 and Thm 5.47.
+
 			- $m(x) = \alpha(x-\beta)^2$ or $m(x) = \alpha(x-\beta)^3$: Proof by Thm 5.48.
+
 			- $m(x) = \alpha(x-\beta)^e \prod q_i(x)$: $\deg(q_i)$ are pairwise coprime, since $\gcd(2^a-1, 2^b-1) = 2^{\gcd(a,b)}-1$, thus $\Phi_2(q_i) = 2^{\deg(q_i)} - 1$ are pairwise coprime. Since $e \leq 3$, thus $\Phi_2((x-\beta)^e) = 2^{e-1} \in \{1, 2, 4\}$ and is coprime to $\Phi_2(q_i)$. Thus by Thm 5.49, there exists a primitive element modulo $m$.
 
 ## Lagrange interpolation
@@ -573,6 +682,7 @@
 	???+ info "Proof"
 
 		- $\implies$: Write $f(x) = q(x)(x-r) + r_0$ with $\deg(r_0) < \deg(x-r) = 1$, then $r_0 \in F$, thus $0 = f(r) = r_0$, thus $f(x) = q(x)(x-r)$, thus $(x-r) | f(x)$.
+
 		- $\impliedby$: If $(x-r) | f(x)$, then $f(x) = q(x)(x-r)$, thus $f(r) = 0$, thus $r$ is a root of $f$.
 
 - **Def 5.53 Derivative**: If $f(x) = a_0 + a_1x + \cdots + a_nx^n$, then the derivative $f'$ of $f$ is defined by
@@ -582,15 +692,21 @@
 	$$
 
 - **Def 5.54 Multiplicity of Root**: Let $r \in F$ be a root of $f \in F[x]$. If $k$ is a positive integer s.t. $(x-r)^k | f$ but $(x-r)^{k+1} \nmid f$, then $k$ is called the multiplicity of root $r$.
+
 	- If $k \ge 2$, the $r$ is called a multiple root. Otherwise, it is called a simple root.
+
 - **Thm 5.55 Property of Multiple Roots**: An element $r \in F$ is a multiple root of $f \in F[x] \iff r$ is a common root of $f$ and $f'$.
+
 - **Thm 5.56**: Let $F$ be a field and $f \in F[x]$ with $n := \deg(f) \ge 1$. Then $F$ contains at most $n$ distinct roots of $f$.
 
 	???+ info "Proof"
 
 		- We prove by induction on $n$. If $n=1$, then $f(x) = a_1x + a_0$ with $a_1 \neq 0$, thus $f$ has exactly one root, thus the statement holds.
+
 		- Assume that the statement holds for any polynomial with degree less than $n$.
+
 			- If $f$ has no root, then the statement holds.
+
 			- Otherwise, let $r$ be a root of $f$, then by Lemma 5.52, we have $f(x) = (x-r)g(x)$ with $\deg(g) = n-1$, thus any root of $f$ is either $r$ or a root of $g$, thus the number of distinct roots of $f$ is at most $(n-1) + 1 = n$, thus the statement holds.
 
 ### Lagrange Interpolation

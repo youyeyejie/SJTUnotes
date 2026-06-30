@@ -8,9 +8,13 @@
 #### 基本概念
 
 - **安全参数**（Security Parameter）$\lambda$：刻画攻击者攻破密码方案的难度
+
 	- **计算安全参数**（底层困难问题的计算复杂度，依赖于算力和算法）：攻破该问题至少需要 $2^{\lambda}$ 步运算。
+
 		- 例如：分解大整数 $n \approx 2^{2\lambda}$ 的计算复杂度为 $2^{\lambda}$，则计算安全参数为 $\lambda$
+
 	- **统计安全参数**（依赖于不同分布之间的统计距离，信息论安全）：攻破密码算法的概率：区分猜测值和目标值之间的概率是 $2^{-\lambda}$，则统计安全参数为 $\lambda$。
+
 - **$\lambda$ 的多项式大小**：$\mathrm{poly}(\lambda) = O(\lambda^{c})$，即 $\exists c \in \mathbb{N},\lambda' \in \mathbb{N}$，使得对 $\forall \lambda \geq \lambda'$，有
 
     $$
@@ -18,9 +22,13 @@
     $$
 
 	- 例如：$\mathrm{poly}(\lambda) = 4\lambda^{10} + \lambda^{3} + 1$，$\lambda$，$\lambda \log \lambda$，$\lambda^{1.5}$，$\lambda^{2}$ 等。
+
 - **多项式时间算法**：算法 $\mathrm{ALG}(x)$ 的运行时间与输出比特长度是输入比特长度 $\log |x|$ 的多项式大小。
+
 	- 确定性多项式时间（Deterministic Polynomial Time, DPT）算法
+
 	- 概率性多项式时间（Probabilistic Polynomial Time, PPT）算法
+
 - **可忽略概率**（Negligible probability）：**小于任意多项式倒数的概率，在密码学中认为几乎不可能发生的概率**，通常记为 $\mathrm{negl}(\lambda)$，即对任意多项式 $\mathrm{poly}$，$\exists \lambda' \in \mathbb{N}$，对 $\forall \lambda \geq \lambda'$，有
 
 	$$
@@ -28,7 +36,9 @@
 	$$
 
 	- 性质：$\forall c \in \mathbb{N}$，$\exists \lambda' \in \mathbb{N}$，使得对 $\forall \lambda \geq \lambda'$，有 $\mathrm{negl}(\lambda) \leq \lambda^{-c}$
+
 	- 例：$\mathrm{negl}(\lambda) = 2^{-\lambda}$，$2^{-\sqrt{\lambda}}$，$\lambda^{-\lambda} = 2^{-\lambda \log \lambda}$
+
 - **不可忽略概率**（Non-negligible probability）：$\text{non-negl}(\lambda)$，即存在多项式 $\mathrm{poly}$，$\forall \lambda' \in \mathbb{N}$，$\exists \lambda \geq \lambda'$，有
 
 	$$
@@ -88,20 +98,30 @@
 #### 可证明安全性的定义
 
 - **刻画攻击者/敌手 (attacker/adversary) 的攻击能力**
+
 	- 敌手的输入（例如：公开信息）
+
 	- 敌手的攻击能力（一般运行时间为多项式时间 PT，不考虑拥有无条件计算能力的敌手）
+
 	- 敌手的攻击方式（影响方案执行的行为，主动攻击、被动攻击，通过安全模型的方式刻画）
+
 - **刻画安全目标**
+
 	- 希望达到的目标，一般通过刻画不希望被攻破的目标定义
+
 - **密码算法/协议 $\Pi$ 的 X-Y 安全定义**（template）：任意概率多项式时间敌手在 Y 安全模型中攻破密码算法/协议 $\Pi$ 的 X 安全目标的概率是可忽略的。
 
 ### 公钥加密算法的安全性
 #### 公钥加密算法的语义及正确性要求
 
 - **语义**：一个公钥加密算法（public-key encryption, PKE）包含三个概率多项式时间（PPT）算法 $(\mathrm{Gen}, \mathrm{Enc}, \mathrm{Dec})$：
+
 	1. **密钥生成算法** $(PK, SK) \leftarrow \mathrm{Gen}(1^{\lambda})$：一般为概率性算法
+
 	2. **加密算法** $C \leftarrow \mathrm{Enc}(PK, M)$：$M \in \mathbb{M}$，其中 $\mathbb{M}$ 为消息空间
+
 	3. **解密算法** $M' \leftarrow \mathrm{Dec}(SK, C)$：一般为确定性算法，$M' \in \mathbb{M} \cup \{\bot\}$，其中 $\bot$ 代表解密失败
+
 - **正确性要求**：对于 $\forall (PK, SK) \leftarrow \mathrm{Gen}(1^{\lambda})$，$\forall M \in \mathbb{M}$，$\forall C \leftarrow \mathrm{Enc}(PK, M)$，一定有
 
 	$$
@@ -114,13 +134,21 @@
 	![PA-security](assets/image.webp)
 
 - **PA 敌手攻击能力**
+
 	- 输入：公开信道中的 $PK, C$
+
 	- 运行时间：概率多项式时间 PPT
+
 	- 攻击方式：被动攻击 PA ──  仅仅从公开信道中获取信息，不进行其他攻击
+
 - **安全目标（刻画不希望该密码算法被攻破目标）**
+
 	1. **隐藏私钥**（SK-hiding, SK）：$\mathrm{output} = SK$ 则攻破该目标
+
 	2. **隐藏明文**（Plaintext-hiding, PH）：$\mathrm{output} = M$ 则攻破该目标
+
 	3. **隐藏明文首比特**（Plaintext-first-bit-hiding, PFbH）：$\mathrm{output} = M[1]$ 则攻破该目标
+
 - **公钥加密算法的 SKH/PH/PFbH-PA 安全性定义**：任意概率多项式时间敌手在 PA 安全模型中攻破 SKH/PH/PFbH 安全目标的概率是可忽略的，即
 
 	$$
@@ -135,10 +163,15 @@
 	![CPA-security](assets/image-1.webp)
 
 - **CPA 敌手攻击能力**：
+
 	- 输入：公开信道中的 $PK$ 及挑战密文 $C^{*}$
+
 	- 运行时间：概率多项式时间 PPT
+
 	- 攻击方式：选择明文攻击 CPA ── 敌手可以提供/决定/影响加密使用的明文
+
 - **IND 安全目标**：**不可区分性**（Indistinguishability）── 敌手无法区分密文 $C^{*}$ 加密的是 $M_{0}$ 还是 $M_{1}$（即如果 $\mathrm{output} = b$，则攻破该目标）
+
 - **公钥加密算法的 IND-CPA 安全性定义**：任意概率多项式时间敌手在 CPA 安全模型中攻破 IND 安全目标的 **优势**（advantage）是可忽略的，也即
 
 	$$
@@ -164,11 +197,14 @@
 			$$
 
 		- **证明前提错误**：构造一个概率多项式时间敌手 $\mathcal{B}$，在 CPA 安全模型中攻破 IND 安全目标。
+
 			- $\mathcal{B}$ 的输入：公开信道中的 $PK$ 及挑战密文 $C^{*}$
+
 			- 调用子敌手：$\mathcal{B}$ 将 $(PK, C^{*})$ 交给 $\mathcal{A}$，模拟 SKH-PA 实验，$\mathcal{A}$ 输出一个候选私钥 $SK'$。$\mathcal{B}$ 尝试使用 $SK'$ 解密 $C^{*}$，得到 $M' = \mathrm{Dec}(SK', C^{*})$
 				![](assets/image-3.webp)
 
 			- $\mathcal{B}$ 的输出：$\mathrm{output} = \begin{cases} 0 & M' = M_0 \\ 1 & M' = M_1 \\ \mathrm{random}\{0, 1\} & \text{otherwise} \end{cases}$
+
 			- $\mathcal{B}$ 的优势：
 
 				$$
@@ -185,10 +221,15 @@
 	![mCPA-security](assets/image-2.webp)
 
 - **mCPA 敌手攻击能力**
+
 	- 输入：公开信道中的 $PK$ 及 **多项式** 个挑战密文 $C^{*(1)}, \dots, C^{*(Q)}$
+
 	- 运行时间：概率多项式时间 PPT
+
 	- 攻击方式：多挑战-选择明文攻击 mCPA ── 敌手可以提供/决定/影响加密使用的多个明文
+
 - **IND 安全目标**：敌手无法区分密文 $C^{*(j)}$ 加密的是 $M_{0}^{(j)}$ 还是 $M_{1}^{(j)}$（即如果 $\mathrm{output} = b$，则攻破该目标）
+
 - **公钥加密算法的 IND-mCPA 安全性定义**：任意概率多项式时间敌手在 mCPA 安全模型中攻破 IND 安全目标的优势是可忽略的，即
 
 	$$
@@ -206,10 +247,15 @@
 	???+ info "Proof"
 
 		- **必要性易证**（$\impliedby$）：IND-CPA 是 IND-mCPA $Q=1$ 的特殊情况
+
 		- **充分性证明**（$\implies$）：采用混合论证（Hybrid Arguments）与三角不等式，核心思路是在全加密 $M_0^{(j)}$ 和全加密 $M_1^{(j)}$ 两个极端场景之间，插入一系列混合场景（Hybrid），证明相邻混合场景的不可区分性，最终推导出两个极端场景的不可区分性。
+
 			1. **定义两个极端游戏**（Game）：设敌手发起 $Q=\mathrm{poly}(\lambda)$ 次挑战，定义两个基础游戏：
+
 				- **Game 0** ($b=0$)：对所有 $j=1,\ldots,Q$，加密 $M_{0}^{(j)}$，即 $C^{*(j)} \leftarrow \mathrm{Enc}(PK, M_{0}^{(j)})$
+
 				- **Game 1** ($b=1$)：对所有 $j=1,\ldots,Q$，加密 $M_{1}^{(j)}$，即 $C^{*(j)} \leftarrow \mathrm{Enc}(PK, M_{1}^{(j)})$
+
 			2. **定义混合游戏**（Hybrid Game）：在 Game 0 和 Game 1 之间插入 $Q+1$ 个混合游戏 $\mathrm{Hybrid}_{i}$，其中 $i=0,\ldots,Q$，$\mathrm{Hybrid}_{i}$ 定义为对前 $i$ 个挑战加密 $M_{1}^{(j)}$，对后 $Q-i$ 个挑战加密 $M_{0}^{(j)}$，即
 
 				$$
@@ -231,7 +277,9 @@
 				即 Game 0 与 Game 1 的差距是可忽略的，算法满足 IND-mCPA 安全性。
 
 		- **引理证明**：采用反证法，由区分 $\mathrm{Hybrid}_{i-1}$ 与 $\mathrm{Hybrid}_{i}$ 的敌手 $\mathcal{A}$ 来构造攻破 IND-CPA 安全性的敌手 $\mathcal{B}$。
+
 			- $\mathrm{Hybrid}_{i-1}$ 与 $\mathrm{Hybrid}_{i}$ 的差别只在于第 $i$ 个挑战密文，与 IND-CPA 刻画的安全性十分接近。
+
 			- 假设存在一个概率多项式时间敌手 $\mathcal{A}$，以不可忽略的概率区分 $\mathrm{Hybrid}_{i-1}$ 与 $\mathrm{Hybrid}_{i}$，即
 
 				$$
@@ -239,11 +287,17 @@
 				$$
 
 			- 构造针对 IND-CPA 安全性的敌手 $\mathcal{B}$：
+
 				- $\mathcal{B}$ 将 IND-CPA 实验中的 $PK$ 交给 $\mathcal{A}$
+
 					- $\mathcal{B}$ 接收 $\mathcal{A}$ 的前 $i-1$ 对明文 $(M_{0}^{(j)}, M_{1}^{(j)})$，修改为 $(M_{1}^{(j)}, M_{1}^{(j)})$ 进行 IND-CPA 实验，相当于固定加密 $M_{1}^{(j)}$，将密文交给 $\mathcal{A}$
+
 					- $\mathcal{B}$ 接收 $\mathcal{A}$ 的第 $i$ 对明文 $(M_{0}^{(i)}, M_{1}^{(i)})$，将其作为 IND-CPA 实验的挑战明文，接收挑战密文 $C^{*(i)}$ 交给 $\mathcal{A}$
+
 					- $\mathcal{B}$ 接收 $\mathcal{A}$ 的后 $Q-i$ 对明文 $(M_{0}^{(j)}, M_{1}^{(j)})$，同理，加密 $M_{0}^{(j)}$ 交给 $\mathcal{A}$
+
 				- 则 $\mathcal{B}$ 的输出 $\mathrm{output}_{\mathcal{B}} = \begin{cases} 0 & \mathrm{output}_{\mathcal{A}}=0 \\ 1 & \mathrm{output}_{\mathcal{A}}=1 \end{cases}$
+
 				- $\mathcal{B}$ 的优势：
 
 					$$
@@ -258,12 +312,19 @@
 	![CCA-security](assets/image-4.webp)
 
 - **CCA 敌手攻击能力**：
+
 	- 输入：公开信道中的 $PK$ 及挑战密文 $C^{*}$
+
 	- 运行时间：概率多项式时间 PPT
+
 	- 攻击方式：
+
 		1. 选择明文攻击：敌手可以提供/决定/影响加密使用的明文
+
 		2. 选择密文攻击：敌手可以获得除 $C^{*}$ 外任意密文的解密结果
+
 - **IND 安全目标**：敌手无法区分密文 $C^{*}$ 加密的是 $M_{0}$ 还是 $M_{1}$（即如果 $\mathrm{output} = b$，则攻破该目标）
+
 - **公钥加密算法的 IND-CCA 安全性定义**：任意概率多项式时间敌手在 CCA 安全模型中攻破 IND 安全目标的优势是可忽略的，即
 
 	$$
@@ -274,36 +335,63 @@
 #### 群的基本知识
 
 - 设 $(G,\cdot,1)$ 为 **有限交换群**，其中 $1$ 为 $G$ 中关于运算 $\cdot$ 的单位元，则群 $G$ 满足以下性质：
+
 	- 有限性：$|G| < \infty$
+
 	- 封闭性：$\forall a, b \in G$，$a \cdot b \in G$
+
 	- 交换性：$\forall a, b \in G$，$a \cdot b = b \cdot a$
+
 	- 单位元：$\forall a \in G$，$a \cdot 1 = 1 \cdot a = a$
+
 	- 逆元：$\forall a \in G$，存在 $a^{-1} \in G$，使得 $a \cdot a^{-1} = a^{-1} \cdot a = 1$
+
 - **生成元**（Generator）：$a \in G$，集合 $\langle a \rangle = \{a^{i} : i \in \mathbb{Z}\}$ 是 $G$ 的子群，称为循环子群（Cyclic Subgroup），称 $a$ 为循环群 $\langle a \rangle$ 的生成元。
+
 	- 特别地，如果 $\langle g \rangle = G$，则称 $g$ 是 $G$ 的生成元，$G$ 是由 $g$ 生成的循环群。
+
 	- **群的阶**：$|\langle a \rangle| = \mathrm{ord}(a) = \min\{n \in \mathbb{N} : a^{n} = 1\}$，即 $a$ 的阶。
+
 		- 拉格朗日定理：$\mathrm{ord}(a) \mid |G|$
+
 	- **素数阶群**：如果 $G$ 的阶 $|G|$ 是素数，则 $G$ 中的任意非单位元都是生成元，且 $G$ 为循环群。 
+
 	- 如果群 $G=\langle g \rangle$ 为循环群，则 $G$ 中元素的运算为 $\log|G|$ 的多项式时间。
+
 - **离散对数**（Discrete Logarithm, DLOG）：对于 $a \in G$ 和 $b = a^{x} \in \langle a \rangle$，则称 $x\in\{0,1,\dots,\mathrm{ord}(a)-1\}$ 为 $b$ 相对于 $a$ 的离散对数，记为 $\mathrm{DLOG}_{G,a}(b)$。
+
 	- DLOG 问题的困难性与群的运算有关。
+
 	- 公认 DLOG 计算困难的群：
+
 		- **有限域的子群**：$G$ 为模 $n$ 乘法群 $(\mathbb{Z}_n^*, \cdot)$ 的 $p$ 阶循环子群，其中 $n = 2p + 1$，且 $n$ 和 $p$ 均为素数。
+
 			- 有限域上的离散对数问题（FFDLP）在数域筛法 NFS 下的求解复杂度为 $O\left(2^{\log^{\frac{1}{3}} p \cdot \log \log^{\frac{2}{3}} p}\right)$，为亚指数级别。
+
 		- **椭圆曲线群**：$G=(E(\mathbb{Z}_p), +)$，其中 $E(\mathbb{Z}_p)$ 是定义在有限域 $\mathbb{Z}_p$ 上的椭圆曲线 $E$ 的点集，运算为点加法。
+
 			- 椭圆曲线上的离散对数问题（ECDLP）在 Pollard's rho 算法下的求解复杂度为 $O(\sqrt{p})=O(2^{\frac{1}{2} \log p})$，为指数级别。
 
 #### 底层困难问题
 
 - **离散对数问题**（Discrete Logarithm, DLOG）：$G$ 为循环群，其阶为素数 $p$、生成元为 $g$，并均匀选取 $h \leftarrow G$
+
 	- 输入：$(G, p, g, h)$
+
 	- 输出：$d = \mathrm{DLOG}_g\, h$
+
 - **计算性 Diffie-Hellman 问题**（Computational Diffie-Hellman, CDH）：$G$ 为循环群，其阶为素数 $p$、生成元为 $g$，均匀选取 $x, y \leftarrow \mathbb{Z}_p$
+
 	- 输入：$(G, p, g, g^x, g^y)$
+
 	- 输出：$g^{xy}$，也称为 $(g^x, g^y)$ 的 CDH 值
+
 - **判定性 Diffie-Hellman 问题**（Decisional Diffie-Hellman, DDH）：$G$ 为循环群，其阶为素数 $p$、生成元为 $g$，均匀选取 $x, y, z \leftarrow \mathbb{Z}_p, \beta \leftarrow \{0, 1\}$，并定义 $z_\beta = \begin{cases} g^{xy} & \beta=0 \\ g^{z} & \beta=1 \end{cases}$
+
 	- 输入：$(G, p, g, g^x, g^y, z_\beta)$
+
 	- 输出：$\beta$
+
 	- DDH 问题的困难性：任意 PPT 敌手在 DDH 安全模型中攻破 DDH 安全目标的优势是可忽略的，即
 
 		$$
@@ -315,15 +403,25 @@
 #### ElGamal 加密算法简介
 
 - **密钥生成算法** $(PK, SK) \leftarrow \mathrm{Gen}(1^\lambda)$：
+
 	1. 选择循环群 $G$，其阶为素数 $p$、生成元为 $g$
+
 	2. 均匀选取 $s \leftarrow \mathbb{Z}_p$，计算 $h := g^s$
+
 	3. 输出 $PK = (G, p, g, h)$，$SK = s$
+
 - **加密算法** $C \leftarrow \mathrm{Enc}(PK, M)$：消息空间为 $\mathbb{M} = G$
+
 	1. 均匀选取 $r \leftarrow \mathbb{Z}_p$
+
 	2. 计算 $C_1 := g^r$
+
 	3. 计算 $C_2 := h^r \cdot M$
+
 	4. 输出 $C := (C_1, C_2)$
+
 - **解密算法** $M' \leftarrow \mathrm{Dec}(SK, C = (C_1, C_2))$：
+
 	1. 计算并输出 $M' := C_2 \cdot (C_1^s)^{-1}$
 
 #### ElGamal 加密算法的 IND-CPA 安全性
@@ -333,6 +431,7 @@
 	???+ info "Proof"
 
 		- **充分性证明**（$\implies$）：反证法（安全性归约）
+
 			- 假设结论错误：ElGamal 算法不是 IND-CPA 安全的，即存在一个概率多项式时间敌手 $\mathcal{A}$，以不可忽略的概率在 ElGamal 算法 CPA 安全模型中攻破 IND 安全目标，即
 
 				$$
@@ -340,8 +439,11 @@
 				$$
 
 			- 证明前提错误：构造一个概率多项式时间敌手 $\mathcal{B}$，在 DDH 安全模型中攻破 DDH 安全目标。
+
 				- $\mathcal{B}$ 的输入：$(G, p, g, g^x, g^y, z_\beta)$
+
 				- 调用子敌手：$\mathcal{B}$ 将 $PK = (G, p, g, h=g^x)$ 交给 $\mathcal{A}$，$\mathcal{A}$ 输入两个消息 $M_0, M_1 \in G$，$\mathcal{B}$ 将挑战密文设置为 $C^{*} = (g^y, z_\beta \cdot M_b)$ 交给 $\mathcal{A}$，则
+
 					- $\beta = 0$ 时：$C^{*} = (g^y, M_b \cdot g^{xy})$，与 ElGamal 加密 $M_b$ 的密文分布相同，则
 
 						$$
@@ -351,7 +453,9 @@
 						也即 $\Pr(\mathrm{output}_\mathcal{A}=b \mid \beta=0) = \frac{1}{2} \pm \text{non-negl}(\lambda)$
 
 					- $\beta = 1$ 时：$C^{*} = (g^y, M_b \cdot g^{z})$，由于 $z \leftarrow \mathbb{Z}_p$ 均匀分布，$M_b \cdot g^{z}$ 也均匀分布在 $G$ 中，则密文不包含任何关于 $b$ 的信息，$\Pr(\mathrm{output}_\mathcal{A}=b \mid \beta=1) = \frac{1}{2}$
+
 				- $\mathcal{B}$ 的输出：$\mathrm{output}_\mathcal{B} = \begin{cases} 0 & \mathrm{output}_\mathcal{A} = b \\ 1 & \mathrm{output}_\mathcal{A} \neq b \end{cases}$
+
 				- $\mathcal{B}$ 的优势：
 
 					$$
@@ -359,7 +463,9 @@
 					$$
 
 				- 则 $\mathcal{B}$ 能以不可忽略的优势打破 DDH 安全性，与假设矛盾，因此 ElGamal 算法满足 IND-CPA 安全性。
+
 		- **必要性证明**（$\impliedby$）：反证法（安全性归约）
+
 			- 假设结论错误：DDH 问题不困难，即存在一个概率多项式时间敌手 $\mathcal{B}$，以不可忽略的概率在 DDH 安全模型中攻破 DDH 安全目标，即
 
 				$$
@@ -367,11 +473,17 @@
 				$$
 
 			- 证明前提错误：构造一个概率多项式时间敌手 $\mathcal{A}$，在 ElGamal 算法 CPA 安全模型中攻破 IND 安全目标。
+
 				- $\mathcal{A}$ 的输入：$PK = (G, p, g, h=g^s)$ 和 $C^* = (C_1, C_2) = (g^r, M_b\cdot h^r)$
+
 				- 调用子敌手：$\mathcal{A}$ 将 $(G, p, g, g^s, g^r, C_2/M_0)$ 交给 $\mathcal{B}$，
+
 					- $b = 0$ 时：$C_2 = M_0 \cdot g^{sr}$，则 $C_2/M_0 = g^{sr}$，与 DDH 问题中取 $\beta = 0$ 等价
+
 					- $b = 1$ 时：$C_2 = M_1 \cdot g^{sr}$，则 $C_2/M_0 = M_1/M_0 \cdot g^{sr}$，由于 $M_0, M_1$ 均匀分布在 $G$ 中，则 $C_2/M_0$ 也均匀分布在 $G$ 中，与 DDH 问题中取 $\beta = 1$ 等价
+
 				- $\mathcal{A}$ 的输出：$\mathrm{output}_\mathcal{A} = \begin{cases} 0 & \mathrm{output}_\mathcal{B} = 0 \\ 1 & \mathrm{output}_\mathcal{B} = 1 \end{cases}$
+
 				- $\mathcal{A}$ 的优势：
 
 					$$
@@ -383,9 +495,13 @@
 #### ElGamal 加密算法不满足 IND-CCA 安全性
 
 - **攻击思路**：利用 CCA 安全模型中敌手可以获得除密文之外的任何信息的能力，构造一个敌手 $\mathcal{A}$，在 CCA 安全模型中攻破 ElGamal 算法的 IND-CCA 安全性。
+
 	- $\mathcal{A}$ 的输入：$PK = (G, p, g, h=g^s)$ 和密文 $C^* = (C_1^*, C_2^*) = (g^r, M_b\cdot h^r)$
+
 	- $\mathcal{A}$ 对 $C^*$ 进行修改，构造一个新的密文 $C' = (C_1', C_2') = (C_1^*, C_2^* \cdot M')$ 进行解密查询，得到 $M'' = M_b \cdot M'$
+
 	- $\mathcal{A}$ 的输出：$\mathrm{output} = \begin{cases} 0 & M''/M' = M_0 \\ 1 & M''/M' = M_1 \end{cases}$
+
 	- 则 $\mathcal{A}$ 能以概率 1 打破 ElGamal 算法的 IND-CCA 安全性。
 
 ## 数字签名算法的安全性定义以及 Schnorr 签名算法
@@ -393,21 +509,33 @@
 #### 数字签名简介
 
 - **数字签名的要求**：
+
 	- **可认证性**：能够验证消息源，以及消息的真实性/完整性
+
 	- **不可否认性**：签名能够被公开验证
+
 - **数字签名实现安全认证的条件**：
+
 	- 生成签名相对容易
+
 	- 识别和验证签名相对容易
+
 	- 在计算上不可伪造：
+
 		- 对新消息伪造签名不可行
+
 		- 对已有签名伪造新签名并通过认证不可行
 
 #### 数字签名算法的语义及正确性要求
 
 - **语义**：一个数字签名方案 $\mathrm{DS}$ 包含三个概率多项式时间（PPT）算法 $(\mathrm{Gen}, \mathrm{Sign}, \mathrm{Verify})$：
+
 	1. **密钥生成算法**：$(PK, SK) \leftarrow \mathrm{Gen}(1^\lambda)$：⼀般为概率性算法
+
 	2. **签名算法**：$\sigma \leftarrow \mathrm{Sign}(SK, M)$：$M \in \mathbb{M}$，其中 $\mathbb{M}$ 是消息空间
+
 	3. **验证算法**：$0/1 \leftarrow \mathrm{Verify}(PK, M, \sigma)$：一般为确定性算法；输出 $1$ 表示验证通过
+
 - **正确性要求**（Correctness）：对任意 $(PK, SK) \leftarrow \mathrm{Gen}(1^\lambda)$、任意 $M \in \mathbb{M}$、任意 $\sigma \leftarrow \mathrm{Sign}(SK, M)$，均有
 
 	$$
@@ -420,10 +548,15 @@
 	![CMA-security](assets/image-5.webp)
 
 - **CMA 敌手攻击能力**：
+
 	- 输入：公开信道中的 $PK, M, \sigma$
+
 	- 运行时间：概率多项式时间 PPT
+
 	- 攻击方式：选择消息攻击 CMA ── 敌手可以提供/决定/影响签名使用的消息
+
 - **EUF 安全目标**：**存在不可伪造性**（Existential Unforgeability, EUF）── 敌手无法为一个 **未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $M^* \notin \{M_i\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
+
 - **数字签名算法的 EUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 EUF 安全目标的 **优势** 是可忽略的，即
 
 	$$
@@ -433,6 +566,7 @@
 #### 数字签名算法的 sEUF-CMA 安全性
 
 - **sEUF 安全目标**：**强存在不可伪造性**（Strong Existential Unforgeability, sEUF）── 敌手不仅无法为一个 **未查询过的新消息** $M^*$ 伪造有效签名 $\sigma^*$，也无法为一个已签名消息 $M_i$ 伪造 **新的有效签名** $\sigma^* \neq \sigma_i$（即如果 $\mathrm{output} = (M^*, \sigma^*)$，满足 $(M^*, \sigma^*) \notin \{(M_i, \sigma_i)\}$ 和 $\mathrm{Verify}(PK, M^*, \sigma^*) = 1$，则攻破该目标）
+
 - **数字签名算法的 sEUF-CMA 安全性定义**: 任意概率多项式时间敌手在 CMA 安全模型中攻破 sEUF 安全目标的 **优势** 是可忽略的，即
 
 	$$
@@ -459,6 +593,7 @@
 #### 身份证明协议简介
 
 - 核心：证明者向验证者证明自己拥有公钥 $PK$ 所对应的私钥 $SK$
+
 - 交互流程（3 轮的 Identification）：
 	![](assets/image-6.webp)
 
@@ -468,9 +603,13 @@
 	![PA-security](assets/image-7.webp)
 
 - **PA 敌手攻击能力**：
+
 	- 输入：公开信道中的 $PK$ 及多次运行协议生成的 $(R_i, e_i, z_i)$
+
 	- 运行时间：概率多项式时间 PPT
+
 - **UI 安全目标**：**不可假冒性**（Unimpersonation, UI）── 敌手无法冒充 Prover 通过协议的验证算法（即如果 $\mathrm{output} = (R^*, e^*, z^*)$ 满足 $V(PK, e^*, R^*) = z^*$，则攻破该目标）
+
 - **身份证明协议的 UI-PA 安全性定义**：任意概率多项式时间敌手在 P A 安全模型中攻破 UI 安全目标的 **优势** 是可忽略的，即
 
 	$$
@@ -480,47 +619,72 @@
 ### Fiat-Shamir 变换
 
 - 核心：为了使用身份证明协议进行签名，证明者（签名者）可将挑战 $e$ 用哈希函数 $\mathrm{H}(\cdot)$ 计算，自己独立地执行协议，无需与验证者交互。
+
 - 交互流程：
 	![](assets/image-8.webp)
 
 - Fiat-Shamir 变换的安全性：**身份证明协议是 UI-PA 安全的** + **$\mathrm{H}$ 为 RO** $\implies$ **通过 Fiat-Shamir 变换得到的签名算法是 EUF-CMA 安全的**
+
 	- 证明：参考后续 [Schnorr 签名算法的安全性证明](#schnorr-euf-cma)
 
 ### Random Oracle 模型（随机预言机）
 
 - Random Oracle 模型（随机预言机）是对哈希函数 $\mathrm{H}: G \to \{0,1\}^{m}$ 的假设，用于安全性证明中。
+
 - **核心假设**：
+
 	1. **Oracle-预言机假设**：敌手无法自己计算 $\mathrm{H}$ 的值，只能通过查询“预言机” $\mathrm{H}(\cdot)$ 的方式获得 $\mathrm{H}$ 的值：每一次查询，敌手向预言机 $\mathrm{H}(\cdot)$ 提交一个 $X$，$\mathrm{H}(\cdot)$ 返回输出 $\mathrm{H}(X)$。
+
 	2. **Random-随机性假设**：随机预言机 $\mathrm{H}(\cdot)$ 在每一个 $X$ 上的输出值 $\mathrm{H}(X)$ 都是服从值域 $\{0,1\}^m$ 上均匀分布的，其随机性来源于预言机 $\mathrm{H}(\cdot)$ 内部。
+
 	3. **Programmable-可编程性假设**：在安全性证明中，“随机预言机” $\mathrm{H}(\cdot)$ 由环境/挑战者向敌手提供。
+
 - **推论**：
+
 	1. Oracle 假设 + Random 假设：如果敌手没有向预言机 $\mathrm{H}(\cdot)$ 查询过某个输入 $X$，那么 $\mathrm{H}(X)$ 的值对于敌手而言是完全均匀的。
+
 	2. Oracle 假设 + Programmable 假设：环境/挑战者知道敌手向预言机 $\mathrm{H}(\cdot)$ 查询过哪些输入 $X$。
+
 	3. Random 假设 + Programmable 假设：环境/挑战者针对敌手的每一次预言机 $\mathrm{H}(\cdot)$ 查询 $X$，返回值域 $\{0,1\}^m$ 上均匀分布的值作为 $\mathrm{H}(X)$ 的值。
+
 - **说明**:
+
 	- RO 模型刻画了敌手只能 **黑盒** 的调用 Hash Function，敌手无法仅阅读 Hash Function 的代码而不调用 Hash Function 推断出 $\mathrm{H}(X)$ 的值。
 
 ### Schnorr 身份证明协议与签名算法
 #### Schnorr 身份证明协议
 
 - 目的：Prover 向 Verifier 证明自己拥有 $PK$ 所对应的私钥 $SK$。
+
 - 交互流程：基于椭圆曲线上的离散对数问题
 	![](assets/image-9.webp)
 
 #### Schnorr 签名算法
 
 - **组件**：Hash Function $\mathrm{H}: \{0,1\}^{*} \to \mathbb{Z}_p$
+
 - **密钥生成算法** $(PK, SK) \leftarrow \mathrm{Gen}(1^\lambda)$：
+
 	1. 选择循环群 $G$，其阶为素数 $p$、生成元为 $g$
+
 	2. 均匀选取 $s \leftarrow \mathbb{Z}_p$，计算 $h := g^s \in G$
+
 	3. 输出 $PK = (G, p, g, h)$，$SK = s$
+
 - **签名算法** $\sigma \leftarrow \mathrm{Sign}(SK, M)$，消息空间为 $\mathbb{M}=\{0,1\}^{*}$
+
 	1. 均匀选取 $r \leftarrow \mathbb{Z}_{p}$，计算 $R:=g^{r} \in G$
+
 	2. 计算 $e:=\mathrm{H}(R, M) \in \mathbb{Z}_{p}$
+
 	3. 计算 $z:=e \cdot s+r \in \mathbb{Z}_{p}$
+
 	4. 输出 $\sigma:=(R, z)$
+
 - **验证算法** $0/1 \leftarrow \mathrm{Verify}(PK, M, \sigma=(R, z))$
+
 	1. 计算 $e:=\mathrm{H}(R, M) \in \mathbb{Z}_{p}$
+
 	2. 验证 $g^{z} \stackrel{?}{=} h^{e} \cdot R$，相等输出 $1$，否则输出 $0$
 
 #### 安全性分析
@@ -545,6 +709,7 @@
 			的概率为 $\frac{1}{|G|}=\frac{1}{p}=negl(\lambda)$，与假设矛盾。
 
 - **引理 1（Fiat-Shamir 转换）**：**Schnorr 身份证明协议是 UI-PA 安全的** + **$\mathrm{H}$ 为 RO** $\implies$ **Schnorr 签名算法是 EUF-CMA 安全的**
+
 	- **思路**：将 $\mathcal{A}$ 作为 $\mathcal{B}$ 的子算法，为 $\mathcal{A}$ 提供合法的输入，以及返回合法的签名查询。利用 $\mathcal{A}$ 的输出结果帮助 $\mathcal{B}$ 在 UI-PA 中的输出正确的结果。
 
 	???+ info "Proof"
@@ -553,19 +718,33 @@
 			![](assets/image-10.webp)
 
 			- **假设结论错误**：Schnorr 签名算法不是 EUF-CMA 安全的，即存在 PPT 敌手 $\mathcal{A}$ 以不可忽略的概率攻破 Schnorr 签名算法的 EUF-CMA 安全性。
+
 				- 即 $\mathcal{A}$ 通过若干次签名查询后，可以输出一个未查询过的消息 $M^{*}$ 以及一个有效签名 $\sigma^{*}=(R^{*}, z^{*})$，以不可忽略的概率满足 $h^{\mathrm{H}(R^{*}, M^{*})} \cdot R^{*}=g^{z^{*}}$
+
 			- **证明前提错误**：构造一个 PPT 敌手 $\mathcal{B}$，在 UI-PA 安全模型下攻破 Schnorr 身份证明协议。
+
 				- **$\mathcal{B}$ 的策略**：
+
 					- $\mathcal{B}$ 将公钥 $PK$ 作为输入提供给 $\mathcal{A}$；设 $\mathcal{A}$ 进行的哈希查询次数为 $Q(\lambda)$，则 $\mathcal{B}$ 随机选择 $j \in [1, Q(\lambda)]$ 赌 $\mathcal{A}$ 最终输出的消息 $M^{*}=M_j$
+
 					- 当 $\mathcal{A}$ 使用 $M_i$ 进行第 $i$ 次 **签名查询** 时：$\mathcal{B}$ 由于本身不具备私钥 $SK$，无法生成合法的签名，因此向挑战者 $E_{id}$ 发起查询，拿到一组合法记录 $(R_i, e_i, z_i)$，并将 $\sigma_i=(R_i, z_i)$ 返回给 $\mathcal{A}$，并自身记录 $\mathrm{H}(R_i, M_i) = e_i$
+
 						- 此时若 $\mathcal{A}$ 要对签名查询进行验证，计算时需要 $\mathrm{H}(R_i, M_i)$，只能向 $\mathcal{B}$ 查询哈希结果，必然能通过检验
+
 					- 当 $\mathcal{A}$ 使用 $(R_k, M_k)$ 进行第 $k$ 次 **哈希查询** 时：
+
 						- 若 $k=j$ 且 $M_j \notin \{M_i\}$，即 $\mathcal{A}$ 的第 $j$ 次哈希查询的消息 $M_j$ 没有在之前的签名查询中出现过，则 $\mathcal{B}$ 向 $E_{id}$ 输入 $R_j$ 并把返回的 $e_j$ 当作自己的哈希输出，并记录 $\mathrm{H}(R_j, M_j) = e_j$
+
 						- 若 $k=j$ 且 $M_j \in \{M_i\}$，则重新选择 $j \in [1, Q(\lambda)]$，直到满足 $M_j \notin \{M_i\}$
+
 						- 若 $k \in [1, Q(\lambda)] \setminus \{j\}$，$\mathcal{B}$ 查询是否有 $\mathrm{H}(R_k, M_k)$ 的记录：
+
 							- 若有则直接返回
+
 							- 若没有则随机选择 $e \leftarrow \mathbb{Z}_p$ 返回并记录 $\mathrm{H}(R_k, M_k) = e$
+
 					- 最终当 $\mathcal{A}$ 输出 $(M^{*}, \sigma^{*}=(R^{*}, z^{*}))$ 时，若 $M^{*}=M_j$，则 $\mathcal{B}$ 输出 $z^{*}$ 作为自己的输出，否则视为失败。
+
 				- **$\mathcal{B}$ 的优势**：
 
 					$$
@@ -590,11 +769,17 @@
 				$$
 
 			- **证明前提错误**：构造一个 PPT 敌手 $\mathcal{B}$ 解决 DL 问题。
+
 				- **$\mathcal{B}$ 的策略**：**Rewind 技术**
+
 					- $\mathcal{B}$ 将 DL 问题的输入 $PK=(G, p, g, h)$ 作为 Schnorr 身份证明协议的公钥提供给 $\mathcal{A}$
+
 					- 对于 $\mathcal{A}$ 的每一次协议运行查询，$\mathcal{B}$ 随机选取 $e_i, z_i \leftarrow \mathbb{Z}_p$，计算 $R_i = g^{z_i}/h^{e_i}$，为 $\mathcal{A}$ 提供完美模拟的合法三元组 $(R_i, e_i, z_i)$
+
 					- **第一次调用**：$\mathcal{B}$ 调用 $\mathcal{A}$ 直到 $\mathcal{A}$ 输出 $R^*$ 时，$\mathcal{B}$ 均匀随机选择 $e_1^* \leftarrow \mathbb{Z}_p$ 作为挑战发送给 $\mathcal{A}$，并收到 $\mathcal{A}$ 的应答输出 $z_1^*$
+
 					- **第二次调用**：$\mathcal{B}$ 再次调用 $\mathcal{A}$，所有使用的随机数（包括 $\mathcal{A}$ 内部的随机数和 $\mathcal{B}$ 模拟查询的随机数）均与第一次调用 **完全相同**。因此 $\mathcal{A}$ 会再次输出同样的 $R^*$。此时 $\mathcal{B}$ 使用 **不同** 的随机数均匀选择一个新的挑战 $e_2^* \leftarrow \mathbb{Z}_p$ 发送给 $\mathcal{A}$，并收到 $\mathcal{A}$ 的新应答输出 $z_2^*$
+
 					- **解 DL**：如果两次调用 $\mathcal{A}$ 都成功伪造，则有：
 
 						$$
@@ -608,8 +793,11 @@
                         $$
 
 				- **$\mathcal{B}$ 的优势**：
+
 					- 用变量 $\omega$ 代表 $\mathcal{B}$ 除了返回挑战 $e^*$ 之外所使用的所有随机数集合（即决定 $\mathcal{A}$ 输出 $R^*$ 的所有前置上下文）
+
 					- 定义指示函数 $\mathrm{V}(\omega, e^*) = 1$ 当且仅当 $\mathcal{A}$ 在随机数 $\omega$ 和挑战 $e^*$ 下成功返回正确的 $z^*$（即 $R^* \cdot h^{e^*} = g^{z^*}$）
+
 					- 则 $\mathcal{B}$ 成功解决 DL 问题的概率（即两次都成功且挑战值不同的概率）为：
 
 						$$
@@ -628,28 +816,46 @@ $$
 #### DSA 身份证明协议
 
 - 目的：Prover 向 Verifier 证明自己拥有 $PK$ 所对应的私钥 $SK$。
+
 - 交互流程：基于椭圆曲线上的离散对数问题
 	![](assets/image-12.webp)
 
 #### DSA 签名算法
 
 - **组件**：Hash Functions
+
 	- $\mathrm{H}: \{0,1\}^{*} \to \mathbb{Z}_p$
+
 	- $\mathrm{F}: G \to \mathbb{Z}_p$
+
 - **密钥生成算法** $(PK, SK) \leftarrow \mathrm{Gen}(1^\lambda)$：
+
 	1. 选择循环群 $G$，其阶为素数 $p$、生成元为 $g$
+
 	2. 均匀选取 $s \leftarrow \mathbb{Z}_p$，计算 $h := g^s \in G$
+
 	3. 输出 $PK = (G, p, g, h)$，$SK = s$
+
 - **签名算法** $\sigma \leftarrow \mathrm{Sign}(SK, M)$，消息空间为 $\mathbb{M}=\{0,1\}^{*}$
+
 	1. 均匀选取 $r \leftarrow \mathbb{Z}_{p}$，计算 $R:=g^{r} \in G$
+
 	2. 计算 $e:=\mathrm{H}(M) \in \mathbb{Z}_{p}$
+
 	3. 计算 $d:=\mathrm{F}(R) \in \mathbb{Z}_{p}$
+
 	4. 计算 $z:=r^{-1}(e + d \cdot s) \in \mathbb{Z}_{p}$
+
 	5. 输出 $\sigma:=(d, z)$
+
 - **验证算法** $0/1 \leftarrow \mathrm{Verify}(PK, M, \sigma=(d, z))$
+
 	1. 计算 $e:=\mathrm{H}(M) \in \mathbb{Z}_{p}$
+
 	2. 计算 $R:=(g^e \cdot h^d)^{z^{-1}} \in G$
+
 	3. 计算 $d':=\mathrm{F}(R) \in \mathbb{Z}_{p}$
+
 	4. 验证 $d \stackrel{?}{=} d'$，相等输出 $1$，否则输出 $0$
 
 #### 安全性分析
@@ -661,6 +867,7 @@ $$
 #### DSA 与 ECDSA 签名算法的应用
 
 - DSA 为上述算法在大整数循环群 $G=\mathbb{Z}_N^*$ 的 $p$ 阶子群上的具体实现，其中 $\mathrm{F}: G \to \mathbb{Z}_p$ 定义为 $\mathrm{F}(R) = R \bmod p$
+
 - ECDSA 为上述算法在椭圆曲线循环群 $G$ 上的具体实现，其中 $\mathrm{F}: G \to \mathbb{Z}_p$ 定义为 $\mathrm{F}(R=(x_R, y_R)) = x_R \bmod p$。
 
 > 基于上述具体 $F$ 函数的 DSA / ECDSA 签名算法的安全性没有基于标准困难问题的安全性证明，但也不存在有效的攻击方法，因此在实际应用中被广泛使用。

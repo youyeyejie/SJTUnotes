@@ -59,24 +59,39 @@
 ## CSS 选择器
 
 - 选择器的优先级（特异性/权重）从高到低排序
+
 	1. 内联样式（标签上写 style 属性）
+
 	2. ID 选择器（#id）
+
 	3. 类选择器（.class）、属性选择器（[type='text']）、伪类选择器（:hover）
+
 	4. 标签选择器（div、h1 等）、伪元素选择器（::before、::after）
+
 	5. 通用选择器（*）
+
 - 选择器的使用建议
+
 	- 多用：类选择器、标签选择器、后代选择器
+
 	- 少用：属性选择器、ID 选择器
+
 - 关于多个样式 & 覆盖的问题：后面定义的样式覆盖前面的定义
+
 	- 补充：强制不让后面的式样覆盖：使用 `!important`
 
 ### 通用选择器
 
 - `*` 选择器：适用于所有 HTML 元素。它是最广泛的选择器，具有最低的特异性（权重为 0-0-0），意味着它很容易被其他选择器覆盖。
+
 - 常见用途：
+
 	- 重置默认的边距和填充;设置全局盒模型（box-sizing）;
+
 	- 应用全局过渡效果;
+
 	- 设置基本字体和颜色。
+
 - 示例：
 
 ```css
@@ -92,6 +107,7 @@
 ### ID 选择器
 
 - 唯一性选择器
+
 - 示例：选择 ID 为 `c1` 的元素
 
 ```css
@@ -107,6 +123,7 @@
 ### 类选择器
 
 - 最常用的选择器
+
 - 示例：选择 `class` 为 `c1` 的元素
 
 ```css
@@ -136,6 +153,7 @@ div{
 ### 属性选择器
 
 - 选择具有特定属性或属性值的元素
+
 - 示例：
 
 ```css
@@ -161,6 +179,7 @@ input[type='text']{
 ### 后代选择器
 
 - 选择某个元素内部的所有指定后代元素
+
 - 示例：
 
 ```css
@@ -191,13 +210,21 @@ input[type='text']{
 ### 伪类选择器
 
 - 选择元素的特定状态
+
 - 常见伪类：
+
 	- `:hover`：当用户将鼠标悬停在元素上时应用样式
+
 	- `:focus`：当元素获得焦点时应用样式
+
 	- `:nth-child(n)`：选择父元素的第 n 个子元素
+
 	- `:first-child`：选择父元素的第一个子元素
+
 	- `:last-child`：选择父元素的最后一个子元素
+
 	- `:not(selector)`：选择不匹配指定选择器的元素
+
 - 示例：
 
 ```css
@@ -210,14 +237,23 @@ input[type='text']{
 ### 高度和宽度 (height & width)
 
 - 单位：`px` / `%` / `em` / `rem`
+
 	- `px`：像素，绝对单位
+
 	- `%`：百分比，相对于父元素的宽度或高度
+
 	- `em`：相对于当前元素的字体大小
+
 	- `rem`：相对于根元素（通常是 html）的字体大小
+
 - 注意事项：
+
 	- 宽度支持百分比。
+
 	- 行内标签：默认无效
+
 		- 比如：为 `<span>` 标签设置高度和宽度无效
+
 	- 块级标签：默认有效
 
 ```css
@@ -230,9 +266,13 @@ input[type='text']{
 ### 字体设置
 
 - 常用的字体属性
+
 	- 颜色: `color`
+
 	- 大小: `font-size`
+
 	- 加粗: `font-weight`
+
 	- 字体格式: `font-family`
 
 ```css
@@ -249,12 +289,19 @@ input[type='text']{
 ### 文字对齐方式 (text-align & line-height)
 
 - 水平对齐方式：`text-align`
+
 	- `left`：左对齐
+
 	- `center`：居中对齐
+
 	- `right`：右对齐
+
 	- `justify`：两端对齐
+
 - 垂直对齐方式：`line-height`
+
 	- 通过设置行高来实现垂直居中
+
 	- 行高通常设置为与容器高度相同的值
 
 ```css
@@ -267,15 +314,25 @@ input[type='text']{
 ### 背景
 
 - 常用的背景属性
+
 	- 背景颜色: `background-color`
+
 		- 颜色值可以是：颜色名称、十六进制颜色值、RGB 颜色值、RGBA 颜色值
+
 	- 背景图片: `background-image`
+
 		- 语法：`url(图片地址) center center/cover no-repeat;`，
+
 			- `center center`：背景图片位置，水平居中，垂直居中
+
 			- `cover`：背景图片大小，覆盖整个容器
+
 			- `no-repeat`：背景图片不重复
+
 	- 背景重复: `background-repeat`
+
 	- 背景位置: `background-position`
+
 	- 背景大小: `background-size`
 
 ```css
@@ -288,10 +345,15 @@ input[type='text']{
 ### 浮动 (float)
 
 - `float` 属性用于将元素从正常的文档流中取出，并将其向左或向右浮动，从而允许其他内容环绕它。
+
 - 常见值：
+
 	- `left`：将元素向左浮动
+
 	- `right`：将元素向右浮动
+
 	- `none`：默认值，元素不浮动，保持在正常的文档流中
+
 	- `inherit`：元素继承其父元素的浮动属性
 
 ```html
@@ -374,8 +436,11 @@ input[type='text']{
 ![](assets/image-1.webp)
 
 - `padding` 属性用于设置元素内容与其边框之间的内边距（padding）。内边距是元素内容与边框之间的空间，可以用来增加内容与边框之间的距离，从而改善布局和视觉效果。
+
 - 常用属性：
+
 	- `padding`：简写属性，可以只设置一个值，表示四个方向的内边距相同；可以设置两个值，分别表示上下和左右的内边距；也可以同时设置四个方向的内边距，顺序为上、右、下、左
+
 	- `padding-top`、`padding-right`、`padding-bottom`、`padding-left`：设置元素四个方向的内边距
 
 ```css
@@ -393,15 +458,25 @@ input[type='text']{
 ### 边框 (border)
 
 - `border` 属性用于设置元素的边框样式。边框是围绕元素内容和内边距的线条，可以用来突出显示元素、分隔内容或增强视觉效果。
+
 - 常用属性：
+
 	- `border-width`：设置边框的宽度
+
 	- `border-style`：设置边框的样式（如实线、虚线、点线等）
+
 	- `border-color`：设置边框的颜色
+
 	- `border`：简写属性，可以同时设置边框的宽度、样式和颜色
+
 	- `border-top`、`border-right`、`border-bottom`、`border-left`：分别设置元素四个方向的边框
+
 	- `border-radius`：设置边框的圆角半径
+
 	- `border-image`：使用图片作为边框
+
 	- `box-shadow`：为元素添加阴影效果
+
 		- 语法：`box-shadow: h-shadow v-shadow blur-radius spread-radius color;`
 
 ```css
@@ -415,8 +490,11 @@ input[type='text']{
 ### 外边距 (margin)
 
 - `margin` 属性用于设置元素的外边距（margin）。外边距是元素与其相邻元素之间的空间，可以用来控制元素之间的距离和布局。
+
 - 常用属性：
+
 	- `margin`：简写属性，可以只设置一个值，表示四个方向的外边距相同；可以设置两个值，分别表示上下和左右的外边距；也可以同时设置四个方向的外边距，顺序为上、右、下、左
+
 	- `margin-top`、`margin-right`、`margin-bottom`、`margin-left`：设置元素四个方向的外边距
 
 ```css
@@ -512,6 +590,7 @@ input[type='text']{
 ```
 
 - 很重要的应用：**清除浮动** 
+
 	- 用 `clearfix` 替代  `<div style="clear: both;"> </div>`
 
 ```html
@@ -578,11 +657,17 @@ input[type='text']{
 ### 鼠标样式 (cursor)
 
 - `cursor` 属性用于设置鼠标指针在悬停在元素上时的样式。通过改变鼠标指针的外观，可以提供视觉反馈，增强用户体验。
+
 - 常见值：
+
 	- `default`：默认指针
+
 	- `pointer`：手型指针，通常用于链接和按钮
+
 	- `text`：文本选择指针，通常用于文本输入区域
+
 	- `move`：移动指针，表示元素可以被拖动
+
 	- `not-allowed`：禁止指针，表示元素不可交互
 
 ```css
@@ -594,13 +679,21 @@ input[type='text']{
 ### 位置 (position)
 
 - fixed
+
 	- 固定在窗口的某个位置
+
 	- 案例：返回顶部、对话框
+
 - relative
+
 	- 相对于页面的位置
+
 - absolute
+
 	- 相对于最近的已定位祖先元素的位置
+
 - sticky
+
 	- 根据用户的滚动位置在相对和固定定位之间切换
 
 ```css
@@ -618,20 +711,35 @@ input[type='text']{
 ### 显示与隐藏元素 (display)
 
 - 使用 `display` 属性可以控制元素的显示与隐藏。
+
 - 常见值：
+
 	- `none`：隐藏元素，元素不占据任何空间。
+
 	- `block`：将元素显示为块级元素。
+
 	- `inline`：将元素显示为行内元素。
+
 	- `inline-block`：将元素显示为行内块级元素。
+
 		- 常用的显示属性
+
 		- 同时具有块级和行内标签的属性，在一行内显示的同时，还可以设置宽度、长度和边距
+
 	- `flex`：将元素显示为弹性盒子布局。
+
 		- `justify-content`：主轴对齐方式
+
 		- `align-items`：交叉轴对齐方式
+
 		- `flex-direction`：主轴方向
+
 	- `grid`：将元素显示为网格布局。
+
 		- `grid-template-columns`：定义列
+
 		- `grid-template-rows`：定义行
+
 		- `gap`：定义网格间距 
 
 ## BootStrap
@@ -732,12 +840,19 @@ Bootstrap 的网格系统允许你创建响应式布局。你可以使用行（r
 ![Bootstrap 网格系统](assets/image-2.webp)
 
 - 把整体划分为了 12 格，根据屏幕宽度不同，Bootstrap 5 网格系统有六个类
+
 	- `.col-`：超小型设备 - 屏幕宽度小于 576px
+
 	- `.col-sm-`：小型设备 - 屏幕宽度等于或大于 576px
+
 	- `.col-md-`：中型设备 - 屏幕宽度等于或大于 768 像素
+
 	- `.col-lg-`：大型设备 - 屏幕宽度等于或大于 992 像素
+
 	- `.col-xl-`：xlarge 设备 - 屏幕宽度等于或大于 1200px
+
 	- `.col-xxl-`：xxlarge 设备 - 屏幕宽度等于或大于 1400px
+
 - 案例：两个不同宽度的列
 
 ```html
@@ -752,6 +867,7 @@ Bootstrap 的网格系统允许你创建响应式布局。你可以使用行（r
 Bootstrap 需要为页面内容和栅格系统包裹一个 .container 容器。Bootstrap 有两种容器类可供选择：
 
 - `.container` 类提供了一个响应式的固定宽度容器
+
 - `.container-fluid` 类提供了一个全宽容器，跨越视口的整个宽度
 
 ```html

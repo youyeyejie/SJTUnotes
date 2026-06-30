@@ -19,16 +19,22 @@
 ## JavaScript 能够以不同方式显示数据：
 
 - 使用 `alert()` 写入警告框 (见上例)
+
 - 使用 `document.write()` 写入 HTML 输出 （只能在测试阶段使用，不建议）
+
 - 使用 `innerHTML` 写入 HTML 元素
+
 - 使用 `console.log()` 写入浏览器控制台
 
 ## JavaScript 基础
 ### 变量
 
 - 声明变量
+
 	- `var`：全局变量，函数内的局部变量
+
 	- `let`：块级作用域变量，声明时可以不初始化，值可以改变
+
 	- `const`：常量，块级作用域变量，声明时必须初始化，且值不能改变
 
 ```javascript
@@ -316,44 +322,83 @@ DOM 是 Document Object Model（文档对象模型）的缩写，是一种用于
 ### DOM 常用操作
 
 - 获取元素
+
 	- `document.getElementById("id")`：通过 ID 获取元素
+
 	- `document.getElementsByClassName("class")`：通过类名获取元素集合
+
 	- `document.getElementsByTagName("tag")`：通过标签名获取元素集合
+
 	- `document.querySelector("selector")`：通过 CSS 选择器获取第一个匹配的元素
+
 	- `document.querySelectorAll("selector")`：通过 CSS 选择器获取所有匹配的元素集合
+
 - 创建和删除元素
+
 	- `document.createElement("tag")`：创建一个新的元素
+
 	- `parentElement.appendChild(childElement)`：将子元素添加到父元素中
+
 	- `parentElement.removeChild(childElement)`：从父元素中移除子元素
+
 - 修改元素内容
+
 	- `element.innerText`：获取或设置元素的文本内容
+
 	- `element.innerHTML`：获取或设置元素的 HTML 内容
+
 	- `element.textContent`：获取或设置元素的文本内容（包括隐藏的文本）
+
 - 修改元素属性
+
 	- `element.getAttribute("attr")`：获取元素的属性值
+
 	- `element.setAttribute("attr", "value")`：设置元素的属性值
+
 	- `element.removeAttribute("attr")`：移除元素的属性
+
 - 修改元素样式
+
 	- `element.style.property`：获取或设置元素的内联样式属性
+
 - 事件处理
+
 	- `element.addEventListener("event", function)`：为元素添加事件监听器
+
 	- `element.removeEventListener("event", function)`：移除元素的事件监听器
+
 	- `element.onclick = function`：为元素添加点击事件处理函数
+
 - 遍历元素
+
 	- `element.parentNode`：获取元素的父节点
+
 	- `element.childNodes`：获取元素的所有子节点集合
+
 	- `element.firstChild`：获取元素的第一个子节点
+
 	- `element.lastChild`：获取元素的最后一个子节点
+
 	- `element.nextSibling`：获取元素的下一个兄弟节点
+
 	- `element.previousSibling`：获取元素的上一个兄弟节点
+
 - 表单操作
+
 	- `formElement.elements`：获取表单中的所有元素集合
+
 	- `inputElement.value`：获取或设置输入元素的值
+
 	- `selectElement.selectedIndex`：获取或设置选择元素的选中索引
+
 	- `checkboxElement.checked`：获取或设置复选框的选中状态
+
 - 文档操作
+
 	- `document.title`：获取或设置文档的标题
+
 	- `document.body`：获取文档的主体元素
+
 	- `document.head`：获取文档的头部元素
 
 ### 使用 DOM 进行事件的绑定
@@ -413,34 +458,55 @@ jQuery 是一个快速、小巧且功能丰富的 JavaScript 库。它简化了 
 ### jQuery 选择器
 
 - 基本语法：`$(selector).action()`
+
 - 选择器示例:
+
 	- `$("selector")`：通过 CSS 选择器选择元素
+
 		- `$("#id")`:通过 ID 选择元素
+
 		- `$(".class")`：通过类名选择元素   
+
 		- `$("tag")`:通过标签名选择元素
+
 		- `$("div > .class")` 选择所有 div 下的 class 类元素
+
 		- `$("input[name='n1']")`:选择所有 name 属性为 n1 的 input 元素
+
 	- `$(this)`：选择当前元素
+
 	- `$("*")`:选择所有元素
+
 	- 多选择器
+
 		- `$("#id, .class, tag")`：选择多个不同的元素
+
 	- 过滤器
+
 		- `$("div").filter(".class")`:选择所有 div 中带有 class 类的元素
 
 ### 间接寻找
 
 - `$(parent).find("selector")`：在父元素中查找子元素
+
 - `$(child).parent()`:获取子元素的父元素
+
 - `$(sibling).next()`：获取兄弟元素中的下一个元素
+
 - `$(sibling).prev()`:获取兄弟元素中的上一个元素
+
 - `$(element).children("selector")`：获取元素的所有子元素
+
 - `$(element).closest("selector")`:获取元素的最近的祖先元素
 
 ### 操作样式
 
 - `$(element).css("property", "value")`：设置元素的样式属性
+
 - `$(element).addClass("class")`:为元素添加类
+
 - `$(element).removeClass("class")`：为元素移除类
+
 - `$(element).toggleClass("class")`：切换元素的类
 
 - 案例：菜单的切换
@@ -525,8 +591,11 @@ jQuery 是一个快速、小巧且功能丰富的 JavaScript 库。它简化了 
 ### 值的操作
 
 - `$(element).text()`:获取元素的文本内容
+
 - `$(element).text("value")`：设置元素的文本内容
+
 - `$(element).val()`:获取表单元素的值
+
 - `$(element).val("value")`：设置表单元素的值
 
 - 案例：动态创建数据
@@ -569,10 +638,15 @@ jQuery 是一个快速、小巧且功能丰富的 JavaScript 库。它简化了 
 ### 绑定事件
 
 - `$(element).on("event", function)`:为元素绑定事件处理函数
+
 - `$(element).off("event", function)`：移除元素的事件处理函数
+
 - `$(element).click(function)`:为元素绑定点击事件处理函数
+
 - `$(element).dblclick(function)`：为元素绑定双击事件处理函数
+
 - `$(element).hover(function1, function2)`:为元素绑定鼠标悬停和离开事件处理函数
+
 - `$(element).remove()`：移除元素
 
 - 为了让页面框架加载完成之后立即执行代码：在 script 中添加声明 `$(function(){})`

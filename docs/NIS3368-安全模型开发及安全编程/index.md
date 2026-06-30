@@ -17,7 +17,9 @@ hide:
 ## 课程作业
 
 - [个人简介](https://youyeyejie.github.io/original/about/)
+
 - [个人简历](https://youyeyejie.github.io/original/resume/)
+
 - [待办清单](https://youyeyejie.github.io/original/todolist/)
 
 ---
@@ -25,6 +27,9 @@ hide:
 ## Chapter Index
 
 - [Lab1 - HTML](Lab1-HTML.md)
+
 - [Lab2 - CSS](Lab2-CSS.md)
+
 - [Lab3 - JavaScript](Lab3-JavaScript.md)
+
 - [Lab4 - MySQL](Lab4-MySQL.md)

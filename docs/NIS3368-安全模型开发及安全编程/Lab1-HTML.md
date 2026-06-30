@@ -123,13 +123,21 @@
 #### 其他
 
 - 换行：`<br />`
+
 - 空格：`&nbsp;`
+
 - 水平线：`<hr />`
+
 - 加粗：`<b>加粗</b>` 或 `<strong>加粗</strong>`
+
 - 斜体：`<i>斜体</i>` 或 `<em>斜体</em>`
+
 - 删除线：`<del>删除线</del>`
+
 - 下划线：`<u>下划线</u>`
+
 - 下标：`H<sub>2</sub>O`
+
 - 上标：`x<sup>2</sup>`
 
 ### 2.5 超链接
@@ -143,6 +151,7 @@
 ```
 
 - 注意：跳转到自己网站的其他地址(/get/news)，需要
+
 	1. 在 `web.py` 中定义地址/get/news 的路径:
 	```python
 	@app.route("/get/news")
@@ -173,8 +182,11 @@
 ```
 
 - 显示自己的图片：
+
 	- 自己项目中创建：static 目录，图片要放在 static
+
 	- 在页面上引入图片
+
 - 关于设置图片的高度和宽度
 	```html
 	<img src="assets/图片地址" style="height:100px; width:200px;" />
@@ -281,6 +293,7 @@
 	```
 
 3. 网络请求
+
 	- 在浏览器的 URL 中写入地址，点击回车，访问。
 		```
 		浏览器会发送数据过去，本质上发送的是字符串：
@@ -291,19 +304,28 @@
 		```
 
 4. 浏览器向后端发送请求:页面上的数据，通过 `form` 标签提交到后台： 
+
 	- `form` 标签包裹要提交的数据的标签。
+
 		- 提交方式：`method="get"`
+
 		- 提交的页面：`action="/xxx/xxx/xx"`
+
 		- 在 form 标签里面必须有一个 submit 标签。
+
 		- 在 form 里面的一些标签：input/select/textarea 一定要写 name 属性 `<input type="text" name="uu"/>`
+
 	- GET 请求【URL 方法 / 表单提交】
+
 		- 现象：GET 请求、跳转、向后台传入数据数据会拼接在 URL 上。
 			```
 			https://www.sogou.com/web?query=安卓&age=19&name=xx
 			```
 
 		- 注意：GET 请求数据会在 URL 中体现。
+
 	- POST 请求【表单提交】
+
 		- 现象：提交数据不在 URL 中而是在请求体中。
 
 ## 注释

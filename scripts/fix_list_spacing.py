@@ -37,14 +37,8 @@ def normalize_list_spacing(text: str) -> tuple[str, int]:
 
         if is_list_item(stripped):
             if new_lines and new_lines[-1].strip():
-                last_non_empty = ""
-                for prev in reversed(new_lines):
-                    if prev.strip():
-                        last_non_empty = prev.strip()
-                        break
-                if last_non_empty and not is_list_item(last_non_empty):
-                    new_lines.append("")
-                    modifications += 1
+                new_lines.append("")
+                modifications += 1
 
         new_lines.append(line)
 
@@ -84,7 +78,7 @@ def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Insert a blank line before list items when they follow normal text."
+        description="Insert a blank line before list items when they follow any non-empty line."
     )
     parser.add_argument(
         "-i",

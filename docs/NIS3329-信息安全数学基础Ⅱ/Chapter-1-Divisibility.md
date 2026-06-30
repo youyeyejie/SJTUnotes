@@ -13,9 +13,13 @@
     Then we say that $b$ devides $a$ or $a$ is divisible by $b$, written as $b\mid a$, and $b$ is a divisor of $a$, or $a$ is a multiple of $b$.
 
 - **Thm 1.2 Properties of divisibility**: Let $a,b,c,d \in \mathbb{Z}$, then
+
 	1. $\forall c \in \mathbb{Z}, b\mid a \implies bc\mid ac$
+
 	2. $c\mid b,~b\mid a \implies c \mid a$
+
 	3. $a\mid b,~b\mid a \implies a=\pm b$
+
 	4. $d\mid a,~d\mid b \implies \forall u,v \in \mathbb{Z},~d \mid (ua+vb)$
 
 		???+ info "Proof"
@@ -23,20 +27,27 @@
 			Since $d\mid a$ and $d\mid b$, we have $\exists x,y \in \mathbb{Z}$ s.t. $a=dx$ and $b=dy$, thus $ua+vb=u(dx)+v(dy)=d(ux+vy)$, thus $d\mid (ua+vb)$.
 
 	5. (**Cor**) $\forall u,v\in\mathbb{Z},~\gcd(a,b) \mid (ua+vb)$
+
 - **Axiom 1.3 Well Ordering Principle (WOP)**: Let $S \cap \mathbb{Z}^+ \ne \varnothing$, then
+
 	1. There is a least positive integer in $S$
+
 	2. There is a non-negative integer in $S$
+
 - **Thm 1.4 Long division**: Let $a,b \in \mathbb{Z}, b > 0$, then there exists a unique pair $(q,r)\in\mathbb{Z}^2$, $0\le r<b$ s.t. $a=qb+r$. We call $q$ the quotient and $r$ the remainder of $a$ divided by $b$.
 
 	???+ info "Proof"
 
 		- **Uniqueness**: Let $(q_1,r_1)$ and $(q_2,r_2)$ be two pairs satisfying the condition, then $a=q_1 b + r_1 = q_2 b + r_2$, thus $(q_1-q_2) b = r_2 - r_1$. Since $0\le r_1, r_2 < b$, we have $-b < r_2 - r_1 < b$, thus $q_1=q_2$ and $r_1=r_2$.
+
 		- **Existence**: Let $S=\{a-xb: x\in\mathbb{Z}\}$, by WOP, there is a least non-negative integer $r$ in $S$, then $\exists q \in \mathbb{Z}$ s.t. $r=a-qb$. Suppose $r\ge b$, then $r-b=a-(q+1)b \in S$, and $r-b\ge 0$, contradicting the definition of $r$. Thus, $0\le r < b$.
 
 ## Greatest Common Divisor
 
 - **Def 1.5 Greatest Common Divisor (GCD)**: Let $(a,b)\in\mathbb{Z}^2 \backslash \{(0,0)\}$, a GCD of $(a,b)$ is defined to be a positive integer $d$ s.t.
+
 	1. $d\mid a,~d\mid b$
+
 	2. $d'\mid a,~d'\mid b \implies d'\mid d$
 
 	Furthermore, we say $a$ and $b$ are **co-prime** if $\gcd(a,b)=1$.
@@ -46,32 +57,53 @@
 	???+ info "Proof"
 
 		- **Uniqueness**: Let $d_1, d_2$ be two GCDs of $(a,b)$, then $d_1\mid d_2$ and $d_2\mid d_1$, by Thm 1.2(3), we have $d_1=\pm d_2$. Since $d_1, d_2 > 0$, we have $d_1=d_2$.
+
 		- **Existence**: Consider $S=\{ua+vb: u,v\in\mathbb{Z}\}$, WLG, we assume $b\ne 0$, then $\pm b\in S$, $S \cap \mathbb{Z}^+ \ne \varnothing$. By WOP, there is a least positive integer $d$ in $S$, then $\exists u_0, v_0 \in \mathbb{Z}$ s.t. $d=u_0a+v_0b$. We claim that $d$ is a GCD of $(a,b)$.
+
 			- $d\mid a$: Let $a=qd+r, 0\le r<d$, then $r=a-qd=a-(qu_0a+qv_0b)=(1-qu_0)a+(-qv_0)b \in S$, this forces $r=0$ due to minimality of $d$, thus $d\mid a$.
+
 			- $d\mid b$: Similar to $d\mid a$.
+
 			- Let $d'$ be a common divisor of $a,b$, then $d'\mid (u_0a+v_0b)$, thus $d'\mid d$.
+
 			- Thus, $d=\gcd(a,b)$.
 
 - **Cor 1.7 Bézout's Identity**: $\forall (a,b)\in\mathbb{Z}^2\backslash \{(0,0)\}$, then $\exists u,v \in \mathbb{Z}$ s.t. $\gcd(a,b)=ua+vb$
+
 - **Thm 1.8 Properties of GCD**: Let $a,b,c,a_i\in\mathbb{Z}$, then
+
 	1. $m>0 \implies m\cdot \gcd(a,b)=\gcd(ma, mb)$
+
 	2. $\gcd\left(\frac{a}{\gcd(a,b)},\frac{b}{\gcd(a,b)}\right)=1$
+
 	3. $\gcd(a_i,b)=1, i=1,2,\cdots,t \implies \gcd\left(\prod_{i=1}^t a_i, b\right)=1$
+
 	4. $c\mid ab,~\gcd(c,b)=1 \implies c\mid a$
+
 	5. $\forall r\in\mathbb{Z}, \gcd(a,b)=\gcd(a, b+ra)$
 
 	???+ info "Proof"
 
 		1. Let $d=\gcd(a,b), d'=\gcd(ma, mb)$,
+
 			- $d\mid a,~d\mid b$, thus $md\mid ma, md\mid mb$, thus $md \mid d'$
+
 			- $d'\mid ma,~d'\mid mb$, thus $\frac{d'}{m}\mid a, \frac{d'}{m}\mid b$, thus $\frac{d'}{m} \mid d$, thus $d' \mid md$
+
 			- Thus, $md=d'$
+
 		2. Let $d=\gcd(a,b)$, then $\gcd(\frac{a}{d},\frac{b}{d})=\frac{1}{d}\gcd(a,b)=1$
+
 		3. Since Bézout's Identity, $\exists u_i,v_i\in\mathbb{Z}$ s.t. $u_i a_i+v_i b=1$, thus $\prod_{i=1}^t(u_i a_i + v_i b) = 1 = \prod_{i=1}^t u_i a_i + b \sum_{i=1}^t v_i \prod_{j\ne i} u_j a_j$, thus $\gcd(\prod_{i=1}^t a_i, b)=1$.
+
 		4. Since $c\mid ab$, $\exists k\in\mathbb{Z}$ s.t. $ab=kc$. Since $\gcd(c,b)=1$, $\exists u,v\in\mathbb{Z}$ s.t. $uc+vb=1$, thus $a=a(uc+vb)=uac+vab=uac+vkc=c(ua+vk)$, thus $c\mid a$.
+
 		5. Let $d=\gcd(a,b), d'=\gcd(a, b+ra)$,
+
 			- $d\mid a,~d\mid b$, thus $d\mid a, d\mid (b+ra)$, thus $d\mid d'$
+
 			- $d'\mid a,~d'\mid (b+ra)$, thus $d'\mid a, d'\mid b$, thus $d' \mid d$
+
 			- Thus, $d=d'$
 
 ## Euclidean Algorithm
@@ -121,8 +153,11 @@
 		We can prove by induction that $r_i=a s_i+b t_i$ for all $i\ge 0$.
 
 		- Base case:
+
 			- $i=0$, $r_0=a s_0+b t_0=a\cdot 1 + b\cdot 0=a$
+
 			- $i=1$, $r_1=a s_1+b t_1=a\cdot 0 + b\cdot 1=b$
+
 		- Induction step: Assume $r_i=a s_i+b t_i$ and $r_{i-1}=a s_{i-1}+b t_{i-1}$, then
 
 			$$
@@ -132,46 +167,69 @@
 ## Least Common Multiple
 
 - **Def 1.11 Least Common Multiple (LCM)**: Let $a,b\in\mathbb Z^*$, a LCM of $(a,b)$ is defined to be a positive integer $D$ s.t.
+
 	1. $a\mid D,~b\mid D$
+
 	2. $a\mid D',~b\mid D'\implies D\mid D'$
+
 - **Thm 1.12**: The LCM of $a,b$ exists and is unique, denoted by $\mathrm{lcm}(a,b)$.
 
 	???+ info "Proof"
 
 		- **Uniqueness**: Let $D_1, D_2$ be two LCMs of $(a,b)$, then $D_1\mid D_2$ and $D_2\mid D_1$, by Thm 1.2(3), we have $D_1=\pm D_2$. Since $D_1, D_2 > 0$, we have $D_1=D_2$.
+
 		- **Existence**: Consider $S=\{x\in\mathbb{Z}^+: a\mid x, b\mid x\}$, since $|ab|\in S$, $S\ne \varnothing$. By WOP, there is a least positive integer $D$ in $S$, then $\exists u_0, v_0 \in \mathbb{Z}$ s.t. $D=u_0a=v_0b$. We claim that $D$ is a LCM of $(a,b)$.
+
 			- $a\mid D$ and $b\mid D$ is trivial.
+
 			- Let $D'$ be a common multiple of $a,b$, then $\exists q,r \in \mathbb{Z}$ s.t. $D'=qD+r$ with $0\le r<D$. Since $a\mid D'$ and $a\mid D$, we have $a\mid r$, similarly, $b\mid r$, thus $r\in S$. This forces $r=0$ due to minimality of $D$, thus $D\mid D'$.
+
 			- Thus, $D=\mathrm{lcm}(a,b)$.
 
 - **Thm 1.13 Properties of LCM**: Let $a,b,c\in\mathbb{Z}^*$, then
+
 	1. $m>0 \implies m\cdot \mathrm{lcm}(a,b)=\mathrm{lcm}(ma, mb)$
+
 	2. $\gcd(a,b)=1 \iff \mathrm{lcm}(a,b)=|ab|$
+
 		- $\forall 1\leq i\neq j\leq t, \gcd(m_i,m_j)=1 \iff \mathrm{lcm}(m_1, m_2, \cdots, m_t) = \prod_{i=1}^t m_i$
+
 	3. $\gcd(a,b)\cdot \mathrm{lcm}(a,b)=|ab|$
 
 	???+ info "Proof"
 
 		1. Let $D=\mathrm{lcm}(a,b), D'=\mathrm{lcm}(ma, mb)$,
+
 			- $a\mid D$ and $b\mid D$, thus $ma\mid mD$ and $mb\mid mD$, thus $D' \mid mD$
+
 			- $ma\mid D'$ and $mb\mid D'$, thus $a\mid \frac{D'}{m}$ and $b\mid \frac{D'}{m}$, thus $D\mid \frac{D'}{m}$, thus $mD \mid D'$
+
 			- Thus, $mD=D'$
+
 		2. WLG, we assume $a,b>0$. Let $D=\mathrm{lcm}(a,b)$, prove the $\implies$ direction as follows:
+
 			- Because $a\mid ab, b\mid ab$, we have $D\mid ab$.
+
 			- Since $a\mid D$ and $b\mid D$, thus $\exists c\in \mathbb{Z}$ s.t. $D=ac$, thus $b\mid ac$, since $\gcd(a,b)=1$, we have $b\mid c$, thus $\exists d\in\mathbb{Z}$ s.t. $c=db$, thus $D=ac=dab$, i.e. $ab\mid D$.
+
 			- Thus, $D=|ab|$.
+
 		3. WLG, we assume $a,b>0$. Let $d=\gcd(a,b)$, then $\gcd(\frac{a}{d},\frac{b}{d})=1$ by Thm 1.8(2), thus $\mathrm{lcm}(a,b) = d\cdot \mathrm{lcm}(\frac{a}{d},\frac{b}{d})=d\cdot \frac{a}{d}\cdot \frac{b}{d}=\frac{ab}{d}$, thus $\gcd(a,b)\cdot \mathrm{lcm}(a,b)=|ab|$.
 
 ## Prime
 
 - **Def 1.14 Prime**: A positive integer $p>1$ is called prime if its only positive divisors are $1$ and $p$. Otherwise, we call it composite.
+
 - **Thm 1.15 Equivalent definition of prime**: $p>1$ is a prime $\iff$ $\forall a,b\in \mathbb{Z}, p\mid ab \implies p\mid a$ or $p\mid b$.
 
 	???+ info "Proof"
 
 		1. ($\implies$)
+
 			- **Case 1**: $\gcd(p,b)=1$. Since $p \mid ab$ and $\gcd(p,b)=1$, by Thm 1.8(4), we have $p\mid a$.
+
 			- **Case 2**: $\gcd(p,b)>1$. Let $d=\gcd(p,b)$, so $d\mid p$ and $d\mid b$. Since $p$ is a prime, $d$ can only be $1$ or $p$, thus $d=p$, thus $p\mid b$.
+
 		2. ($\impliedby$) Suppose $p$ were not a prime, then $\exists 1<u<p$ s.t. $u\mid p$, thus $p=\frac{p}{u}\cdot u \implies p\mid \frac{p}{u}\cdot u \implies p\mid \frac{p}{u}$ or $p\mid u$, both of which are impossible since $1<u<p$. Contradiction, thus $p$ is a prime.
 
 - **Thm 1.16**: There are infinitely many primes.
@@ -199,13 +257,19 @@
 	???+ info "Proof"
 
 		- **Existence**: By induction on $n$.
+
 			- Base case: $n=2$, obviously true.
+
 			- Induction step: $n>2$, if $\frac{n}{p_1} = 1$ for some prime divisor $p_1$, then $n=p_1$ is a product of primes. Otherwise, $\frac{n}{p_1}\in \mathbb{Z}$ and $1<\frac{n}{p_1}<n$. By induction hypothesis, $\frac{n}{p_1}$ can be factorized into a product of primes, thus $n=p_1\cdot \frac{n}{p_1}$ can be factorized into a product of primes.
+
 		- **Uniqueness**: By induction on $n$.
+
 			- Base case: $n=2$, obviously true.
+
 			- Induction step: $n>2$, let $p_1$ be the smallest prime divisor of $n$, then $\frac{n}{p_1}\in \mathbb{Z}$ and $1\leq\frac{n}{p_1}<n$. By induction hypothesis, $\frac{n}{p_1}$ has a unique factorization into a product of primes, thus $n=p_1\cdot \frac{n}{p_1}$ has a unique factorization into a product of primes.
 
 - **Cor 1.18**: Let $m,n\in \mathbb{Z}^+$, then
+
 	1. $$
 	    \gcd(m,n)=\prod_{p\in \mathbb{P}} p^{\min\{v_p(m), v_p(n)\}}
 	    $$
@@ -227,8 +291,11 @@
 			then we have $N \equiv 3 \pmod{4}$. Since $N$ is of the form $4n+3$, it must be a composite number.
 
 		- Since $N$ is odd, $2\nmid N$, suppose $N$ is a composite number. Thus, any prime divisor of $N$ must be of the form $4n+1$ or $4n+3$.
+
 			- If all prime divisors of $N$ are of the form $4n+1$, then $N \equiv 1 \pmod{4}$ since $\prod_{i=1}^t (4n_i+1) \equiv 1 \pmod{4}$, contradiction.
+
 			- Thus, $\exists i\in \{1,2,\dots,k\}$ s.t. $p_i\mid N$, thus $p_i\mid (4\prod_{i=1}^k p_i - N)$, thus $p_i\mid 1$, contradiction.
+
 		- Thus, $N$ is a new prime of the form $4n+3$, contradiction. Thus, there are infinitely many primes of the form $4n+3$.
 
 - **Thm 1.20**: There are infinitely many primes of the form $3n+2$.
@@ -244,8 +311,11 @@
 			then we have $N \equiv 2 \pmod{3}$. Since $N$ is of the form $3n+2$, it must be a composite number.
 
 		- Since $3\nmid N$, thus any prime divisor of $N$ must be of the form $3n+1$ or $3n+2$.
+
 			- If all prime divisors of $N$ are of the form $3n+1$, then $N \equiv 1 \pmod{3}$ since $\prod_{i=1}^t (3n_i+1) \equiv 1 \pmod{3}$, contradiction.
+
 			- Thus, $\exists i\in \{1,2,\dots,k\}$ s.t. $p_i\mid N$, thus $p_i\mid (3\prod_{i=1}^k p_i - N)$, thus $p_i\mid 1$, contradiction.
+
 		- Thus, $N$ is a new prime of the form $3n+2$, contradiction. Thus, there are infinitely many primes of the form $3n+2$.
 
 - **Thm 1.21**: There are infinitely many primes of the form $4n+1$.
