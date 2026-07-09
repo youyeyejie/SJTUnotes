@@ -42,19 +42,19 @@
 
 - **Thm 2.4 Properties of Residue Classes**:
 
-	1. $\forall r_1,r_2\in \mathbb{Z}$, we have $[r_1]_m=[r_2]_m$ or $[r_1]_m\cap [r_2]_m=\emptyset$.
+	1. $\forall r_1,r_2\in \mathbb{Z}$, we have $[r_1]_m=[r_2]_m$ or $[r_1]_m\cap [r_2]_m=\varnothing$.
 
 	2. $\bigcup_{i=0}^{m-1} [i]_m=\mathbb{Z}$, i.e. $\{[0]_m,[1]_m,\cdots,[m-1]_m\}$ is a partition of $\mathbb{Z}$.
 
 	???+ info "Proof"
 
-		1. if $[r_1]_m\cap [r_2]_m\neq \emptyset$, choose $r\in [r_1]_m\cap [r_2]_m$, then $r\equiv r_1 \pmod m, r\equiv r_2 \pmod m$, thus $r_1\equiv r_2 \pmod m$. So $\forall x\in [r_1]_m$, we have $x\equiv r_1 \equiv r_2 \pmod m$, thus $x\in [r_2]_m$, i.e. $[r_1]_m\subseteq [r_2]_m$. Similarly, we can prove $[r_2]_m\subseteq [r_1]_m$, thus $[r_1]_m=[r_2]_m$.
+		1. if $[r_1]_m\cap [r_2]_m\neq \varnothing$, choose $r\in [r_1]_m\cap [r_2]_m$, then $r\equiv r_1 \pmod m, r\equiv r_2 \pmod m$, thus $r_1\equiv r_2 \pmod m$. So $\forall x\in [r_1]_m$, we have $x\equiv r_1 \equiv r_2 \pmod m$, thus $x\in [r_2]_m$, i.e. $[r_1]_m\subseteq [r_2]_m$. Similarly, we can prove $[r_2]_m\subseteq [r_1]_m$, thus $[r_1]_m=[r_2]_m$.
 
-		2. $\forall 0\leq i<j\leq m-1$, we have $i\neq j \pmod m$, thus $[i]_m\cap [j]_m=\emptyset$. Then $\forall x\in \mathbb{Z}$, by the division algorithm, $\exists q,r\in \mathbb{Z}$ s.t. $x=qm+r$ and $0\leq r<m$, thus $x\in [r]_m$, i.e. $\bigcup_{i=0}^{m-1} [i]_m=\mathbb{Z}$.
+		2. $\forall 0\leq i<j\leq m-1$, we have $i\neq j \pmod m$, thus $[i]_m\cap [j]_m=\varnothing$. Then $\forall x\in \mathbb{Z}$, by the division algorithm, $\exists q,r\in \mathbb{Z}$ s.t. $x=qm+r$ and $0\leq r<m$, thus $x\in [r]_m$, i.e. $\bigcup_{i=0}^{m-1} [i]_m=\mathbb{Z}$.
 
 - **Def 2.5 Complete Residue System**: Let $r_1,r_2,\cdots,r_m\in \mathbb{Z}$ and $m\in \mathbb{Z}^+$, if
 
-	1. $\forall i\neq j, [r_i]_m\cap [r_j]_m=\emptyset$
+	1. $\forall i\neq j, [r_i]_m\cap [r_j]_m=\varnothing$
 
 	2. $\bigcup_{i=1}^m [r_i]_m=\mathbb{Z}$
 

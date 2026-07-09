@@ -144,7 +144,7 @@
 
 		$\forall d\mid p-1$, let $\pi(d) = \{\bar{a}\in \mathbb{Z}_p^*: \mathrm{ord}_p(a)=d\}$, we claim that $\pi(p-1)$ is not empty by showing that $\pi(d)$ has $\varphi(d)$ elements.
 
-		- Due to the definition of $\pi(d)$, we have $\bigcup_{d\mid p-1} \pi(d)=\mathbb{Z}_p^*$, and $\pi(d_1)\cap \pi(d_2)=\emptyset$ for $d_1\neq d_2$ with $d_1,d_2\mid p-1$. So $\sum_{d\mid p-1} |\pi(d)| = |\mathbb{Z}_p^*| = p-1$
+		- Due to the definition of $\pi(d)$, we have $\bigcup_{d\mid p-1} \pi(d)=\mathbb{Z}_p^*$, and $\pi(d_1)\cap \pi(d_2)=\varnothing$ for $d_1\neq d_2$ with $d_1,d_2\mid p-1$. So $\sum_{d\mid p-1} |\pi(d)| = |\mathbb{Z}_p^*| = p-1$
 
 		- Claim that $\sum_{d\mid p-1} \varphi(d) = p-1$:
 
@@ -154,9 +154,9 @@
 
 		- Claim that $|\pi(d)| = \varphi(d)$ for all $d\mid p-1$:
 
-			- If $\pi(d) = \emptyset$, then $|\pi(d)| = 0 \le \varphi(d)$, done.
+			- If $\pi(d) = \varnothing$, then $|\pi(d)| = 0 \le \varphi(d)$, done.
 
-			- If $\pi(d) \neq \emptyset$, then $\exists a \in \pi(d)$ s.t. $\mathrm{ord}_p(a) = d$. Consider the set $S = \{1, a, a^2, \dots, a^{d-1}\}$:
+			- If $\pi(d) \neq \varnothing$, then $\exists a \in \pi(d)$ s.t. $\mathrm{ord}_p(a) = d$. Consider the set $S = \{1, a, a^2, \dots, a^{d-1}\}$:
 
 				- Since $\mathrm{ord}_p(a) = d$, the elements in $S$ are distinct modulo $p$.
 

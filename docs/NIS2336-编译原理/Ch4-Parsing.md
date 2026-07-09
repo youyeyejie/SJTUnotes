@@ -845,7 +845,7 @@ $$
 
 	- e.g. $\mathbf{A} \rightarrow \mathbf{\alpha} \cdot$ and $\mathbf{B} \rightarrow \mathbf{\beta} \cdot$
 
-		- if $\mathbf{FOLLOW(A)} \cap \mathbf{FOLLOW(B)} = \emptyset$, safe for SLR(1) （如果 $\mathbf{FOLLOW(A)} \cap \mathbf{FOLLOW(B)} = \emptyset$，则 SLR(1)安全）
+		- if $\mathbf{FOLLOW(A)} \cap \mathbf{FOLLOW(B)} = \varnothing$, safe for SLR(1) （如果 $\mathbf{FOLLOW(A)} \cap \mathbf{FOLLOW(B)} = \varnothing$，则 SLR(1)安全）
 
 - **Shift-Reduce Conflicts**:
 

@@ -95,7 +95,7 @@
 
 - **Axiom 5.8**: Let $S\subseteq\mathbb{Z}^+ \cup \{0, -\infty\}$
 
-	1. If $S\neq \emptyset$, $S$ contains the smallest number (including $-\infty$).
+	1. If $S\neq \varnothing$, $S$ contains the smallest number (including $-\infty$).
 
 	2. If $S$ contains a non-negative integer, then $S$ contains the smallest non-negative integer.
 
@@ -117,7 +117,7 @@
 
 			Then $\deg(q_1 - q_2) < 0 \implies \deg(q_1 - q_2) = -\infty \implies q_1 = q_2 \implies r_1 = r_2$. Thus the two pairs are the same.
 
-		- **Existence**: Consider the set $S = \{\deg(f - h \cdot g) : h \in F[x]\}$, thus $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest number $t$ (including $-\infty$), thus $\exists q \in F[x]$ s.t. $\deg(f - q \cdot g) = t$. Let $r = f - q \cdot g$, thus $\deg(r) = t$. Claim that $\deg(r) < \deg(g)$:
+		- **Existence**: Consider the set $S = \{\deg(f - h \cdot g) : h \in F[x]\}$, thus $S\neq\varnothing$. By Axiom 5.8, $S$ contains the smallest number $t$ (including $-\infty$), thus $\exists q \in F[x]$ s.t. $\deg(f - q \cdot g) = t$. Let $r = f - q \cdot g$, thus $\deg(r) = t$. Claim that $\deg(r) < \deg(g)$:
 
 			- Suppose $\deg(r) \geq \deg(g)$, then write
 
@@ -141,7 +141,7 @@
 
 		- **Uniqueness**: Assume that $d_1, d_2$ are two GCDs of $f, g$. Then $d_1 \mid d_2$ and $d_2 \mid d_1$, thus $\exists a,b \in F[x]$ s.t. $d_1 = a d_2$ and $d_2 = b d_1$, thus $d_1 = a b d_1 \implies d_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $d_1 = d_2$.
 
-		- **Existence**: Consider the set $S = \{\deg(uf + vg) : u, v \in F[x], (u,v) \neq (0,0)\}$, thus $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists a, b \in F[x]$ s.t. $\deg(af + bg) = t$. Let $d = af + bg$, thus $\deg(d) = t$. WLOG, we assume that $d$ is monic, otherwise we can divide it by its leading coefficient. Claim that $d=\gcd(f,g)$:
+		- **Existence**: Consider the set $S = \{\deg(uf + vg) : u, v \in F[x], (u,v) \neq (0,0)\}$, thus $S\neq\varnothing$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists a, b \in F[x]$ s.t. $\deg(af + bg) = t$. Let $d = af + bg$, thus $\deg(d) = t$. WLOG, we assume that $d$ is monic, otherwise we can divide it by its leading coefficient. Claim that $d=\gcd(f,g)$:
 
 			- Let $f=q\cdot d + r$ with $\deg(r) < \deg(d)$, then
 
@@ -205,7 +205,7 @@
 
 		- **Uniqueness**: Assume that $D_1, D_2$ are two LCMs of $f, g$. Then $D_1 \mid D_2$ and $D_2 \mid D_1$, thus $\exists a,b \in F[x]$ s.t. $D_1 = a D_2$ and $D_2 = b D_1$, thus $D_1 = a b D_1 \implies D_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $D_1 = D_2$.
 
-		- **Existence**: Consider the set $S = \{\deg(u): f \mid u, g \mid u\}$, thus $fg \in S$, so $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists D \in F[x]$ s.t. $\deg(D) = t$ and $f \mid D, g \mid D$. WLOG, we assume that $D$ is monic, otherwise we can divide it by its leading coefficient. Claim that $D=\mathrm{lcm}(f,g)$:
+		- **Existence**: Consider the set $S = \{\deg(u): f \mid u, g \mid u\}$, thus $fg \in S$, so $S\neq\varnothing$. By Axiom 5.8, $S$ contains the smallest non-negative integer $t$, thus $\exists D \in F[x]$ s.t. $\deg(D) = t$ and $f \mid D, g \mid D$. WLOG, we assume that $D$ is monic, otherwise we can divide it by its leading coefficient. Claim that $D=\mathrm{lcm}(f,g)$:
 
 			- If $D' \in F[x]$ satisfies $f \mid D', g \mid D'$, then $\deg(D') \in S$, thus $\deg(D') \geq t = \deg(D)$, let $D' = q \cdot D + r$ with $\deg(r) < \deg(D)$, then $r = D' - q \cdot D$, thus $f \mid r, g \mid r$, thus $\deg(r) \in S$, thus $\deg(r) = -\infty$, thus $r=0$, thus $D \mid D'$.
 
@@ -247,7 +247,7 @@
 
 	???+ info "Proof"
 
-		- Consider the set $S = \{\deg(u): u\mid f, \deg(u) \geq 1\}$, thus $f \in S$, so $S\neq\emptyset$. By Axiom 5.8, $S$ contains the smallest positive integer $t$, thus $\exists p \in F[x]$ s.t. $\deg(p) = t$ and $p \mid f$. Claim that $p$ is irreducible: Assume that $q\mid p$, then $\deg(q) \leq \deg(p)$
+		- Consider the set $S = \{\deg(u): u\mid f, \deg(u) \geq 1\}$, thus $f \in S$, so $S\neq\varnothing$. By Axiom 5.8, $S$ contains the smallest positive integer $t$, thus $\exists p \in F[x]$ s.t. $\deg(p) = t$ and $p \mid f$. Claim that $p$ is irreducible: Assume that $q\mid p$, then $\deg(q) \leq \deg(p)$
 
 			- If $q\in F^*$, then $p$ is irreducible.
 
@@ -310,7 +310,7 @@
 
 - **Lemma 5.30**:
 
-	1. $\forall r_1,r_2\in F[x]$, we have $[r_1]_m=[r_2]_m$ or $[r_1]_m\cap [r_2]_m=\emptyset$.
+	1. $\forall r_1,r_2\in F[x]$, we have $[r_1]_m=[r_2]_m$ or $[r_1]_m\cap [r_2]_m=\varnothing$.
 
 	2. $F[x] = \bigcup_{r\in F[x]} [r]_m = \overset{\centerdot}{\bigcup}_{\deg(r)<\deg(m)} [r]_m$.
 
@@ -320,7 +320,7 @@
 
 			- For any $f \in F[x]$, let $f = q \cdot m + r$ with $\deg(r) < \deg(m)$, then $f \equiv r \pmod m$, thus $f \in [r]_m$, thus $F[x] \subseteq \bigcup_{\deg(r)<\deg(m)} [r]_m$. Since $\forall r, [r]_m \subseteq F[x]$, we have $\bigcup_{\deg(r)<\deg(m)} [r]_m \subseteq F[x]$. Thus $F[x] = \bigcup_{\deg(r)<\deg(m)} [r]_m$.
 
-			- Let $r_1 \neq r_2$ with $\deg(r_1), \deg(r_2) < \deg(m)$. Thus $r_1 - r_2 \neq 0$ and $\deg(r_1 - r_2) < \deg(m)$, thus $m \nmid (r_1 - r_2)$, i.e. $r_1 \not\equiv r_2 \pmod m$. By Lemma 5.30(1), we have $[r_1]_m \cap [r_2]_m = \emptyset$, thus the union is disjoint.
+			- Let $r_1 \neq r_2$ with $\deg(r_1), \deg(r_2) < \deg(m)$. Thus $r_1 - r_2 \neq 0$ and $\deg(r_1 - r_2) < \deg(m)$, thus $m \nmid (r_1 - r_2)$, i.e. $r_1 \not\equiv r_2 \pmod m$. By Lemma 5.30(1), we have $[r_1]_m \cap [r_2]_m = \varnothing$, thus the union is disjoint.
 
 - **Def 5.31 Complete Residue System**: $F[x]/(mF[x])$ is the set of all residue classes modulo $m$, i.e.
 
