@@ -74,7 +74,7 @@
 
 			- Since $(ab)^{uv}=(a^u)^v(b^v)^u\equiv 1 \pmod m$, thus $w\mid uv$.
 
-			- Since $(ab)^w\equiv 1 \pmod m$, thus $1\equiv ((ab)^{wu}=(a^u)^w(b^w)^u\equiv b^{wu} \pmod m$, thus $v\mid wu$, so $v\mid w$ since $\gcd(u,v)=1$. Similarly, $u\mid w$, so $uv\mid w$.
+			- Since $(ab)^w\equiv 1 \pmod m$, thus $1\equiv (ab)^{wu}=(a^u)^w(b^w)^u\equiv b^{wu} \pmod m$, thus $v\mid wu$, so $v\mid w$ since $\gcd(u,v)=1$. Similarly, $u\mid w$, so $uv\mid w$.
 
 			- So $\mathrm{ord}_m(ab) = w = uv = \mathrm{ord}_m(a)\cdot \mathrm{ord}_m(b)$.
 

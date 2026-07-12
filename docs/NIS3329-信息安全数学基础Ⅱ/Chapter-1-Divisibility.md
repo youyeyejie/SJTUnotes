@@ -32,7 +32,7 @@
 
 	1. There is a least positive integer in $S$
 
-	2. There is a non-negative integer in $S$
+	2. There is a least non-negative integer in $S$
 
 - **Thm 1.4 Long division**: Let $a,b \in \mathbb{Z}, b > 0$, then there exists a unique pair $(q,r)\in\mathbb{Z}^2$, $0\le r<b$ s.t. $a=qb+r$. We call $q$ the quotient and $r$ the remainder of $a$ divided by $b$.
 
