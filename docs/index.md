@@ -10,7 +10,7 @@ Youyeyejie's Course notes in Shanghai Jiao Tong University.
 
 ---
 
-## Courses
+## Undergraduate Courses
 
 - [CS0501-数据结构](CS0501-数据结构/index.md)
 
@@ -63,3 +63,7 @@ Youyeyejie's Course notes in Shanghai Jiao Tong University.
 - [NIS3368-安全模型开发及安全编程](NIS3368-安全模型开发及安全编程/index.md)
 
 - [PHY1253-量子力学](PHY1253-量子力学/index.md)
+
+## Postgraduate Courses
+
+- [MATH6005-矩阵理论](MATH6005-矩阵理论/index.md)
