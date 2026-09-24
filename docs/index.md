@@ -66,6 +66,8 @@ Youyeyejie's Course notes in Shanghai Jiao Tong University.
 
 ## Postgraduate Courses
 
+- [MATH6001-基础数理统计](MATH6001-基础数理统计/index.md)
+
 - [MATH6005-矩阵理论](MATH6005-矩阵理论/index.md)
 
 - [MATH6010-图与网络](MATH6010-图与网络/index.md)
