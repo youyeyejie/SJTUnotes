@@ -96,6 +96,7 @@ theme:
     # tag: material/tag
 
 plugins:
+  - typeset
   - meta
   - search
   - git-revision-date-localized:
