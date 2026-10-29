@@ -22,7 +22,7 @@
 
 	4. $d\mid a,~d\mid b \implies \forall u,v \in \mathbb{Z},~d \mid (ua+vb)$
 
-		???+ info "Proof"
+		??? info "Proof"
 
 			Since $d\mid a$ and $d\mid b$, we have $\exists x,y \in \mathbb{Z}$ s.t. $a=dx$ and $b=dy$, thus $ua+vb=u(dx)+v(dy)=d(ux+vy)$, thus $d\mid (ua+vb)$.
 
@@ -36,7 +36,7 @@
 
 - **Thm 1.4 Long division**: Let $a,b \in \mathbb{Z}, b > 0$, then there exists a unique pair $(q,r)\in\mathbb{Z}^2$, $0\le r<b$ s.t. $a=qb+r$. We call $q$ the quotient and $r$ the remainder of $a$ divided by $b$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Let $(q_1,r_1)$ and $(q_2,r_2)$ be two pairs satisfying the condition, then $a=q_1 b + r_1 = q_2 b + r_2$, thus $(q_1-q_2) b = r_2 - r_1$. Since $0\le r_1, r_2 < b$, we have $-b < r_2 - r_1 < b$, thus $q_1=q_2$ and $r_1=r_2$.
 
@@ -54,7 +54,7 @@
 
 - **Thm 1.6**: The GCD of $a,b$ exists and is unique, denoted by $\gcd(a,b)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Let $d_1, d_2$ be two GCDs of $(a,b)$, then $d_1\mid d_2$ and $d_2\mid d_1$, by Thm 1.2(3), we have $d_1=\pm d_2$. Since $d_1, d_2 > 0$, we have $d_1=d_2$.
 
@@ -82,7 +82,7 @@
 
 	5. $\forall r\in\mathbb{Z}, \gcd(a,b)=\gcd(a, b+ra)$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Let $d=\gcd(a,b), d'=\gcd(ma, mb)$,
 
@@ -124,7 +124,7 @@
 			\begin{pmatrix}a \\ b\end{pmatrix} =\begin{pmatrix}r_0 \\ r_1\end{pmatrix} =\begin{pmatrix}q_1 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}r_1 \\ r_2\end{pmatrix} =\cdots =\begin{pmatrix}q_1 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}q_2 & 1 \\ 1 & 0\end{pmatrix}\cdots\begin{pmatrix}q_n & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}r_n \\ 0\end{pmatrix}
 			$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		By Thm 1.8(5), we have
 
@@ -148,7 +148,7 @@
 			\begin{pmatrix}s_i & s_{i+1}\\ t_i & t_{i+1}\end{pmatrix}=\begin{pmatrix}s_{i-1} & s_i\\t_{i-1} & t_i\end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & -q_i\end{pmatrix},\quad \begin{pmatrix}s_0 & s_1\\t_0 & t_1\end{pmatrix}=\begin{pmatrix}1 & 0\\0 & 1\end{pmatrix}
 			$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		We can prove by induction that $r_i=a s_i+b t_i$ for all $i\ge 0$.
 
@@ -174,7 +174,7 @@
 
 - **Thm 1.12**: The LCM of $a,b$ exists and is unique, denoted by $\mathrm{lcm}(a,b)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Let $D_1, D_2$ be two LCMs of $(a,b)$, then $D_1\mid D_2$ and $D_2\mid D_1$, by Thm 1.2(3), we have $D_1=\pm D_2$. Since $D_1, D_2 > 0$, we have $D_1=D_2$.
 
@@ -196,7 +196,7 @@
 
 	3. $\gcd(a,b)\cdot \mathrm{lcm}(a,b)=|ab|$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Let $D=\mathrm{lcm}(a,b), D'=\mathrm{lcm}(ma, mb)$,
 
@@ -222,7 +222,7 @@
 
 - **Thm 1.15 Equivalent definition of prime**: $p>1$ is a prime $\iff$ $\forall a,b\in \mathbb{Z}, p\mid ab \implies p\mid a$ or $p\mid b$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. ($\implies$)
 
@@ -234,11 +234,11 @@
 
 - **Thm 1.16**: There are infinitely many primes.
 
-	???+ info "Proof by Euclid's method"
+	??? info "Proof by Euclid's method"
 
 		Suppose there are only finitely many primes $p_1, p_2, \cdots, p_k$, consider $n=\prod_{i=1}^k p_i + 1$ must be a composite number, then $\exists p_i$ s.t. $p_i\mid n$, thus $p_i\mid (n-\prod_{i=1}^k p_i)\implies p_i\mid 1$, contradiction, thus there are infinitely many primes.
 
-	???+ info "Proof by Saliak's method"
+	??? info "Proof by Saliak's method"
 
 		Chose $n>1$, then $\gcd(n, n+1)=1$. Let $p_1, p_2$ be a prime divisor of $n$ and $n+1$ respectively, then $p_1\ne p_2$, thus $n(n+1)$ has at least two distinct prime divisors. Then consider $n(n+1)(n(n+1)+1)$, it has at least three distinct prime divisors. By induction, we can show that there are infinitely many primes.
 
@@ -254,7 +254,7 @@
 		n=\prod_{p\in \mathbb{P}} p^{v_p(n)}
 		$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Existence**: By induction on $n$.
 
@@ -280,7 +280,7 @@
 
 - **Thm 1.19**: There are infinitely many primes of the form $4n+3$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Suppose there are only finitely many primes of the form $4n+3$, denoted by $\{p_1, p_2, \dots, p_k\}$. Then the other primes must be of the form $4n+1$ or $2$. Consider the number:
 
@@ -300,7 +300,7 @@
 
 - **Thm 1.20**: There are infinitely many primes of the form $3n+2$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Suppose there are only finitely many primes of the form $3n+2$, denoted by $\{p_1, p_2, \dots, p_k\}$. Then the other primes must be of the form $3n+1$ or $3$. Consider the number:
 
@@ -320,7 +320,7 @@
 
 - **Thm 1.21**: There are infinitely many primes of the form $4n+1$.
 
-	???+ info "Proof By Quadratic Residue"
+	??? info "Proof By Quadratic Residue"
 
 		- Suppose there are only finitely many primes of the form $4n+1$, denoted by $\{p_1, p_2, \dots, p_k\}$. Consider the number:
 

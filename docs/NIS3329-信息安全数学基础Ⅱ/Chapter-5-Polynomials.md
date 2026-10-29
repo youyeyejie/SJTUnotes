@@ -2,7 +2,7 @@
 
 - [Back to Course Home](index.md)
 
-???+ abstract "Recap of Ring and Field"
+??? abstract "Recap of Ring and Field"
 
 	- A **ring** is a set $R$ equipped with $+$ and $\cdot$ operations such that $(R, +)$ is an abelian group, $(R, \cdot)$ is a semigroup, and $\cdot$ distributes over $+$.
 
@@ -66,7 +66,7 @@
 
 	- **Notation**: The unit group of a ring $R$ is the set of all invertible elements in $R$, denoted by $R^*$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Let $f\in F[x]$ be a unit. Then $\exists g \in F[x]$ s.t. $f \cdot g = 1$. By Thm 5.3, $\deg(f) + \deg(g) = \deg(f\cdot g) = \deg(1) = 0$. Thus $\deg(f) = \deg(g) = 0$, which means $f, g \in F^*$.
 
@@ -107,7 +107,7 @@
 	f = q \cdot g + r, \quad \deg(r) < \deg(g)
 	$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Assume taht $(q_1, r_1), (q_2, r_2)$ are two pairs of polynomials satisfying $\begin{cases} f = q_1 \cdot g + r_1 \\ f = q_2 \cdot g + r_2 \end{cases}$. Then $(q_1 - q_2) \cdot g = r_2 - r_1$, so we have
 
@@ -137,7 +137,7 @@
 
 - **Thm 5.11**: The GCD of $f, g$ exists and is unique, denoted by $\gcd(f,g)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Assume that $d_1, d_2$ are two GCDs of $f, g$. Then $d_1 \mid d_2$ and $d_2 \mid d_1$, thus $\exists a,b \in F[x]$ s.t. $d_1 = a d_2$ and $d_2 = b d_1$, thus $d_1 = a b d_1 \implies d_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $d_1 = d_2$.
 
@@ -201,7 +201,7 @@
 
 - **Thm 5.19**: The LCM of $f, g$ exists and is unique, denoted by $\mathrm{lcm}(f,g)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: Assume that $D_1, D_2$ are two LCMs of $f, g$. Then $D_1 \mid D_2$ and $D_2 \mid D_1$, thus $\exists a,b \in F[x]$ s.t. $D_1 = a D_2$ and $D_2 = b D_1$, thus $D_1 = a b D_1 \implies D_1 (1 - a b) = 0 \implies ab = 1 \implies a, b \in F^*$. So $a=b=1$, thus $D_1 = D_2$.
 
@@ -217,7 +217,7 @@
 
 	3. $f,g$ are monic $\implies \gcd(f,g) \cdot \mathrm{lcm}(f,g) = f \cdot g$
 
-		???+ info "Proof of 3"
+		??? info "Proof of 3"
 
 			- Let $d = \gcd(f,g)$, then $\gcd\left(\frac{f}{d}, \frac{g}{d}\right) = 1$, thus we have:
 
@@ -233,7 +233,7 @@
 
 - **Thm 5.22**: $f$ is irreducible $\iff (f\mid ab \implies f\mid a \text{ or } f\mid b)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$:
 
@@ -245,7 +245,7 @@
 
 - **Lemma 5.23**: $\forall f \in F[x]$ with $\deg(f) \geq 1, \exists p \in F[x]$ s.t. $p\mid f$ and $p$ is irreducible.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Consider the set $S = \{\deg(u): u\mid f, \deg(u) \geq 1\}$, thus $f \in S$, so $S\neq\varnothing$. By Axiom 5.8, $S$ contains the smallest positive integer $t$, thus $\exists p \in F[x]$ s.t. $\deg(p) = t$ and $p \mid f$. Claim that $p$ is irreducible: Assume that $q\mid p$, then $\deg(q) \leq \deg(p)$
 
@@ -316,7 +316,7 @@
 
 		- **Notation**: $\overset{\centerdot}{\bigcup}$ means the union of disjoint sets.
 
-		???+ info "Proof of 2"
+		??? info "Proof of 2"
 
 			- For any $f \in F[x]$, let $f = q \cdot m + r$ with $\deg(r) < \deg(m)$, then $f \equiv r \pmod m$, thus $f \in [r]_m$, thus $F[x] \subseteq \bigcup_{\deg(r)<\deg(m)} [r]_m$. Since $\forall r, [r]_m \subseteq F[x]$, we have $\bigcup_{\deg(r)<\deg(m)} [r]_m \subseteq F[x]$. Thus $F[x] = \bigcup_{\deg(r)<\deg(m)} [r]_m$.
 
@@ -330,7 +330,7 @@
 
 	If there is no confusion, we denote $F[x]/(mF[x])$ by $F[x]/(m)$ for simplicity.
 
-	???+ note "Example"
+	??? note "Example"
 
 		1. $m(x)=x$, then $\deg(m) = 1$, thus
 
@@ -362,7 +362,7 @@
 
 - **Thm 5.35 Properties of Invertible**: $a$ is invertible modulo $m \iff \gcd(a,m) = 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: If $a$ is invertible modulo $m$, then $\exists b\in F[x]$ s.t. $a\cdot b \equiv 1 \pmod m$, thus $\exists u\in F[x]$ s.t. $a\cdot b - 1 = u \cdot m$, thus $a\cdot b - u \cdot m = 1$, thus $\gcd(a,m) = 1$.
 
@@ -384,7 +384,7 @@
 
 	- When $\deg(\alpha) = 0$, we define $\forall \alpha \in \mathbb{Z}_p^*, \Phi_p(\alpha) \triangleq 1$.
 
-	???+ note "Example"
+	??? note "Example"
 
 		1. To compute $\Phi_2(x)$, consider the ring
 
@@ -446,7 +446,7 @@
 
 		- In prticular, $\deg(m) = 1 \implies \Phi_p(m) = p - 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. If $m\in \mathbb{Z}_p^*$, then $\Phi_p(mn) = \Phi_p(n) = \Phi_p(m) \cdot \Phi_p(n)$ since $\Phi_p(m) = 1$. So we just need to consider the case when $\deg(m) \geq 1$ and $\deg(n) \geq 1$:
 
@@ -484,7 +484,7 @@
     \sum_{d\mid m, \atop d \text{ monic}} \Phi_p(d) = p^{\deg(m)}
     $$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Let $m = \alpha \cdot \prod_{i=1}^t q_i^{e_i}$ be the standard factorization of $m$, $\alpha \in \mathbb{Z}_p^*$ is the leading coefficient of $m$, $q_i$ are monic irreducible polynomials, then $d = \prod_{i=1}^t q_i^{k_i}, 0 \leq k_i \leq e_i$ is a monic divisor of $m$, thus
 
@@ -496,7 +496,7 @@
 
 - **Thm 5.41**: $\gcd(a,m) = 1 \implies a^{\Phi_p(m)} \equiv 1 \pmod m$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Let $l = \Phi_p(m)$, then we can label the elements of $(\mathbb{Z}_p[x]/(m))^*$ by $\{\bar{r}_1, \bar{r}_2, \cdots, \bar{r}_l\}$ with $\bar{r}_1 = \bar{a}$. Consider the set $S = \{\bar{a} \cdot \bar{r}_1, \bar{a} \cdot \bar{r}_2, \cdots, \bar{a} \cdot \bar{r}_l\}$, then $S = (\mathbb{Z}_p[x]/(m))^*$, thus $\prod_{i=1}^l \bar{r}_i = \prod_{i=1}^l (\bar{a} \cdot \bar{r}_i) = \bar{a}^l \cdot \prod_{i=1}^l \bar{r}_i$, thus $\bar{a}^l = 1$, thus $a^{\Phi_p(m)} \equiv 1 \pmod m$.
 
@@ -524,13 +524,13 @@
 
 - **Thm 5.45**: Let $m \in \mathbb{Z}_p[x]$ with $\deg(m) \geq 1$, if there exists a primitive element modulo $m$, then there are exactly $\varphi(\Phi_p(m))$ primitive elements modulo $m$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Let $g$ be a primitive element modulo $m$, then $(\mathbb{Z}_p[x]/(m))^* = \{\bar{g}^0, \bar{g}^1, \cdots, \bar{g}^{\Phi_p(m)-1}\}$, thus $\bar{g}^k$ is a primitive element modulo $m \iff \mathrm{ord}_m(\bar{g}^k) = \frac{\Phi_p(m)}{\gcd(\Phi_p(m), k)} = \Phi_p(m) \iff \gcd(\Phi_p(m), k) = 1$, thus there are exactly $\varphi(\Phi_p(m))$ primitive elements modulo $m$.
 
 - **Thm 5.46**: $\mathbb{Z}_p[x]/(q)$ is a field $\iff q$ is irreducible.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\impliedby$: Let $u\in \mathbb{Z}_p[x]/q$ with $u \neq 0$. and $\deg(u) < \deg(q)$, since $q$ is irreducible, we have $\gcd(u,q) = 1$, then by the Bézout's Identity, $\exists a,b\in \mathbb{Z}_p[x]$ s.t. $a\cdot u + b \cdot q = 1$, thus $a\cdot u \equiv 1 \pmod q$, thus $u$ is a unit in $\mathbb{Z}_p[x]/(q)$, thus $\mathbb{Z}_p[x]/(q)$ is a field.
 
@@ -538,7 +538,7 @@
 
 - **Thm 5.47**: If $q\in \mathbb{Z}_p[x]$ is irreducible, then there exists a primitive element modulo $q$.
 
-	???+ info "Proof structure"
+	??? info "Proof structure"
 
 		1. Factorize $\Phi_p(q) = p^{\deg(q)} - 1 = \prod_{i=1}^t p_i^{e_i}$
 
@@ -552,7 +552,7 @@
 
 	- $p=2$, $2\leq k \leq 3$ and $\deg(q) = 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\impliedby$:
 
@@ -612,7 +612,7 @@
 
 	2. $\forall 1 \leq i \leq n$, there exists a primitive element modulo $q_i^{e_i}$. I.e. satisfies the condition in Thm 5.48.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		-  By the Chinese Remainder Theorem for rings, we have the isomorphism of groups of units:
 
@@ -650,7 +650,7 @@
 
 		- $x-\beta, q_i$ are distinct monic irreducible polynomials.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $p\neq 2$: 
 
@@ -679,7 +679,7 @@
 
 - **Lemma 5.52**: An element $r \in F$ is a root of $f \in F[x] \iff (x-r) | f(x)$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: Write $f(x) = q(x)(x-r) + r_0$ with $\deg(r_0) < \deg(x-r) = 1$, then $r_0 \in F$, thus $0 = f(r) = r_0$, thus $f(x) = q(x)(x-r)$, thus $(x-r) | f(x)$.
 
@@ -699,7 +699,7 @@
 
 - **Thm 5.56**: Let $F$ be a field and $f \in F[x]$ with $n := \deg(f) \ge 1$. Then $F$ contains at most $n$ distinct roots of $f$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- We prove by induction on $n$. If $n=1$, then $f(x) = a_1x + a_0$ with $a_1 \neq 0$, thus $f$ has exactly one root, thus the statement holds.
 
@@ -713,7 +713,7 @@
 
 - **Thm 5.57**: The set $F[x]_{<n} = \{f \in F[x] : \deg(f) < n\}$ forms a vector space over $F$ with $\dim(F[x]_{<n}) = n$. And It has a canonical basis $\{1, x, \cdots, x^{n-1}\}$ and a lagrange basis $\{L_i(x) = \prod_{j \ne i}(x-a_j)\}_{i=1}^n$, where $a_1, \cdots, a_n$ are $n$ distinct elements of $F$.
 
-	???+ info "Proof of lagrange basis"
+	??? info "Proof of lagrange basis"
 
 		- It is sufficient to show that they are linearly independent. Suppose $\sum_{i=1}^n \lambda_i L_i(x) = 0$ for some $\lambda_i \in F$, then $\forall k$, we have
 
@@ -735,7 +735,7 @@
 	f(x) = \sum_{i=1}^n \prod_{j \ne i} \frac{(x-a_j)}{(a_i-a_j)} b_i
 	$$
 
-	???+ info "Proof method 1"
+	??? info "Proof method 1"
 
 		- Let $f(x) = \sum_{i=0}^{n-1} \lambda_i x^i$ satisfy $f(a_i) = b_i$ for each $i$. Then we have
 
@@ -745,7 +745,7 @@
 
 			Since the coefficient matrix is a Vandermonde matrix with distinct $a_i$, it is invertible, thus there exists a unique solution $\lambda_i$, thus there exists a unique polynomial $f$ with $\deg(f) \le n-1$ s.t. $f(a_i) = b_i$ for each $i$.
 
-	???+ info "Proof method 2"
+	??? info "Proof method 2"
 
 		- Let $f(x) = \sum_{i=1}^n \lambda_i L_i(x) = \sum_{i=1}^n \lambda_i \prod_{j \ne i}(x-a_j)$ satisfy $f(a_i) = b_i$ for each $i$. Then we have
 

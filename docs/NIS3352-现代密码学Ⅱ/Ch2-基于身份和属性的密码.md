@@ -457,7 +457,7 @@
 
 	- **思路**：由攻破 IND-ID-CPA 安全性的敌手 $\mathcal{A}$ 来构造解决 BDDH 问题的敌手 $\mathcal{B}$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：安全性规约
 

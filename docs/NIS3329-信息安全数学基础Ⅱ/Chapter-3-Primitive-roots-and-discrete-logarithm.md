@@ -6,7 +6,7 @@
 
 - **Thm 3.1 Euler's Theorem**: Let $m\geq 2$, then $\forall a\in \mathbb{Z}$ with $\gcd(a,m)=1$, we have $a^{\varphi(m)}\equiv 1 \pmod m$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Since $\gcd(a,m)=1$, then $\bar{a}\in \mathbb{Z}_m^*$, $\forall \bar{b}\in \mathbb{Z}_m^*$, we claim that $\overline{ab}\in \mathbb{Z}_m^*$:
 
@@ -24,7 +24,7 @@
 	a^p\equiv a \pmod p
 	$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Case 1**: $p\mid a$, then $a^p\equiv 0 \equiv a \pmod p$.
 
@@ -38,7 +38,7 @@
 
 	- **Notation**: Denote the order of $\bar{a}$ by $\mathrm{ord}_m(\bar{a})$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Existence**: Since $\mathbb{Z}_m^*$ is finite, there exist $i,j$ with $0\leq i<j\leq \varphi(m)$ such that $\bar{a}^i=\bar{a}^j$, thus $\bar{a}^{j-i}=\bar{1}$, so there exists a positive integer $k$ such that $\bar{a}^k=\bar{1}$.
 
@@ -54,7 +54,7 @@
 
 	3. $\gcd(\mathrm{ord}_m(a),\mathrm{ord}_m(b))=1 \implies \mathrm{ord}_m(ab)=\mathrm{ord}_m(a)\cdot \mathrm{ord}_m(b)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Let $k=\mathrm{ord}_m(a)$
 
@@ -94,7 +94,7 @@
 
 	2. There are $\varphi(\varphi(m))$ primitive roots modulo $m$, and they are $\{g^l: 1\leq l\leq \varphi(m), \gcd(\varphi(m),l)=1\}$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Obviously, $\{\bar{1},\bar{g},\bar{g}^2,\cdots,\bar{g}^{\varphi(m)-1}\}\subseteq \mathbb{Z}_m^*$. we claim that $\{\bar{1},\bar{g},\bar{g}^2,\cdots,\bar{g}^{\varphi(m)-1}\}$ has $\varphi(m)$ distinct elements, thus $\{\bar{1},\bar{g},\bar{g}^2,\cdots,\bar{g}^{\varphi(m)-1}\}=\mathbb{Z}_m^*$.
 
@@ -112,7 +112,7 @@
 
 	- **Goal**: Find a $g\in \mathbb{Z}_p^*$ s.t. $\mathrm{ord}_p(g)=p-1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Let $\varphi(p)=p-1$ has canonical factorization
 
@@ -140,7 +140,7 @@
 
 		- Thus, $\mathrm{ord}_p(g)=\mathrm{ord}_p(\prod_{i=1}^k g_i)=\prod_{i=1}^k \mathrm{ord}_p(g_i)=\prod_{i=1}^k p_i^{e_i}=p-1$, so $g$ is a primitive root modulo $p$.
 
-	???+ info "Proof method 2"
+	??? info "Proof method 2"
 
 		$\forall d\mid p-1$, let $\pi(d) = \{\bar{a}\in \mathbb{Z}_p^*: \mathrm{ord}_p(a)=d\}$, we claim that $\pi(p-1)$ is not empty by showing that $\pi(d)$ has $\varphi(d)$ elements.
 
@@ -190,7 +190,7 @@
 
 		- Thus, all $\varphi(\varphi(p))$ primitive roots modulo $p$ are $G = \{g^l: 1\leq l\leq \varphi(p), \gcd(\varphi(p),l)=1\} = \{g^l \in \mathbb{Z}_p^* \mid l \in \mathbb{Z}_{p-1}^*\}$.
 
-	???+ abstract "Table of primitive roots"
+	??? abstract "Table of primitive roots"
 
 		| $p$ | Primitive roots modulo $p$ |
 		| --- | --- |
@@ -205,7 +205,7 @@
 
 - **Thm 3.9**: There exists primitive root modulo $p^k$ for **odd** prime $p$ and $k\geq 1$, and there exists primitive root modulo $2^k$ for $k=1,2$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		Let $g$ be a primitive root modulo $p$, then $\mathrm{ord}_p(g)=\varphi(p)=p-1$.
 
@@ -257,7 +257,7 @@
 
 - **Thm 3.10**: There exists primitive root modulo $2\cdot p^k$ for **odd** prime $p$ and $k\geq 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		Let $g$ be a primitive root modulo $p^k$
 
@@ -273,7 +273,7 @@
 
 - **Thm 3.11**: For $m\geq 3$, there exists primitive root modulo $m \iff m$ is of the form $2,4,p^k,2p^k$ for odd prime $p$ and $k\geq 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: Assume that $m$ has the standard factorization $m=\prod_{i=1}^r p_i^{e_i}$ with $e_i\geq 1$, then $\varphi(m) = \prod_{i=1}^r p_i^{e_i-1}(p_i-1)$. Let $g$ be a primitive root modulo $m$, then $\mathrm{ord}_m(g)=\varphi(m)$
 
@@ -321,7 +321,7 @@
 
 		3. $G_3 = \{g \mid g \in G_2, 2\nmid g\} \cup \{g+p^k \mid g \in G_2, 2\mid g\}$ is the set of all primitive roots modulo $2p^k$.
 
-	???+ info "Proof of 2"
+	??? info "Proof of 2"
 
 		1. $G_1$ is the set of all primitive roots modulo $p^2$:
 
@@ -383,7 +383,7 @@
 
 	2. $\mathrm{ord}_{p^{k}}(g)=\varphi(p^{k}) \implies \mathrm{ord}_{p^{k-1}}(g)=\varphi(p^{k-1})$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Since $\mathrm{ord}_{p^k}(g)=\varphi(p^k)$, thus $g^{\varphi(p^{k-1})}\not\equiv 1 \pmod{p^k}$ and $g^{\varphi(p^{k-1})}\equiv 1 \pmod{p^{k-1}}$, thus $g^{\varphi(p^{k-1})}=1+ap^{k-1}$ with $\gcd(a,p)=1$. Since $p^{k-1}(p-1) = \mathrm{ord}_{p^k}(g) \mid \mathrm{ord}_{p^{k+1}}(g) \mid \varphi(p^{k+1})=p^{k}(p-1)$, we have $\mathrm{ord}_{p^{k+1}}(g)=p^{k-1}(p-1)$ or $p^{k}(p-1)$. Since
 
@@ -423,7 +423,7 @@
 
 - **Thm 3.16**: Let $g$ be a primitive root modulo $m$, then $\log_g a \equiv \log_g b \pmod{\varphi(m)} \iff a \equiv b \pmod m$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: Since $g^{\log_g a} \equiv a \pmod m$ and $g^{\log_g b} \equiv b \pmod m$, thus $a \equiv g^{\log_g a} \equiv g^{\log_g b} \equiv b \pmod m$.
 
@@ -431,7 +431,7 @@
 
 - **Thm 3.17**: Let $g$ be a primitive root modulo $m$, then the equation $x^b \equiv a \pmod m$ has a solution $\iff \gcd(b, \varphi(m)) \mid \log_g a$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\impliedby$: Since $\gcd(b, \varphi(m)) \mid \log_g a$, thus $\exists u,v\in \mathbb{Z}$ s.t. $ub + v\varphi(m) = \log_g a$, thus $g^{ub} \equiv g^{ub + v\varphi(m)} \equiv g^{\log_g a} \equiv a \pmod m$, so $x=g^u$ is a solution to the equation.
 

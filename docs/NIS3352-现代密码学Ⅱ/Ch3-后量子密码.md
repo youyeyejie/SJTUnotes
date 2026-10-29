@@ -178,7 +178,7 @@
 
 - **定理（Regev05）**：**DLWE 问题困难** $\iff$ **CLWE 问题困难**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **充分性证明** $\implies$：假设存在 PPT 敌手 $\mathcal{A}$ 能够以不可忽略的优势攻破 CLWE 问题，构造 PPT 敌手 $\mathcal{B}$ 来攻破判定性 LWE 问题：
 
@@ -335,7 +335,7 @@
 		\mathrm{Adv}_{\mathcal{A}}=\left|\Pr(\mathrm{output}=b)-\frac{1}{2}\right|=\mathrm{negl}(\lambda)
 		$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：采用混合论证（Hybrid Arguments）与三角不等式。
 			![](assets/image-20.webp)
@@ -476,7 +476,7 @@
 
 - **定理**：如果 $m\cdot B_{\chi}\cdot B_{s}<q/4$，则 **判定性 LWE 问题 $(n,m,q,\chi)$ 困难** $\implies$ **SIS 问题 $(n,m,q,B_{s})$ 困难**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：由解决 SIS 问题的敌手 $\mathcal{A}$ 来构造解决判定性 LWE 问题的敌手 $\mathcal{B}$。
 
@@ -679,7 +679,7 @@
 
 - **定理**：**SIS 问题 $(n,m,q,B_{s}=2B)$ 困难** + **$\mathrm{H}$ 为 RO** $\implies$ **GPV 签名算法 EUF-CMA 安全**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：安全性规约，由攻破 EUF-CMA 安全性的敌手 $\mathcal{A}$ 来构造解决 SIS 问题的敌手 $\mathcal{B}$。
 			![](assets/image-21.webp)
@@ -1095,7 +1095,7 @@
 
 	- **伴随式译码**：给定秩为 $n-k$ 的矩阵 $\mathbf{H} \in F_{q}^{(n-k) \times n}$、整数 $t \in[0, n]$、伴随式 $\mathbf{s}=\mathbf{H}\mathbf{e} \in F_{q}^{n-k}$，其中 $\mathrm{wt}_{H}(\mathbf{e}) \leq t$，求错误向量 $\mathbf{e}$。
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $G$ 和 $H$ 的相互转化是容易的
 
@@ -1214,7 +1214,7 @@
 
 - **定理：随机线性码达到 GV 界**：设 $q$ 为素数幂，$\delta \in [0, 1-\frac{1}{q}]$，$\varepsilon>0$，$n$ 为正整数。$\mathcal{C} \subseteq F_q^n$ 为维数 $k \le n(1-H_q(\delta)-\varepsilon)$ 的随机线性码。则当 $n$ 增大时，$\mathcal{C}$ 的最小汉明距离满足 $\Pr(d_{\min}(\mathcal{C}) < \delta n) \to 0$。
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		$$
 		\begin{aligned} \Pr(d_{\min}(\mathcal{C}) < \delta n) &= \Pr(\exists m \in F_q^k \backslash \{0\}, \text{ s.t. } \mathrm{wt}_H(G^\top m) < \delta n) \\ &\le \sum_{m \in F_q^k \backslash \{0\}} \Pr(\mathrm{wt}_H(G^\top m) < \delta n) \\ &= (q^k - 1) \cdot \frac{V_q^n(\delta n - 1)}{q^n} \\ &\le q^k \cdot \frac{q^{nH_q(\delta)}}{q^n} \\ &\le q^{n(1-H_q(\delta)-\varepsilon)} \cdot q^{nH_q(\delta)-n} \\ &= q^{-n\varepsilon} \to 0 \quad (n \to \infty) \end{aligned}
@@ -1242,7 +1242,7 @@
 		\#\{\mathbf{e} \in F_q^n \mid \mathbf{H}\mathbf{e} = \mathbf{s}, \mathrm{wt}_H(\mathbf{e}) \le t\} = \frac{V_q^n(t)}{q^{n-k}}
 		$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- 定义 $I_x =\begin{cases} 1 & \mathbf{H}\mathbf{x}=\mathbf{s} \\ 0 & \text{else} \end{cases}$，则 $\Pr(I_x = 1) = \frac{1}{q^{n-k}}$，令 $|X| = \#\{\mathbf{x} \in F_q^n \mid \mathbf{H}\mathbf{x} = \mathbf{s}, \mathrm{wt}_H(\mathbf{x}) \le t\}$，则
 

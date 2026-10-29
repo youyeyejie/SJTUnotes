@@ -186,7 +186,7 @@
 
 - **IND-CPA 安全性的合理性**：公钥加密算法的 **IND-CPA 安全性** $\implies$ **SKH-PA/PH-PA/PFbH-PA 安全性**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		以 SKH-PA 安全性为例，采用反证法（**安全性归约**）
 
@@ -244,7 +244,7 @@
 
 - **IND-CPA 与 IND-mCPA 的等价性**：公钥加密算法的 **IND-CPA 安全性** $\iff$ **IND-mCPA 安全性**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **必要性易证**（$\impliedby$）：IND-CPA 是 IND-mCPA $Q=1$ 的特殊情况
 
@@ -428,7 +428,7 @@
 
 - **定理**：**DDH 问题困难** $\iff$ **ElGamal 算法是 IND-CPA 安全的**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **充分性证明**（$\implies$）：反证法（安全性归约）
 
@@ -698,7 +698,7 @@
 
 	则 $\mathcal{A}$ 以不可忽略的概率查询过 $(R^{*}, M^{*})$ 的 Hash 值。
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：反证法，假设 $\mathcal{A}$ 没有查询过 $(R^{*}, M^{*})$ 的 Hash 值，则在 $\mathrm{H}$ 为 RO 假设下，$\mathrm{H}(R^{*}, M^{*})$ 对 $\mathcal{A}$ 是 $\mathbb{Z}_{p}$ 中均匀随机的元素，因此 $h^{\mathrm{H}(R^{*}, M^{*})}$ 对 $\mathcal{A}$ 是 $G$ 中均匀随机的元素。则 $\mathcal{A}$ 猜对 $z^{*} \in \mathbb{Z}_{p}$ 满足
 
@@ -712,7 +712,7 @@
 
 	- **思路**：将 $\mathcal{A}$ 作为 $\mathcal{B}$ 的子算法，为 $\mathcal{A}$ 提供合法的输入，以及返回合法的签名查询。利用 $\mathcal{A}$ 的输出结果帮助 $\mathcal{B}$ 在 UI-PA 中的输出正确的结果。
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：使用反证法（安全性规约）
 			![](assets/image-10.webp)
@@ -757,7 +757,7 @@
 
 - **引理 2**：**DL 问题困难** $\implies$ **Schnorr 身份证明协议是 UI-PA 安全的**
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **证明**：安全性归约，由攻破 UI-PA 安全性的敌手 $\mathcal{A}$ 来构造解决 DL 问题的敌手 $\mathcal{B}$。
 			![](assets/image-11.webp)

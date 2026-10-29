@@ -16,7 +16,7 @@
 
 	1. Let $g$ be a primitive root modulo $p$, then $a$ is a QR modulo $p \iff a=g^{2k} \pmod p$ for some integer $k$.
 
-		???+ info "Proof of 1"
+		??? info "Proof of 1"
 
 			- $\implies$: Assume $a=QR$, then $\exists b\in\mathbb{Z}$ s.t. $b^2 \equiv a \pmod p$. Let $b \equiv g^k \pmod p$ for some integer $k$, then $a \equiv b^2 \equiv g^{2k} \pmod p$.
 
@@ -30,7 +30,7 @@
 
 	5. The number of $QR$ / $QNR$ modulo $p$ is $\frac{p-1}{2}$.
 
-		???+ info "Proof of 5"
+		??? info "Proof of 5"
 
 			- Since there are $p-1$ non-zero elements in $\mathbb{Z}_p^*$, consider $x\in\mathbb{Z}_p^*$, then $(p-x)^2 \equiv p^2 - 2px + x^2 \equiv x^2 \pmod p$.
 
@@ -52,7 +52,7 @@
 
 - **Thm 4.4**: The number of solutions to $x^2 \equiv a \pmod p$ is $1 + \left(\frac{a}{p}\right)$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. **Case 1**: $p \mid a$, then $x^2 \equiv a \equiv 0 \pmod p$ has exactly one solution $x \equiv 0 \pmod p$. Thus $1 = 1 + \left(\frac{a}{p}\right)$, done.
 
@@ -66,7 +66,7 @@
 	\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p
 	$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. **Case 1**: $p \mid a$, then $a=kp$ for some $k\in\mathbb{Z}$. Then $\left(\frac{a}{p}\right) \equiv 0 \equiv (kp)^{\frac{p-1}{2}} \pmod p$, done.
 
@@ -90,7 +90,7 @@
 
 	4. $\sum_{a\in\mathbb{Z}_p} \left(\frac{a}{p}\right) = 0$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. By Euler's Criterion, $\left(\frac{mn}{p}\right) \equiv (mn)^{\frac{p-1}{2}} \equiv m^{\frac{p-1}{2}} n^{\frac{p-1}{2}} \equiv \left(\frac{m}{p}\right)\left(\frac{n}{p}\right) \pmod p$. Since $\left(\frac{mn}{p}\right), \left(\frac{m}{p}\right), \left(\frac{n}{p}\right) \in \{-1, 0, 1\}$, we have $\left(\frac{mn}{p}\right) = \left(\frac{m}{p}\right)\left(\frac{n}{p}\right)$, done.
 
@@ -140,7 +140,7 @@
 
 	6. $\left(\frac{2}{m}\right) = (-1)^{\frac{m^2-1}{8}}$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Let $m = \prod_{i=1}^r p_i^{e_i}$ be the standard factorization of $m$, then
 
@@ -218,7 +218,7 @@
 
 	Equivalently, $\left(\frac{m}{n}\right) = \left(\frac{n}{m}\right) \cdot (-1)^{\frac{m-1}{2} \cdot \frac{n-1}{2}}$
 
-	???+ note "Example"
+	??? note "Example"
 
 		1. Since
 

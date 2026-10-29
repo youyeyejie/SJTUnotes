@@ -24,7 +24,7 @@
 
 	2. $m>\gcd(m,c), ac\equiv bc \pmod m \implies a\equiv b \pmod{\frac{m}{\gcd(m,c)}}$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. We only prove the last one. $\exists u,v\in \mathbb{Z}$ s.t. $a-b=um$ and $c-d=vm$, thus $ac-bd=ac-ad+ad-bd=a(c-d)+(a-b)d=avm+umd=m(av+ud)$, thus $ac\equiv bd \pmod m$.
 
@@ -46,7 +46,7 @@
 
 	2. $\bigcup_{i=0}^{m-1} [i]_m=\mathbb{Z}$, i.e. $\{[0]_m,[1]_m,\cdots,[m-1]_m\}$ is a partition of $\mathbb{Z}$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. if $[r_1]_m\cap [r_2]_m\neq \varnothing$, choose $r\in [r_1]_m\cap [r_2]_m$, then $r\equiv r_1 \pmod m, r\equiv r_2 \pmod m$, thus $r_1\equiv r_2 \pmod m$. So $\forall x\in [r_1]_m$, we have $x\equiv r_1 \equiv r_2 \pmod m$, thus $x\in [r_2]_m$, i.e. $[r_1]_m\subseteq [r_2]_m$. Similarly, we can prove $[r_2]_m\subseteq [r_1]_m$, thus $[r_1]_m=[r_2]_m$.
 
@@ -76,7 +76,7 @@
 
 	- **Claim**: $+$ and $\cdot$ defined above are well-defined, i.e. if $\bar{a}=\bar{a}_1$ and $\bar{b}=\bar{b}_1$, then $\overline{a+b}=\overline{a_1+b_1}$ and $\overline{ab}=\overline{a_1b_1}$.
 
-		???+ info "Proof"
+		??? info "Proof"
 
 			Since $\bar{a}=\bar{a}_1$ and $\bar{b}=\bar{b}_1$, we have $a\equiv a_1 \pmod m, b\equiv b_1 \pmod m$, thus $\exists u,v\in \mathbb{Z}$ s.t. $a-a_1=um$ and $b-b_1=vm$, thus $(a+b)-(a_1+b_1)=(a-a_1)+(b-b_1)=um+vm=(u+v)m$, thus $\overline{a+b}=\overline{a_1+b_1}$. Similarly, we can prove $\overline{ab}=\overline{a_1b_1}$.
 
@@ -94,7 +94,7 @@
 
 - **Thm 2.8**: Let $r\in \mathbb{Z}$ and $m\in \mathbb{Z}^+$, then $\bar{r}\in \mathbb{Z}_m$ is multiplicative invertible $\iff \gcd(r,m)=1$. In this case, the inverse is unique, denoted by $\bar{r}^{-1}$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. $\implies$: Since $\bar{r}$ is invertible, there exists $\bar{r}'\in \mathbb{Z}_m$ s.t. $\bar{r}\cdot \bar{r}'=\bar{1}$, thus $\overline{rr'}=\bar{1}$, thus $rr'\equiv 1 \pmod m$, thus $\exists u\in \mathbb{Z}$ s.t. $rr'-1=um$, thus $rr'-um=1$, thus $\gcd(r,m)\mid 1$, thus $\gcd(r,m)=1$.
 
@@ -124,7 +124,7 @@
 
 	has a unique solution modulo $M=\prod_{i=1}^r m_i$, and the solution $x=\sum_{i=1}^r a_i M_i y_i$, where $M_i=\frac{M}{m_i}$ and $y_i$ is the inverse of $M_i$ in $\mathbb{Z}_{m_i}$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Uniqueness**: If $x_1$ and $x_2$ are two solutions, then $\forall 1\leq i\leq r, x_1\equiv a_i \equiv x_2 \pmod {m_i}$, thus $x_1\equiv x_2 \pmod {m_i}$, since $\gcd(m_i,m_j)=1$ for $i\neq j$, we have $x_1\equiv x_2 \pmod M$.
 
@@ -140,7 +140,7 @@
 		\varphi(n)=\prod_{i=1}^k p_i^{r_i-1}(p_i-1)=n\prod_{p\mid n}(1-\frac{1}{p})
 		$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Claim that $|\mathbb{Z}_{mn}^*|=|\mathbb{Z}_m^*||\mathbb{Z}_n^*|$. Consider the map
 
@@ -178,7 +178,7 @@
 
 	- $\varphi(n)=n-1 \iff n$ is a prime.
 
-		???+ info "Proof"
+		??? info "Proof"
 
 			- If $n$ is a prime, then $\varphi(n)=n-1$.
 
@@ -186,7 +186,7 @@
 
 	- Set $\varphi(1)=1$, then $\forall n\geq 1, \sum_{d\mid n} \varphi(d)=n$.
 
-		???+ info "Proof"
+		??? info "Proof"
 
 			Let $n=\prod_{i=1}^k p_i^{e_i}$ be the canonical factorization, consider
 

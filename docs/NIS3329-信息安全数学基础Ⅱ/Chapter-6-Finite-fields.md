@@ -24,7 +24,7 @@
 
 - **Thm 6.3**: The characteristic of a field $F$ is either $0$ or a prime.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- Suppose $\mathrm{char}(F) = m > 0$ is a composite number. Then there exist $1 < a, b < m$ such that $m = ab$. Then
 
@@ -48,7 +48,7 @@
 
 - **Def 6.8 Extension degree**: If $E/F$ is a field extension, then the extension degree of $E/F$ is defined to be the dimension $\dim_F E$, denoted by $[E : F]$. The extension $E/F$ is called finite if $[E : F]$ is finite, otherwise $E/F$ is called infinite.
 
-	???+ note "Example"
+	??? note "Example"
 
 		$$
 		[\mathbb{C},\mathbb{Q}] = +\infty, \quad [\mathbb{C},\mathbb{R}] = 2
@@ -80,7 +80,7 @@
 
 	Furthermore, $[F(\theta) : F] = d$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. $F[θ]=\{\sum_{i=0}^{d-1} a_i\theta^i : a_i \in F\} = \{f(\theta) : f \in F[x], \deg(f) \le d-1\}$:
 
@@ -102,7 +102,7 @@
 	F[x]/(m) \simeq F(\theta) = F[\theta]
 	$$
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **The first isomorphism theorem**: Let $R, S$ be rings and $\pi : R \to S$ be a ring homomorphism. Then $\ker(\pi) = \{r \in R : \pi(r) = 0\}$ is an ideal of $R$ and $\mathrm{Im}(\pi) = \{\pi(r) : r \in R\}$ is a subring of $S$. Moreover, $R/\ker(\pi) \simeq \mathrm{Im}(\pi)$.
 
@@ -118,7 +118,7 @@
 			F[x]/(m) \simeq \mathrm{Im}(\pi) = F[\theta] = F(\theta)
 			$$
 
-	???+ note "Example"
+	??? note "Example"
 
 		1. $x^2+1 \in \mathbb{R}[x]$ is irreducible, $i$ is a root of $x^2+1$. Thus
 
@@ -146,7 +146,7 @@
 
 	3. $\forall a \in F, a^q = a$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Since $F$ is a field, $\mathrm{char}(F)$ is either $0$ or a prime. If $\mathrm{char}(F) = 0$, then the prime field of $F$ is $\mathbb{Q}$, which is infinite. Thus $\mathrm{char}(F)$ must be a prime $p$.
 
@@ -166,7 +166,7 @@
 
 	2. $F^* = F \setminus \{0\}$ is a cyclic group of order $p^n-1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		1. Since $\mathrm{char}(F) = p$ is a prime, the prime field of $F$ is $\mathbb{Z}_p$. Thus $F/\mathbb{Z}_p$ is a field extension. Since $F$ is finite, $[F : \mathbb{Z}_p] = n < +\infty$. Thus $|F| = p^n$.
 
@@ -174,7 +174,7 @@
 
 - **Thm 6.17**: There exists a finite field of $q$ elements $\iff q = p^n$ for some prime $p$ and integer $n \ge 1$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: has been proved in Thm 6.16.
 
@@ -184,7 +184,7 @@
 
 - **Thm 6.19 Property of algebraically closed fields**: A field $\Omega$ is algebraically closed $\iff \forall f(x) \in \Omega[x]$ with $\deg(f) \ge 1$, $f(x)$ has all roots in $\Omega$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: Let $f(x) \in \Omega[x]$ with $\deg(f) \ge 1$. We will show that $f(x)$ has all roots in $\Omega$ by induction on $\deg(f)$.
 
@@ -200,19 +200,19 @@
 
 	- **Notation**: We denote the unique finite field of $q$ elements by $\mathbb{F}_q$ or $\mathrm{GF}_q$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- **Existence**: has been proved in Thm 6.17.
 
 		- **Uniqueness**: Let $E, F$ be two finite fields with $q=p^n$ elements. Then $\forall a \in E, a^q = a$, i.e. $a$ is a root of $x^q - x$, thus $E = \{a : a^q = a\} \in \Omega$. Similarly, $F = \{a : a^q = a\} \in \Omega$. Thus $E = F$.
 
-	???+ note "Example"
+	??? note "Example"
 
 		- $x^3 + x + 1 \in \mathbb{Z}_2[x]$ and $x^3 + x^2 + 1 \in \mathbb{Z}_2[x]$ are irreducible. Let $\alpha$ be a root of $x^3 + x + 1$ and $\beta$ be a root of $x^3 + x^2 + 1$. Then $\mathbb{Z}_2[x]/(x^3 + x + 1) \simeq \mathbb{Z}_2(\alpha)$ and $\mathbb{Z}_2[x]/(x^3 + x^2 + 1) \simeq \mathbb{Z}_2(\beta)$ are two finite fields with $8$ elements. By the uniqueness, we have $\mathbb{Z}_2(\alpha) = \mathbb{Z}_2(\beta) = \mathbb{F}_8$.
 
 - **Thm 6.22**: $\mathbb{F}_{p^n}$ is a field extension of $\mathbb{F}_{p^k} \iff k \mid n$.
 
-	???+ info "Proof"
+	??? info "Proof"
 
 		- $\implies$: Let $E = \mathbb{F}_{p^n}$ and $F = \mathbb{F}_{p^k}$. Then $[E : F] = \frac{[E : \mathbb{Z}_p]}{[F : \mathbb{Z}_p]} = \frac{n}{k}$. Since $[E : F]$ is an integer, we have $k \mid n$.
 
@@ -226,7 +226,7 @@
 
 	3. Then $\mathbb{Z}_p[x]/(m) \simeq \mathbb{Z}_p(\theta) = \{\sum_{i=0}^{n-1} a_i \theta^i : a_i \in \mathbb{Z}_p\}$ is a finite field with $p^n$ elements.
 
-	???+ note "Example"
+	??? note "Example"
 
 		- To construct a finite field of $16$ elements, find an irreducible polynomial of degree $4$ over $\mathbb{Z}_2$.
 
