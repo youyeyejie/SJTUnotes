@@ -4,6 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
+from fix_argminmax import normalize_argminmax
 from fix_list_spacing import normalize_list_spacing
 from fix_math_block import normalize_block_math
 from fix_math_punctuation import normalize_math_punctuation
@@ -11,6 +12,7 @@ from fix_mixed_spacing import normalize_mixed_spacing
 
 
 PROCESSORS = (
+    ("极值运算符", normalize_argminmax),
     ("数学公式标点", normalize_math_punctuation),
     ("行间公式", normalize_block_math),
     ("混合空格", normalize_mixed_spacing),
@@ -68,7 +70,7 @@ def process_file(text: str) -> tuple[str, list[tuple[str, int]]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="按顺序运行数学公式标点、行间公式、混合空格和列表格式化。"
+        description="按顺序运行极值运算符、数学公式标点、行间公式、混合空格和列表格式化。"
     )
     parser.add_argument(
         "-i",
