@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from fix_argminmax import normalize_argminmax
+from fix_math_argmimmax import normalize_argminmax
 from fix_list_spacing import normalize_list_spacing
 from fix_math_block import normalize_block_math
 from fix_math_punctuation import normalize_math_punctuation
@@ -50,11 +50,13 @@ def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None
     return output / file_path.name
 
 
-def process_file(text: str) -> tuple[str, list[tuple[str, int]]]:
+def process_file(text: str, *, skip_mixed_spacing: bool = False) -> tuple[str, list[tuple[str, int]]]:
     stage_counts: list[tuple[str, int]] = []
     updated = text
 
     for name, processor in PROCESSORS:
+        if skip_mixed_spacing and name == "混合空格":
+            continue
         if name == "数学公式标点":
             updated, records = processor(updated)
             count = len(records)
@@ -104,7 +106,9 @@ def main() -> int:
 
     for file_path in iter_markdown_files(inputs):
         original = file_path.read_text(encoding="utf-8")
-        updated, stage_counts = process_file(original)
+        updated, stage_counts = process_file(
+            original, skip_mixed_spacing=file_path.name.lower() == "index.md"
+        )
         if updated == original:
             continue
 

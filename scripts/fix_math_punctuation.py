@@ -9,7 +9,8 @@ from dataclasses import dataclass
 
 
 MATH_DELIMITER_RE = re.compile(
-    r"(?P<block_dollar>\$\$.*?\$\$)"
+    r"(?P<code>(?P<ticks>`+)(?!`)[^\n]*?(?<!`)(?P=ticks)(?!`))"
+    r"|(?P<block_dollar>\$\$.*?\$\$)"
     r"|(?P<block_bracket>\\\[.*?\\\])"
     r"|(?P<inline_paren>\\\(.*?\\\))"
     r"|(?P<inline_dollar>(?<!\\)(?<!\$)\$(?!\$).*?(?<!\\)\$(?!\$))",
@@ -60,6 +61,10 @@ def replace_punctuation_in_math(text: str, base_line: int) -> tuple[str, list[Re
     for match in MATH_DELIMITER_RE.finditer(text):
         result_parts.append(text[last_end : match.start()])
         segment = match.group(0)
+        if match.group("code") is not None:
+            result_parts.append(segment)
+            last_end = match.end()
+            continue
         segment_line = base_line + text.count("\n", 0, match.start())
 
         rebuilt: list[str] = []

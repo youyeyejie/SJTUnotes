@@ -35,7 +35,16 @@ def normalize_list_spacing(text: str) -> tuple[str, int]:
                 in_front_matter = False
             continue
 
-        if is_list_item(stripped):
+        # A header followed by a delimiter row starts a Markdown table.
+        is_table_start = (
+            "|" in stripped
+            and index + 1 < len(lines)
+            and re.fullmatch(
+                r"\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*",
+                lines[index + 1],
+            ) is not None
+        )
+        if is_list_item(stripped) or is_table_start:
             if new_lines and new_lines[-1].strip():
                 new_lines.append("")
                 modifications += 1
@@ -78,7 +87,7 @@ def resolve_output_path(file_path: Path, inputs: list[Path], output: Path | None
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Insert a blank line before list items when they follow any non-empty line."
+        description="Insert a blank line before list items and Markdown tables after non-empty lines."
     )
     parser.add_argument(
         "-i",

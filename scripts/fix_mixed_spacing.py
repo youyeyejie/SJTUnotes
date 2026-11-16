@@ -174,6 +174,40 @@ def normalize_mixed_text_spacing(line: str) -> tuple[str, Counter[str]]:
     return "".join(parts), changes
 
 
+# Protect complete links, including labels, destinations and reference definitions.
+LINK_RE = re.compile(
+    r"!?\[(?:\\.|[^\\\]\n])*\]"
+    r"(?:\((?:\\.|[^\\()\n]|\([^\\()\n]*\))*\)|\[[^\\\]\n]*\])"
+    r"|^[ \t]{0,3}\[[^\\\]\n]+\]:[^\n]*"
+    r"|<(?:https?://|mailto:)[^>\s]+>"
+    r"|(?:https?://|mailto:|www\.)[^\s<>]+"
+)
+
+# Match math and code first so link-like contents cannot split their delimiters.
+PROTECTED_RE = re.compile(TOKEN_PATTERN.pattern + "|" + LINK_RE.pattern)
+
+
+def normalize_unlinked_spacing(line: str) -> tuple[str, Counter[str]]:
+    parts: list[str] = []
+    changes: Counter[str] = Counter()
+    cursor = 0
+    for match in PROTECTED_RE.finditer(line):
+        if TOKEN_PATTERN.fullmatch(match.group(0)):
+            continue
+        updated, counts = normalize_token_spacing(line[cursor:match.start()])
+        updated, mixed_counts = normalize_mixed_text_spacing(updated)
+        changes.update(counts)
+        changes.update(mixed_counts)
+        parts.extend((updated, match.group(0)))
+        cursor = match.end()
+    updated, counts = normalize_token_spacing(line[cursor:])
+    updated, mixed_counts = normalize_mixed_text_spacing(updated)
+    changes.update(counts)
+    changes.update(mixed_counts)
+    parts.append(updated)
+    return "".join(parts), changes
+
+
 def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, Counter[str]]:
     stripped = line.strip()
 
@@ -186,9 +220,7 @@ def normalize_line(line: str, in_block_math: bool) -> tuple[str, bool, Counter[s
     if in_block_math or BLOCK_MATH_LINE_RE.match(line):
         return line, in_block_math, Counter()
 
-    updated, changes_1 = normalize_token_spacing(line)
-    updated, changes_3 = normalize_mixed_text_spacing(updated)
-    changes_1.update(changes_3)
+    updated, changes_1 = normalize_unlinked_spacing(line)
     return updated, False, changes_1
 
 

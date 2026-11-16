@@ -1373,6 +1373,7 @@
 	5. 输出明文 $\mathbf{m}$
 
 #### McEliece 与 Niederreiter 对比
+
 | | McEliece | Niederreiter |
 |:---:|:---:|:---:|
 | 传输速率 | $\frac{k}{n}$  | 二元 Goppa 码：$\frac{\log_2 \binom{n}{t}}{n-k}$  |
