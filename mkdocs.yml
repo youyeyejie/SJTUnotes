@@ -145,6 +145,9 @@ extra:
   # homepage: https://youyeyejie.github.io/
   generator: true  # 展示 "Made with Material for MkDocs"
   social:
+    # profile
+    - icon: fontawesome/solid/house
+      link: https://youyeyejie.github.io/
     # github
     - icon: fontawesome/brands/github
       link: https://github.com/youyeyejie
@@ -155,7 +158,7 @@ extra:
     - icon: fontawesome/solid/blog
       link: https://youyeyejie.github.io/Blog/
     # email
-    - icon: material/email
+    - icon: fontawesome/solid/envelope
       link: mailto:youyeyejie@outlook.com
   analytics:
     provider: custom
